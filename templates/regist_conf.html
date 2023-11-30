@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>アカウント登録</title>
+</head>
+<body>
+    <a>登録しますか？</a><br>
+    <form action="{{url_for('account.otp_send')}}" method="POST">
+        氏名<a>{{name}}</a><br>
+        メールアドレス<input type="readonly" value={{mail}} name="mail"><br>
+        入学年度<a>{{entrance_year}}</a><br>
+        学科<a>{{department_id}}</a><br>
+        パスワード<a>**********</a><br>
+        <button type="submit" >登録</button>
+    </form>
+</body>
+</html>
