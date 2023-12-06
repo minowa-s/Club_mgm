@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="{{url_for('club2.join_req_okexe')}}" method="post">
+        <input type="text" name="student_id" value="{{student_id}}" readonly>
+        <button type = "submit">参加申請承認</button>
+</body>
+</html>
