@@ -40,13 +40,13 @@ def get_request_club():
 request_detail = get_request_club()
 print(request_detail)
 
-def get_club_dedtail(club_name):
+def get_club_dedtail():
     connection = get_connection()
     cursor = connection.cursor()
 
-    sql = "SELECT club_name, leader_mail, objective, activities, introduction, note FROM club where club_name = %s"
+    sql = "SELECT club_name, leader_mail, objective, activities, introduction, note FROM club where club_name = 'Pythonサークル'"
 
-    cursor.execute(sql, (club_name))
+    cursor.execute(sql)
     rows = cursor.fetchall()
         
     cursor.close()
