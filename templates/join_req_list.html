@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% for list in list %}
+    <option value="{{ list }}">{{ list }}</option>
+    <{{list [0]}}>
+    <form action="{{ url_for('club2.join_req_ok') }}">
+        <input type="text" name="student_id" value="{{list[1]}}" readonly>
+        <button type="submit">承認</button>
+    </form>
+    <form action="{{ url_for('club2.join_req_no') }}">
+        <input type="text" name="student_id" value="{{list[1]}}" readonly>
+        <button type="submit">否認</button>
+        </form>
+
+    
+    
+{% endfor %}
+
+</body>
+</html>
