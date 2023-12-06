@@ -1,0 +1,75 @@
+{% extends "top_student.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='/css/request.css') }}">
+{% endblock %}
+
+{% block content %}
+  <h4>サークル立ち上げ申請フォーム</h4>
+  {% if error %}
+    <p style="color:red">{{ error }}</p>
+  {% endif %}
+  {% if msg %}
+    <p style="color:blue">{{ msg }}</p>
+  {% endif %}
+  <form action="{{ url_for('request_exe') }}" method="post">
+    <table id="frm">
+      <tr>
+        <th class="th1">
+          サークル名
+          <p id="required1">必須</p>
+        </th>
+        <td class="td1"><input id="inp1" type="text" name="club_name" value="{{ club_name }}" required></td>
+      </tr>
+      <tr>
+        <th class="th2">
+          代表者　メールアドレス
+          <p id="required2">必須</p>
+        </th>
+        <td class="td2"><input id="inp2" type="email" name="leader_mail" value="{{ leader_mail }}" required></td>
+      </tr>
+      <tr>
+        <th class="th5">
+          活動目標
+          <p id="required5">必須</p>
+          <p>簡単でいいので活動目標を教えてください。</p>
+        </th>
+        <td class="td6"><textarea id="inp6" name="objective" required>{{ objective }}</textarea></td>
+      </tr>
+      <tr>
+        <th class="th6">
+          活動内容
+          <p id="required6">必須</p>
+          <p>簡単でいいので活動内容を教えてください。</p>
+        </th>
+        <td class="td7"><textarea id="inp7" name="activities" required>{{ activities }}</textarea></td>
+      </tr>
+      <tr>
+        <th class="th7">
+          サークル説明
+          <p id="required7">必須</p>
+          <p>サークルの説明を30文字以内で記入してください。</p>
+        </th>
+        <td class="td8"><textarea id="inp8" name="introduction" required>{{ introduction }}</textarea></td>
+      </tr>
+      <tr>
+        <th class="th8">備考</th>
+        <td class="td8"><textarea id="inp9" name="note">{{ note }}</textarea></td>
+      </tr>
+    </table>
+    <table id="frmBtn">
+      <tr>
+        <td>
+          <div id="btn1">
+            <button type="button" onclick="history.back()">戻る</button>
+          </div>
+        </td>
+        <td>
+          <div id="btn2">
+            <button type="submit">登録</button>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </form>
+{% endblock %}

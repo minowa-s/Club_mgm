@@ -1,0 +1,59 @@
+{% extends "top_student.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='/css/request_detail.css')}}">
+{% endblock %}
+
+{% block content %}
+<body>
+    <h4>立ち上げ申請確認</h4>
+            <table id="frm">
+                {% for club_name, leader_mail, objective, activities, introduction,note in request_detail %}
+                    <tr>
+                        <th class="th1">サークル名</th>
+                        <td class="td1">{{club_name}}</td>
+                    </tr>
+                    <tr>
+                        <th class="th2">代表者　メールアドレス</th>
+                        <td class="td2">{{leader_mail}}</td>
+                    </tr>
+                    <tr>
+                    <tr>
+                        <th class="th5">活動目標</th>
+                        <td class="td5">{{objective}}</td>
+                    </tr>
+                    <tr>
+                        <th class="th6">活動内容</th>
+                        <td class="td6">{{activities}}</td>
+                    </tr>
+                    <tr>
+                        <th class="th7">サークル説明</th>
+                        <td class="td7">{{introduction}}</td>
+                    </tr>
+                    <tr>
+                        <th class="th7">備考</th>
+                        <td class="td7">{{note}}</td>
+                    </tr>
+                {% endfor %}
+                </table>
+                <table id="frmBtn">
+                    <tr>
+                        <td>
+                            <div id="btn1">
+                                <button type="button" onclick="history.back()">戻る</button>
+                            </div>
+                        </td>
+                        <td id="tBtn">
+                            <div id="btn2">
+                                <button type="submit" class="btn">否認</button>
+                            </div>
+                        </td>
+                        <td id="tBtn">
+                            <div id="btn3">
+                                <button type="submit">承認</button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+</body>
+{% endblock %}

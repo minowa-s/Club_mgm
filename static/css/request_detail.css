@@ -1,0 +1,152 @@
+@charset 'utf-8';
+
+body {
+    text-align: center;
+  }
+  
+  h4 {
+    text-align: center;
+    margin: 50px auto;
+  }
+  
+
+  #frm {
+    width: fit-content;
+    margin: auto;
+    margin-bottom: 50px;
+  }
+   
+  #frm th{
+    text-align: left;
+    padding-left: 1em;
+    font-size: 18px;
+    width: 350px;
+    border:1px solid #DCDCDC;
+    background: #B3D8EB;
+  }
+   
+  #frm td{
+    text-align: left;
+    padding-left: 2em;
+    width: 600px;
+    border:1px solid #DCDCDC;
+    background:#ffffff;
+  }
+  
+  .form-group {
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+  }
+
+
+  .th5 {
+    padding: 20px;
+    vertical-align: top;
+  }
+
+  .th6 {
+    padding: 20px;
+    vertical-align: top;
+  }
+
+  .th7 {
+    padding: 20px;
+    vertical-align: top;
+  }
+ 
+  .td1 {
+    height: 70px;
+  }
+
+  .td2 {
+    height: 70px;
+  }
+
+  .td3 {
+    height: 70px;
+  }
+
+  .td4 {
+    height: 70px;
+  }
+
+  .td5 {
+    padding: 20px;
+    vertical-align: top;
+    height: 200px;
+  }
+
+  .td6 {
+    padding: 20px;
+    vertical-align: top;
+    height: 200px;
+  }
+
+  .td7 {
+    padding: 20px;
+    vertical-align: top;
+    height: 200px;
+  }
+
+  .td8 {
+    padding: 20px;
+    vertical-align: top;
+    height: 200px;
+  }
+
+  .td9 {
+    padding: 20px;
+    vertical-align: top;
+    height: 200px;
+  }
+
+  button {
+    font-size: 25px;
+    color: #0693E3;
+    width: 170px;
+    height: 60px;
+    border-radius:30px;
+    border: solid 5px;
+    background-color: #FFFFFF;
+    border-color: #0693E3;
+  }
+
+  .btn {
+    font-size: 25px;
+    color: #FF0000;
+    width: 170px;
+    height: 60px;
+    border-radius:30px;
+    border: solid 5px;
+    background-color: #FFFFFF;
+    border-color: #FF0000;
+  }
+
+  button:hover{
+    color: #FFFFFF;
+    background-color: #0693E3;
+  }
+
+  .btn:hover{
+    color: #FFFFFF;
+    background-color: #FF0000;
+  }
+
+  #frmBtn {
+    width: fit-content;
+    margin: auto;
+    width: 950px;
+  }
+
+  #btn1 {
+    float: left;
+  }
+
+  #btn2 {
+    margin-left: 350px;
+  }
+
+  #btn3 {
+    float: right;
+  }
