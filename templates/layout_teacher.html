@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" 
+   integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/top.css"> 
+  <title>top</title>
+  <link rel="stylesheet" href="{{url_for('static', filename='/css/layout_header.css')}}">
+  {% block css %}
+  <!-- CSS埋め込み -->
+  {% endblock %}
+  <title>レイアウトサンプル</title>
+</head>
+<body>
+  <nav class="navbar fixed-top" style="background-color: #0693E3;">
+    <div class="container-fluid">
+      <div class="aBtn">
+        <a class="navbar-brand" href="#" style="color: #ffffff; font-size: 25px" >サークル活動アプリケーション</a>
+      </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" style="background-color: #fff; margin-right:30px">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="menuheader">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <div class="hbgBtn">
+              <div class="fivecharacters">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="##">マイページ</a>
+                </li>
+              </div>
+            </div>
+            <div class="hbgBtn">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="###">アカウント管理</a>
+                </li>                    
+            </div>
+            <div class="hbgBtn">
+              <div class="fourcharacters">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="####">申請承認</a>
+                </li>                    
+              </div>
+            </div>
+            <div class="hbgBtn">
+              <div class="fourcharacters">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#####">連絡送信</a>
+                </li>                    
+              </div>
+            </div>
+            <div class="logoutBtn">
+              <div class="fivecharacters">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="######">ログアウト</a>
+                </li>                    
+              </div>
+            </div>
+          </div>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <footer class="footer fixed-bottom" style="background-color: #0693E3;">
+      <div class="container">
+        <p class="text-center" style="color: #fff; ">Morijyobi</p>
+      </div>
+    </footer>
+  </nav>
+  {% block content %}
+  <!-- ここにメインコンテンツを埋め込む -->
+  {% endblock %}
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" 
+  integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+  </script>
+</body>
+</html>
