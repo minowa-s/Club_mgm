@@ -19,6 +19,7 @@ def get_connection():
 def regist():
     department = select_department()
     year = select_year()
+    print(year)
     return render_template('regist.html', department=department, year=year)
 
 #アカウント登録情報確認
@@ -140,11 +141,17 @@ def get_account_salt(mail):
         
     return str_salt
 
-#ソルト取得
+#ソルト生成
 def get_salt():
     charset = string.ascii_letters + string.digits
     salt = '' .join(random.choices(charset, k=30))
     return salt
+
+#パスワード生成
+def generate_pass():
+    characters = string.ascii_letters + string.digits
+    random_string = ''.join(random.choice(characters) for _ in range(8))
+    return random_string
 
 #ハッシュ取得
 def get_hash(password, salt):
@@ -223,19 +230,35 @@ def tea_regist_conf():
     return render_template('tea_regist_conf.html', name=name, mail=mail)
 
 #アカウント登録完了画面
-@account_bp.route('/tea_regist_exe', methods=["POST"])
+@account_bp.route('/tea_regist_exe')
 def tea_regist_exe():
     name = session.get('name')
     mail = session.get('mail')
-    tea_account_regist_mail(mail)
-    return render_template('tea_regist_exe.html')
+    password = generate_pass()
+    salt = get_salt()
+    sql = 'INSERT INTO teacher(name, mail, password, first_pass_change, salt) VALUES(%s, %s, %s, %s, %s)' #name, mail,password, first_pass_change, salt
+    try :
+        connection = get_connection()
+        cursor = connection.cursor()   
+        cursor.execute(sql, (name, mail, password, False, salt))
+        connection.commit()
+    except psycopg2.DatabaseError:
+        count = 0
+    finally :
+        cursor.close()
+        connection.close()
+    subject =  "教員用サークルアプリ" # ここにアカウント設定用のurlと現在のパスワード貼りたい
+    body = "初期パスワード：" + "「" + password + "」"
+    tea_account_regist_mail(mail, subject, body)
+    return render_template('tea_regist_execute.html')
+
 
 #登録したい教員アカウントにメールを送信する
-def tea_account_regist_mail(to_address):
+def tea_account_regist_mail(to_address, subject, body):
     from_address = "h.nakamura.sys22@morijyobi.ac.jp" # 送信元と送信先のメールアドレス
     app_password = "lydt vxfw inil lffe"  # Gmailのアプリパスワードなどを使用してください
-    subject ="件名"
-    body ="本文" # URLを送る
+    # subject ="件名"
+    # body ="本文"  URLを送る
 
     msg = MIMEMultipart()# メールの設定
     msg['From'] = from_address
@@ -249,7 +272,15 @@ def tea_account_regist_mail(to_address):
         server.login(from_address, app_password)
         server.sendmail(from_address, to_address, msg.as_string())
 
-@account_bp.route('/tea_account_setting')
-def account_setting():
-    password = request.form.get('password')
 
+@account_bp.route('/tea_account_setting')
+def tea_account_setting():
+    nowpassword = request.form.get('nowpassword')
+    newpassword = request.form.get('newpassword')
+    newpassword2 = request.form.get('newpassword2')
+    #パスワードの認証と新しいパスワードの誤字チェック    
+    return render_template("tea_account_setting.html")
+
+@account_bp.route('/tea_account_setting_conf', methods=['POST'])
+def tea_account_setting_conf():
+    return render_template("tea_account_setting_conf.html")

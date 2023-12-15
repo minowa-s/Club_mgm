@@ -8,13 +8,15 @@
 <body>
     {% for list in list %}
     <option value="{{ list }}">{{ list }}</option>
-    <{{list [0]}}>
-    <form action="{{ url_for('club2.join_req_ok') }}">
-        <input type="text" name="student_id" value="{{list[1]}}" readonly>
-        <button type="submit">承認</button>
+    student_club_id:{{list [0]}}<br>
+    student_id:{{list [1]}}<br>
+    <form action="{{ url_for('club2.join_req') }}">
+        student_id:<input type="hidden" name="student_id" value="{{list[1]}}" readonly>
+        <button type="submit" name="approve" value="1">承認</button>
+        <button type="submit" name="approve" value="0">否認</button>
     </form>
     <form action="{{ url_for('club2.join_req_no') }}">
-        <input type="text" name="student_id" value="{{list[1]}}" readonly>
+        student_id:<input type="text" name="student_id" value="{{list[1]}}" readonly>
         <button type="submit">否認</button>
         </form>
 

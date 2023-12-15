@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table id="frm">
+        <tr>  
+            <th class="th1">
+                サークル名
+            </th>
+            <td>
+                {{request_detail[0]}}
+            </td>
+        </tr>
+        <tr>  
+            <th class="th1">
+                代表者メールアドレス
+            </th>
+            <td>
+                {{leader_mail[2]}}
+            </td>
+        </tr>
+        <tr>  
+            <th class="th1">
+                サークルメンバー メールアドレス１
+            </th> 
+            <td>
+                {{student_mails}}
+            </td>      
+        </tr>
+        <tr>  
+            <th class="th1">
+                サークルメンバー メールアドレス２
+            </th>       
+            <td>
+                {{request_detail[0]}}
+            </td>
+        </tr>
+        <tr>  
+            <th class="th1">
+                サークル活動目標
+            </th>       
+            <td>
+                {{request_detail[2]}}
+            </td>
+        </tr>
+        <tr>  
+            <th class="th1">
+                活動内容
+            </th>       
+            <td>
+                {{request_detail[3]}}
+            </td>
+        </tr>
+        <tr>  
+            <th class="th1">
+                サークル説明
+            </th>       
+            <td>
+                {{request_detail[4]}}
+            </td>
+        </tr>
+        <tr>  
+            <th class="th1">
+                備考
+            </th>
+            <td>
+                {{request_detail[5]}}
+            </td>
+        </tr>
+        </table>   
+</body>
+</html>

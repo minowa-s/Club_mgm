@@ -26,7 +26,13 @@
 <body>
     <h1>TOPページ</h1>
     <a href={{url_for('account.regist')}}>アカウント登録</a></a><br>
-    <a href="{{ url_for('page_b') }}"><button>ページBへ</button></a>
-    <a href="{{ url_for('page_c') }}"><button>ページCへ</button></a>
+    <a href="{{ url_for('account.tea_regist') }}"><button>教員アカウント登録</button></a>
+    <a href="{{ url_for('account.tea_account_setting') }}"><button>教員アカウント設定</button></a>
+    <form action="{{ url_for('club.club_join_req')}}" method="POST">
+        <input type="hidden" name="student_id" value="1">
+        <button type="submit">サークル参加申請</button>
+    </form>
+    <a href="{{ url_for('club2.join_req_list') }}"><button>サークル参加申請承認</button></a>
+    <a href="{{ url_for('app_data.approve_list_st') }}"><button>サークル立ち上げ申請一覧</button></a>
 </body>
 </html>

@@ -1,0 +1,45 @@
+@charset 'utf-8';
+
+body {
+    text-align: center;
+}
+  
+h4 {
+    text-align: center;
+    margin: 50px auto;
+}
+
+table {
+    margin: auto;
+}
+   
+th{
+    font-size: 18px;
+    width: 200px;
+    height: 60px;
+    border:1px solid #707070;
+}
+   
+td{
+    font-size: 18px;
+    width: 200px;
+    height: 70px;
+    border:1px solid #707070;
+}
+  
+.form-group {
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+}
+
+#back {
+    text-decoration: none;
+    font-size: 20pt;
+    color: black;
+}
+
+#btn {
+    float: left;
+    padding-left: 20px;
+}
