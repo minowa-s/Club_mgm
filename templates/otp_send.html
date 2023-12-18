@@ -1,5 +1,13 @@
-6桁のコードを入力してください
+{% extends "top_student.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='/css/otp_send.css')}}">
+{% endblock %}
+
+{% block content %}
+<h4>6桁のコードを入力してください</h4>
 <form action="{{url_for('account.regist_execute')}}" method="post">
-    <input type="number" maxlength="6" name=otp>
+    <div id="inp"><input type="number" maxlength="6" name=otp></div><br>
     <button type="submit">送信</button>
 </form>
+{% endblock %}

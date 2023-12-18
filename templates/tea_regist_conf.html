@@ -6,9 +6,11 @@
     <title>Document</title>
 </head>
 <body>
-    登録しますか？
-    {{name}}
-    {{mail}}
-    <a href="{{tea_regist_execute}}">
+    <p>登録しますか？</p>
+    <form action="{{url_for('account.tea_regist_exe')}}" method="POST">
+        {{name}}
+        {{mail}}
+        <button type="submit">登録</button>
+    </form>
 </body>
 </html>

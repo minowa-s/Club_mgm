@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <title>学生アカウント登録</title>
+  <style>
+    #overlay {
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: rgba(99, 99, 99, 0.3);
+      display: none;
+      z-index: 998;
+    }
+    #overlayWindow {
+      width: 30%;
+      height: 60%;
+      margin: 100px auto;
+      border: 2px solid #000000;
+      background-color: #FFFFFF;
+      text-align: center;
+      display: none;
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+  <h4>学生アカウント登録</h4>
+  <p class="p1">以下の内容で登録しますか？</p>
+  <form action="{{url_for('account.otp_send')}}" method="POST">
+    <table id="frm">
+      <!-- フォームの内容 -->
+    </table>
+    <table id="frmBtn">
+      <tr>
+        <td>
+          <div id="btn1">
+            <button type="button" onclick="history.back()">戻る</button>
+          </div>
+        </td>
+        <td>
+          <div id="btn2">
+            <button id="registButton">登録</button>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </form>
+
+  <div id="overlay" style="display: none;">
+    <div id="overlayWindow">
+      <h4>6桁のコードを入力してください</h4>
+      <form id="otpForm" action="{{url_for('account.regist_execute')}}" method="post">
+        <input type="number" maxlength="6" name="otp">
+        <button type="submit">送信</button>
+      </form>
+      <button id="button2">閉じる</button>
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    $(function() {
+      $('#registButton').on('click', function() {
+        // 登録ボタンがクリックされたときにオーバーレイを表示し、元のページのコンテンツを保持
+        var originalContent = $('body').html();
+        $('body').addClass('overlay-visible').append(originalContent);
+        $("#overlay, #overlayWindow").fadeIn();
+      });
+
+      $('#button2').on('click', function() {
+        // オーバーレイを閉じる際に元のページのコンテンツを元に戻す
+        $('body').removeClass('overlay-visible');
+        $("#overlay, #overlayWindow").fadeOut();
+      });
+
+      // OTPフォームが送信されたときの処理
+      $('#otpForm').submit(function(e) {
+        e.preventDefault();
+        // OTPフォームを送信する前に必要な追加のロジックを追加
+        $(this).unbind('submit').submit();
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,10 +1,31 @@
-{% extends "top_student.html" %}
-
-{% block css %}
-<link rel="stylesheet" href="{{url_for('static', filename='/css/regist_conf.css')}}">
-{% endblock %}
-
-{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>sample</title>
+  <style>
+    #overlay {
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: rgba(99, 99, 99, 0.3);
+      display: none;
+      z-index: 998;
+    }
+    #overlayWindow {
+      width: 30%;
+      height: 60%;
+      margin: 100px auto;
+      border: 2px solid #000000;
+      background-color: #FFFFFF;
+      text-align: center;
+      display: none;
+      z-index: 999;
+    }
+  </style>
+</head>
 <body>
     <h4>学生アカウント登録</h4>
     <p class="p1">以下の内容で登録しますか？</p>
@@ -40,12 +61,31 @@
               </td>
               <td>
                 <div id="btn2">
-                  <button type="submit">登録</button>
+                  <button id="button1">登録</button>
                 </div>
               </td>
             </tr>
           </table>
+          <div id="overlay">
+            <div id="overlayWindow">
+              <p>オーバーレイが表示されています</p>
+              <button id="button2">閉じる</button>
+            </div>
+          </div>
     </form>
     </table>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    $(function() {
+      $('#button1').on('click', function() {
+        $("#overlay, #overlayWindow").fadeIn();
+      });
+      
+      $('#button2').on('click', function() {
+        $("#overlay, #overlayWindow").fadeOut();
+      });
+    });
+  </script>
 </body>
-{% endblock %}
+</html>

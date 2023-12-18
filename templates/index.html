@@ -25,8 +25,10 @@
     <!-- Header End -->
 <body>
     <h1>TOPページ</h1>
-    <a href={{url_for('account.regist')}}>アカウント登録</a></a><br>
-    <a href="{{ url_for('page_b') }}"><button>ページBへ</button></a>
-    <a href="{{ url_for('page_c') }}"><button>ページCへ</button></a>
+    <a href="{{url_for('top')}}"><button>TOPページ</button></a><br>
+    <a href="{{url_for('account.regist')}}"><button>学生アカウント登録</button></a><br>
+    <a href="{{url_for('account.tea_regist')}}"><button>教員アカウント登録</button></a><br>
+    <a href="{{url_for('app_req.request_form')}}"><button>サークル参加</button></a><br>
+    <a href="{{url_for('app_deta.approve_list')}}"><button>承認リスト（学生会）</button></a>
 </body>
 </html>

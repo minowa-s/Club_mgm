@@ -1,14 +1,16 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, Blueprint
 import db
+
+club_req = Blueprint('app_req', __name__, url_prefix='/app_req')
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # セッション管理のための秘密鍵を設定
 
-@app.route('/', methods=['GET'])
+@club_req.route('/request_form')
 def request_form():
     return render_template('request_form.html')
 
-@app.route('/request_exe', methods=['POST'])
+@club_req.route('/request_exe', methods=['POST'])
 def request_exe():
     club_name = request.form.get('club_name')
     leader_mail = request.form.get('leader_mail')
@@ -26,5 +28,3 @@ def request_exe():
         error = '登録に失敗しました。'
         return render_template('request_form.html', error=error)
 
-if __name__ == '__main__':
-    app.run(debug=True)

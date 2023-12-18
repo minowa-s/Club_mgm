@@ -1,0 +1,31 @@
+@charset 'utf-8';
+  body {
+    text-align: center;
+  }
+
+  h4 {
+    font-family:'メイリオ', 'Meiryo', sans-serif;
+    margin-top: 150px;
+  }
+
+  button {
+    margin-top: 60px;
+    font-size: 25px;
+    color: #0693E3;
+    width: 200px;
+    height: 60px;
+    border-radius:30px;
+    border: solid 5px;
+    background-color: #FFFFFF;
+    border-color: #0693E3;
+  }
+
+  button:hover{
+    color: #FFFFFF;
+    background-color: #0693E3;
+  }
+
+  #frmBtn {
+    margin: auto;
+    width: 750px;
+  }

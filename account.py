@@ -252,4 +252,3 @@ def tea_account_regist_mail(to_address):
 @account_bp.route('/tea_account_setting')
 def account_setting():
     password = request.form.get('password')
-

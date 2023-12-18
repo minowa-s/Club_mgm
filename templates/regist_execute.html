@@ -1,12 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "top_student.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='/css/regist_execute.css')}}">
+{% endblock %}
+
+{% block content %}
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>登録成功</title>
 </head>
 <body>
-    登録成功<br>
-    <a href="{{url_for('index')}}">TOPページへ</a>
+    <h4>アカウント登録が完了しました</h4><br>
+    <a href="{{url_for('index')}}"><button>トップページへ</button></a>
 </body>
-</html>
+{% endblock %}

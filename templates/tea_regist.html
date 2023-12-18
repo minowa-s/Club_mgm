@@ -1,14 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+{% extends "top_student.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='/css/tea_regist.css')}}">
+{% endblock %}
+
+{% block content %}
 <body>
-    教員アカウント登録 
-    <form action ="{{ tea_regist_conf }}" method="POST">
-        <input type="text" name="name">
-        <input type="email" name="mail">
+    <h4>教員アカウント登録</h4>
+    <table id="frm">
+      <form action="{{url_for('account.tea_regist_conf')}}" method="post">
+        <tr>
+            <th class="th1">氏名</th>
+            <td class="td1"><input type="text" name="name"></td>
+        </tr>
+        <tr>
+            <th class="th2">メールアドレス</th>
+            <td class="td2"><input type="email" name="mail"></td>
+        </tr>
+        <table id="frmBtn">
+            <tr>
+              <td>
+                <div id="btn1">
+                  <button type="button" onclick="history.back()">戻る</button>
+                </div>
+              </td>
+              <td>
+                <div id="btn2">
+                  <button type="submit">登録</button>
+                </div>
+              </td>
+            </tr>
+          </table>
+    </form>
+    </table>
 </body>
 </html>
+{% endblock %}
