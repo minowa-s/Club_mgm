@@ -18,21 +18,54 @@ def approve_list_st():
     club_list = select_allow0_club()
     return render_template('approve_list_te.html', club_list=club_list)
 
-@app_data_bp.route('/get_request_exe')
-def get_request_exe():
+#サークル立ち上げ申請確認
+@app_data_bp.route('/get_request_conf')
+def get_request_conf():
     club_id = request.args.get('club_id')
     request_detail = db.get_club_dedtail(club_id)
     leader_mail = get_leader(request_detail[1])
     #サークルに入っている学生のメールアドレスを取得
-    student_ids = db.get_student_id_from_student_club(club_id)
-    #student_mails = db.get_student_mail(student_ids)
-    print(student_ids)
-    return render_template('request.detail.html', request_detail=request_detail, leader_mail=leader_mail)
+    student_ids = list(db.get_student_id_from_student_club(club_id))
+    count = 0
+    student_mail_list = []
+    for row in student_ids :
+        student_mail = db.get_student_mail(student_ids[count])
+        student_mail_list.append(student_mail)
+        count+= 1
+    return render_template('request.detail.html', request_detail=request_detail, leader_mail=leader_mail, student_mail_list=student_mail_list, club_id=club_id)
 
+#サークル立ち上げ承認
+@app_data_bp.route('/request_exe', methods=['POST'])
+def request_exe():
+    club_id = request.form.get('club_id')
+    update_club(club_id)
+    return render_template('request_exe.html')
+    
+#サークル立ち上げ拒否
+@app_data_bp.route('/club_not_create', methods=['POST'])
+def club_not_create():
+    club_id = request.form.get('club_id')
+    session['club_id'] = club_id
+    return render_template('club_not_create.html', club_id=club_id)
+
+#サークル立ち上げ否認理由確認
+@app_data_bp.route('/club_not_create_conf', methods=['POST'])
+def club_not_create_conf():
+    reason = request.form.get('reason')
+    return render_template('club_not_create_conf.html', reason=reason)
+
+@app_data_bp.route('/club_not_create_exe')
+def club_not_create_exe():
+    club_id = session.get('club_id')
+    db.delete_request(club_id)
+    return render_template('club_not_create_exe.html')
+
+
+    
 #申請ありサークルリスト表示
 def select_allow0_club():
     #リーダーidを取得
-    sql = "SELECT * FROM club WHERE allow = 0"
+    sql = "SELECT * FROM club WHERE allow = 1"
     connection = get_connection()
     cursor = connection.cursor()
     cursor.execute(sql)
@@ -68,6 +101,18 @@ def get_department(department_id):
     cursor.close()
     connection.close()
     return department
+
+#サークル承認（教員）
+def update_club(club_id):
+    print(club_id)
+    sql = "UPDATE club SET allow = 2 WHERE club_id = %s"
+    connection = get_connection()
+    cursor = connection.cursor()
+    cursor.execute(sql, (club_id,))
+    connection.commit()
+    cursor.close()
+    connection.close()
+
 
 if __name__ == '__main__':
     app.run(debug=True)

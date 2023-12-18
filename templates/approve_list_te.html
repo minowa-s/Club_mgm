@@ -28,15 +28,15 @@
                     申請内容
                 </th>
             </tr>
+            {% for club_list in club_list %}
             <tr>
-                {% for club_list in club_list %}
-                <td class="td1"><a id="club_id" href="{{url_for('app_data.get_request_exe', club_id=club_list[0])}}">{{club_list[0]}}{{club_list[1]}}</a></td>
+                <td class="td1"><a id="club_id" href="{{url_for('app_data.get_request_conf', club_id=club_list[0])}}">{{club_list[0]}}{{club_list[1]}}</a></td>
                 <td class="td2">{{club_list[2]}}</td>
                 <td class="td3">{{club_list[3]}}</td>
                 <td class="td4">{{club_list[4]}}</td>
                 <td class="td5">立ち上げ</td>
-                {% endfor%}
             </tr>
+            {% endfor%}
             </table>   
 </body>
 {% endblock %}

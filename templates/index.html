@@ -29,7 +29,8 @@
     <a href="{{ url_for('account.tea_regist') }}"><button>教員アカウント登録</button></a>
     <a href="{{ url_for('account.tea_account_setting') }}"><button>教員アカウント設定</button></a>
     <form action="{{ url_for('club.club_join_req')}}" method="POST">
-        <input type="hidden" name="student_id" value="1">
+        <!-- セッションかなんかからstudent_id取ってくる -->
+        <input type="hidden" name="student_id" value="5">
         <button type="submit">サークル参加申請</button>
     </form>
     <a href="{{ url_for('club2.join_req_list') }}"><button>サークル参加申請承認</button></a>
