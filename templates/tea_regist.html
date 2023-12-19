@@ -7,8 +7,9 @@
 </head>
 <body>
     教員アカウント登録 
-    <form action ="{{ tea_regist_conf }}" method="POST">
-        <input type="text" name="name">
-        <input type="email" name="mail">
+    <form action="{{url_for('account.tea_regist_conf')}}" method="post">
+        氏名<input type="text" name="name"><br>
+        メールアドレス<input type="email" name="mail">
+        <button type="submit">送信</button>
 </body>
 </html>

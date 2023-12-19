@@ -6,8 +6,8 @@
     <title>Document</title>
 </head>
 <body>
-    <form action={{url_for('club.club_join_req3')}}>
-        <input type="number" name="club_id" value="1">
+    <form action="{{url_for('club.club_join_req3')}}" method="POST">
+        <input type="number" name="club_id" value="2">
         <button type="submit">送信</button>
     </form>
 </body>

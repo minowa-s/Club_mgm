@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, session
-import hashlib, string, random, psycopg2, os, bcrypt, datetime, smtplib
+import hashlib, string, random, psycopg2, os, bcrypt, datetime, smtplib, db
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
@@ -17,20 +17,7 @@ def get_connection():
 def join_req_list():
     list = get_list()
     return render_template("join_req_list.html" ,list = list)
-    
-def get_name(id):
-    sql = "SELECT name FROM student WHERE student_id = %s"
-     
-    connection = get_connection()
-    cursor = connection.cursor()   
-    cursor.execute(sql, (id,))
-    name_list = [row[0] for row in cursor.fetchall()]  # row[0] のみ取得
-    cursor.close()
-    connection.close()
-
-    return name_list
-
-    
+ 
 def get_list():
     sql = "SELECT * FROM student_club WHERE allow = 0"
     
@@ -52,11 +39,19 @@ def get_list():
     return result_list
 
 # -------------------------------------------------------
+#サークル参加申請承認
+@club_bp2.route("/join_req")
+def join_req():
+    approve = request.form.get("approve")
+    student_id = request.form.get("student_id")
+    if approve == 1 :
+        join_req_ok(student_id)
+    elif approve == 0 :
+        join_req_no(student_id)
+    
 #申請承認機能
 #一覧からidを取得して次の画面に遷移させる処理
-@club_bp2.route("/join_req_ok")
-def join_req_ok():
-    student_id = request.args.get("student_id")
+def join_req_ok(student_id):
     return render_template("join_req_okexe.html" ,student_id = student_id)
 
 #下に書いてあるsqlを実行し完了画面に遷移させる処理
@@ -78,9 +73,7 @@ def join_ok_sql(student_id):
 
 # ------------------------------------------------------
 #申請否認機能
-@club_bp2.route('/join_req_no')
-def join_req_no():
-    student_id = request.args.get("student_id")
+def join_req_no(student_id):
     session["student_id"] = student_id
     return render_template("join_req_noexe.html", student_id = student_id)
 
@@ -109,6 +102,26 @@ def join_no_sql(student_id):
     connection.close()
 
 
+#student_idから学生氏名取得  
+def get_name(id):
+    sql = "SELECT name FROM student WHERE student_id = %s"
+    connection = get_connection()
+    cursor = connection.cursor()   
+    cursor.execute(sql, (id,))
+    name_list = [row[0] for row in cursor.fetchall()]  # row[0] のみ取得
+    cursor.close()
+    connection.close()
+    return name_list
     
-    
-    
+#----------------------------------------------------------------------
+#サークル削除申請
+@club_bp2.route("/club_delete_request")
+def club_delete_request():
+    return render_template('club_delete_request.html')
+
+@club_bp2.route('/club_delete_request_exe')
+def club_delete_request_exe():
+    #sessionかrequestか知らないけどclub_idとってくる
+    club_id = 1
+    db.delete_club(club_id)
+    return render_template("club_delete_request_exe.html")

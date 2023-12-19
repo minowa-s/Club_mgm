@@ -17,13 +17,11 @@ def get_connection():
 def club_join_req():
     student_id = request.form.get("student_id")
     session["student_id"] = student_id
-    print(student_id)
     return render_template("club_join.html" ,student_id = student_id)
 
 @club_bp.route("/club_join_req2", methods=["POST"])
 def club_join_req2():
     student_id = session.get("student_id")
-    print(student_id)
     return render_template("club_join_send.html" ,student_id = student_id)
 
 #サークル参加申請確認処理
@@ -31,21 +29,16 @@ def club_join_req2():
 def club_join_req3():
     student_id = session.get("student_id")
     club_id = request.form.get("club_id")
-    print(student_id)
     sql = "INSERT INTO student_club (student_id, club_id, is_leader, allow) VALUES (%s, %s, %s, %s)"
-
     try :
         connection = get_connection()
         cursor = connection.cursor()   
         cursor.execute(sql, (student_id, club_id, False, 0))
         connection.commit()
-        
     except psycopg2.DatabaseError:
             count = 0
-            
     finally :
             cursor.close()
-            connection.close()
-            
+            connection.close()     
     return render_template('club_join_reqres.html')
 

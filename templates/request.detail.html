@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='/css/request_detail.css')}}">
+    <title>Document</title>
+</head>
+<body>
+    <p>立ち上げ申請確認</p>
+    <table id="frm">
+        <tr>  
+            <th class="th1">
+                サークル名
+            </th>
+            <td>
+                {{request_detail[0]}}
+            </td>
+        </tr>
+        <tr>  
+            <th class="th1">
+                代表者メールアドレス
+            </th>
+            <td>
+                {{leader_mail[2]}}
+            </td>
+        </tr>
+        {% for row in student_mail_list : %}
+        
+        <tr>  
+            <th class="th1">
+                サークルメンバー メールアドレス
+            </th> 
+            <td>
+                {{row}}
+            </td>      
+        </tr>
+        <tr>  
+        {% endfor %}
+            <th class="th1">
+                サークル活動目標
+            </th>       
+            <td>
+                {{request_detail[2]}}
+            </td>
+        </tr>
+        <tr>  
+            <th class="th1">
+                活動内容
+            </th>       
+            <td>
+                {{request_detail[3]}}
+            </td>
+        </tr>
+        <tr>  
+            <th class="th1">
+                サークル説明
+            </th>       
+            <td>
+                {{request_detail[4]}}
+            </td>
+        </tr>
+        <tr>  
+            <th class="th1">
+                備考
+            </th>
+            <td>
+                {{request_detail[5]}}
+            </td>
+        </tr>
+        </table>
+        
+        <button type="button" onclick="history.back()">戻る</button>
+        <form action="{{url_for('app_data.club_not_create')}}" method="POST">
+            <input type="text" name="club_id" value="{{club_id}}" >
+            <button type="submit" >否認</button>
+        </form>
+        <form action="{{url_for('app_data.request_exe')}}" method="POST">
+            <input type="text" name="club_id" value="{{club_id}}" >
+            <button type="submit" >承認</button>
+        </form>
+</body>
+</html>

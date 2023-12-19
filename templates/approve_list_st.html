@@ -28,13 +28,15 @@
                     申請内容
                 </th>
             </tr>
+            {% for club_list in club_list %}
             <tr>
-                <td class="td1"><a id="club" href="{{url_for('get_request_exe')}}">Python開発</a></td>
-                <td class="td2">盛岡太郎</td>
-                <td class="td3">情報システム科</td>
-                <td class="td4">2年</td>
-                <td class="td5">立ち上げ</td>
+                <td class="td1"><a id="club" href="{{url_for('app_data.get_request_conf')}}"?club={{club_list[0]}}>{{club_list[1]}}</a></td>
+                <td class="td2">{{club_list[2]}}</td>
+                <td class="td3">{{club_list[3]}}</td>
+                <td class="td4">{{club_list[4]}}</td>
+                <td class="td5">立ち上げ</td><br>
             </tr>
+            {% endfor%}
             </table>   
 </body>
 {% endblock %}
