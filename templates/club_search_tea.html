@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>検索したいサークルを入力してね</h3>
+    <form action="{{url_for('club_search.club_search_restea')}}" method="post">
+    検索:<input type="text" name="name" ><br />
+    <button type="submit">検索</button>
+</body>
+</html>
