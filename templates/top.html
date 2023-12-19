@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" 
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static', filename='/css/top.css')}}"> 
+    <title>top</title>
+</head>
+<body>
+<!--   style="background-color: #0693E3;"  bg-primary-->
+  <header>
+    <nav class="navbar fixed-top" style="background-color: #0693E3;">
+      <div class="container-fluid">
+        <a class="navbar-brand link-opacity-10-hover a" href="#" style="color: #ffffff; font-size: 25px" >サークル活動アプリケーション</a>
+      </div>
+    </nav>
+  </header>
+
+  <div id="search">
+    <div class="h4">
+      <h4>あなたにピッタリのサークルが見つかる！</h4>
+    </div>
+    <form class="search-form-001" action="{{}}" method="post">
+        <label>
+            <input type="text" placeholder="例 ）バスケ">
+        </label>
+        <button type="submit" aria-label="検索"></button>
+    </form>
+  </div>
+  <div>
+    <h3>人気のサークルはこちら</h3>
+    <div class="tbl">
+      <div class="position-relative">
+        <div position-absolute top-100px start-20px>
+          <table class="table table-bordered border-success"  style="margin-bottom: 60px;">
+            <thead>
+              <tr>
+                <th scope="col" style="width: 400px"  align="center">サークル</th>
+                <th scope="col" style="width: 84px">メンバー数</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <a href="#" style="color: #000000;">サークル名がでるところ</a><br>
+                  <span style="font-size: 13px;" >サークル紹介文がでるところ</span>
+                </td>
+                <td  align="center" valign="middle">10</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="ta">
+        <div class="divlaunch">
+          <p class="p1">ログイン・登録はこちら</p>
+          <a class="launch" href="#" >ログイン</a>
+          <p class="p2">ログインをすると<br>
+                        <span>・サークルへの参加</span><br>
+                        <span>・サークル立ち上げ</span><br>
+                        <span>・サークル見学</span><br>
+                        などができるようになります
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <footer class="footer fixed-bottom" style="background-color: #0693E3;">
+    <div class="container">
+      <p class="text-center" style="color: #fff; ">Morijyobi</p>
+    </div>
+  </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" 
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+    </script>
+</body>
+</html>

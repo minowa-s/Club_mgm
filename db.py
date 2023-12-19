@@ -63,7 +63,7 @@ def get_student_mail(student_id):
     connection.close()
     return student_mail
 #=========================================================
-#サークル申請削除
+#サークル否認
 def delete_request(club_id):
     delete_from_student_club(club_id)
     sql = "DELETE FROM club WHERE club_id = %s"
@@ -74,6 +74,7 @@ def delete_request(club_id):
     cursor.close()
     connection.close()
     
+#サークル消す前にs_tテーブルを削除
 def delete_from_student_club(club_id):
     sql = "DELETE FROM student_club WHERE club_id = %s"
     connection = get_connection()
@@ -82,3 +83,14 @@ def delete_from_student_club(club_id):
     connection.commit()
     cursor.close()
     connection.close()
+    
+#---------------------------------------------------
+#サークル削除（リーダーが消す）
+def delete_club(club_id):
+    sql = "INSERT INTO club_delete(club_id, delete_request_time) VALUES(%s, date())"
+    connection = get_connection()
+    cursor = connection.cursor()
+    cursor.execute(sql, (club_id))
+    connection.commit()
+    cursor.close()
+    connection.close

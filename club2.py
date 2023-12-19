@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, session
-import hashlib, string, random, psycopg2, os, bcrypt, datetime, smtplib
+import hashlib, string, random, psycopg2, os, bcrypt, datetime, smtplib, db
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
@@ -39,7 +39,7 @@ def get_list():
     return result_list
 
 # -------------------------------------------------------
-
+#サークル参加申請承認
 @club_bp2.route("/join_req")
 def join_req():
     approve = request.form.get("approve")
@@ -113,4 +113,15 @@ def get_name(id):
     connection.close()
     return name_list
     
-    
+#----------------------------------------------------------------------
+#サークル削除申請
+@club_bp2.route("/club_delete_request")
+def club_delete_request():
+    return render_template('club_delete_request.html')
+
+@club_bp2.route('/club_delete_request_exe')
+def club_delete_request_exe():
+    #sessionかrequestか知らないけどclub_idとってくる
+    club_id = 1
+    db.delete_club(club_id)
+    return render_template("club_delete_request_exe.html")
