@@ -1,0 +1,175 @@
+{% extends "layout.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='/css/club_detail.css')}}">
+<link rel="icon" href="{{url_for('static', filename='/favicon/favicon.ico')}}">
+{% endblock %}
+
+
+{% block content %}
+<div class="main">
+    <h2 class="h2">○○サークル</h2>
+</div>
+
+<div class="container">
+    <div>
+        <h5 class="h5-1">活動内容</h5>
+        <p>子子子子子子子子子子子子</p>
+    </div>
+    <br>
+    <div>
+        <h5 class="h5-2">活動目標</h5>
+        <p>子子子子子子子子子子子子</p>
+    </div>
+    <br>
+    <div>
+        <h5 class="h5-3">活動日程</h5>
+        <!-- カレンダー -->   
+        <div class="wrapper">
+            <!-- xxxx年xx月を表示 -->
+            <h1 id="header"></h1>
+            
+            <!-- ボタンクリックで月移動 -->
+            <div id="next-prev-button">
+                <button id="prev" onclick="prev()">&lt;</button>
+                <button id="next" onclick="next()">&gt;</button>
+            </div>
+            <!-- カレンダー -->
+            <div id="calendar"></div>
+        </div>
+    </div>
+    <br>
+    <div>
+        <div class="position-relative">
+            <div position-absolute top-100px start-20px>
+                <h5 class="h5-4">活動記録</h5>
+              <table class="table table-hover border-success"  style="margin-bottom: 60px;">
+                <thead>
+                  <tr>
+                    <th class="katsudobi" align="center" valign="middle">活動日</th>
+                    <th style="" ali gn="center" valign="middle">タイトル</th>
+                  </tr>
+                </thead>  
+                <tbody>
+                  <tr>
+                    <td style="color:#000000" align="center" valign="middle">帰代変</td>
+                    <td style="color:#000000" align="center" valign="middle">日計ジャノメ</td>
+                  </tr>
+                  <tr>
+                    <td style="color:#000000" align="center" valign="middle">白雪みりか</td>
+                    <td style="color:#000000" align="center" valign="middle">千賀敷数多</td>
+                  </tr>
+                  <tr>
+                    <td style="color:#000000" align="center" valign="middle">流石涼風</td>
+                    <td style="color:#000000" align="center" valign="middle">相馬左京</td>
+                  </tr>
+                  <tr>
+                    <td style="color:#000000" align="center" valign="middle">矢先的中</td>
+                    <td style="color:#000000" align="center" valign="middle">夜寝越霞</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+    </div>
+    <br>
+    <div class="position-relative">
+        <div position-absolute top-100px start-20px>
+            <h5 class="h5-5">メンバー</h5>
+          <table class="table table-bordered border-success"  style="margin-bottom: 60px;">
+            <tbody>
+              <tr>
+                <td style="color:#000000" align="center" valign="middle">下ノ関縁寺</td>
+              </tr>
+              <tr>
+                <td style="color:#000000" align="center" valign="middle">榎本ルイ</td>
+              </tr>
+              <tr>
+                <td style="color:#000000" align="center" valign="middle">烈津剛</td>
+              </tr>
+              <tr>
+                <td style="color:#000000" align="center" valign="middle">杉垣学基</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+</div>    
+
+<script>
+    const week = ["日", "月", "火", "水", "木", "金", "土"];
+    const today = new Date();
+    // 月末だとずれる可能性があるため、1日固定で取得
+    var showDate = new Date(today.getFullYear(), today.getMonth(), 1);
+
+    // 初期表示
+    window.onload = function () {
+        showProcess(today, calendar);
+    };
+    // 前の月表示
+    function prev(){
+        showDate.setMonth(showDate.getMonth() - 1);
+        showProcess(showDate);
+    }
+
+    // 次の月表示
+    function next(){
+        showDate.setMonth(showDate.getMonth() + 1);
+        showProcess(showDate);
+    }
+
+    // カレンダー表示
+    function showProcess(date) {
+        var year = date.getFullYear();
+        var month = date.getMonth();
+        document.querySelector('#header').innerHTML = year + "年 " + (month + 1) + "月";
+
+        var calendar = createProcess(year, month);
+        document.querySelector('#calendar').innerHTML = calendar;
+    }
+
+    // カレンダー作成
+    function createProcess(year, month) {
+        // 曜日
+        var calendar = "<table><tr class='dayOfWeek'>";
+        for (var i = 0; i < week.length; i++) {
+            calendar += "<th>" + week[i] + "</th>";
+        }
+        calendar += "</tr>";
+
+        var count = 0;
+        var startDayOfWeek = new Date(year, month, 1).getDay();
+        var endDate = new Date(year, month + 1, 0).getDate();
+        var lastMonthEndDate = new Date(year, month, 0).getDate();
+        var row = Math.ceil((startDayOfWeek + endDate) / week.length);
+
+        // 1行ずつ設定
+        for (var i = 0; i < row; i++) {
+            calendar += "<tr>";
+            // 1colum単位で設定
+            for (var j = 0; j < week.length; j++) {
+                if (i == 0 && j < startDayOfWeek) {
+                    // 1行目で1日まで先月の日付を設定
+                    calendar += "<td class='disabled'>" + (lastMonthEndDate - startDayOfWeek + j + 1) + "</td>";
+                } else if (count >= endDate) {
+                    // 最終行で最終日以降、翌月の日付を設定
+                    count++;
+                    calendar += "<td class='disabled'><a href='##' class='cal1'>" + (count - endDate) + "</a></td>";
+                } else {
+                    // 当月の日付を曜日に照らし合わせて設定
+                    count++;
+                    if(year == today.getFullYear()
+                    && month == (today.getMonth())
+                    && count == today.getDate()){
+                        calendar += "<td class='today'><a href='##' class='cal2'>" + count + "</a></td>";
+                    } else {
+                        calendar += "<td><a href='##' class='cal3'>" + count + "</a></td>";
+                    }
+                }
+            }
+            calendar += "</tr>";
+        }
+        return calendar;
+    }
+</script>
+{% endblock %}

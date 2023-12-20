@@ -1,5 +1,6 @@
 @charset "utf-8";
 
+/* aタグ */
 .aBtn {
   margin-left: 15px;
   color: #fff;
@@ -7,24 +8,26 @@
   border-radius: 6px;
   transition: .3s;
 }
-
 .aBtn:hover {
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 /* ログインボタン */
 .loginBtn{
-  padding-top: 4px;
+  padding-top: 6px;
   padding-right: 15px;
-  padding-bottom: 4px;
   padding-left: 15px;
-  color: #000000;
-  font-size: 17px;
+  margin-right: 2rem;
+  height : 39px;
+  color: #0693E3;
+  font-size: 18px;
   text-decoration:none;
-  background: #ffffff;
+  background-color: #ffffff;
   display: inline-block;
 }
+
 .loginBtn:hover{
+  padding-top: 4px;
   background-color: #0693E3;
   color: #ffffff;
   border: 2px solid #ffffff;
