@@ -24,7 +24,7 @@ def get_connection():
     
 @app.route('/')
 def index():
-    return render_template('top_teacher.html')
+    return render_template('index.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
