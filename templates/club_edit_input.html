@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="{{url_for('club_edit.club_edit_input')}}" method="post">
+        <input type=textarea name="club_name" id="club_name">
+        <input type="textarea" name="mail" id="mail">
+        <input type="textarea" name="objective" id="objective">
+        <input type="textarea" name="activites" id="activites">
+        <input type="textarea" name="introduction" id="introduction">
+        <input type="textarea" name="note" id="note">
+        <button type="submit">確認</button>
+    </form>
+</body>
+
+</html>
