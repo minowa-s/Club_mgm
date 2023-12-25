@@ -94,3 +94,23 @@ def delete_club(club_id):
     connection.commit()
     cursor.close()
     connection.close
+#-----学生会登録--------------------------------------------
+#メールアドレスから学生が存在するかの検索、名前の取得
+def student_seach_from_mail(mail):
+    sql = "SELECT name, mail FROM student WHERE mail = %s"
+    connection = get_connection()
+    cursor = connection.cursor()
+    cursor.execute(sql, (mail,))
+    list = cursor.fetchone()
+    cursor.close()
+    connection.close()
+    return list
+
+def gakuseikai_regist(mail):
+    sql = "UPDATE student SET is_gakuseikai = True WHERE mail = %s"
+    connection = get_connection()
+    cursor = connection.cursor()   
+    cursor.execute(sql, (mail,))
+    connection.commit()
+    cursor.close()
+    connection.close()
