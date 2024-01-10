@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>削除確認画面</title>
+</head>
+<body>
+    <p>名前</p>
+    <input type="text" name="name" value="{{name}}" readonly>
+    <p>メールアドレス</p>
+    <input type="text" name="mail" value="{{mail}}" id="mail" readonly>
+    <p>学科</p>
+    <input type="text" name="department" value="{{department}}" readonly>
+    <p>入学年度</p>
+    <input type="text" name="entrance_year" value="{{entrance_year}}"readonly>
+    <form action="{{ url_for('account_delete.account_delete_conf' , mail = mail) }}" method="post" >
+        <button type="submit">削除</button></form>
+</body>
+</html>
