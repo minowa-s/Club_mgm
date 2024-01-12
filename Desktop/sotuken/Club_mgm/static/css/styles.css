@@ -1,0 +1,21 @@
+/* styles.css */
+
+/* ヘッダーのスタイル */
+header {
+    background-color: #f8f9fa;
+    padding: 10px;
+}
+
+/* ナビゲーションリンクのスタイル */
+.navbar-nav {
+    margin-left: auto;
+}
+
+.navbar-nav .nav-item {
+    margin-right: 10px;
+}
+
+/* ハンバーガーメニューのスタイル */
+.navbar-toggler-icon {
+    background-color: #007bff;
+}

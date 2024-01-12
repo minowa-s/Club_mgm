@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="btn">
+        <a id="back" href="#">←戻る</a>
+    </div>
+    <h4>変更申請一覧</h4>
+            <table id="frm">
+            <tr>
+                <th class="th1">
+                    サークル名
+                </th>
+                <th class="th2">
+                    リーダー
+                </th>
+                <th class="th3">
+                    学科
+                </th>
+                <th class="th4">
+                    学年
+                </th>
+
+            </tr>
+            {% for club_list in club_list %}
+            <tr>
+                <td class="td1"><a id="club_id" href="{{url_for('club_edit.disp_edit_req', club_id=club_list[0])}}">{{club_list[1]}}</a></td>
+                <td class="td2">{{club_list[2]}}</td>
+                <td class="td3">{{club_list[3]}}</td>
+                <td class="td4">{{club_list[4]}}</td>
+                
+            </tr>
+            {% endfor%}
+            
+            </table>   
+</body>
+
+</html>

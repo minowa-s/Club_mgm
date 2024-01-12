@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h2>否認理由入力内容確認</h2>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>タイトル</th>
+        <th><input type="text" value="サークルの参加申請について" readonly></th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>否認理由</td>
+        <td>
+          <form action="{{ url_for('club2.join_req_noconf') }}">
+            <input type="text" name="reason" value="{{reason}}" readonly>
+            <button type="submit">送信</button>
+        </td>
+
+
+      </tr>
+    </tbody>
+  </table>
+
+
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+@charset "utf-8";
+
+/* aタグ */
+.aBtn {
+  margin-left: 15px;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 6px;
+  transition: .3s;
+}
+.aBtn:hover {
+  opacity: 0.6;
+}
+
+/* ログインボタン */
+.loginBtn{
+  padding-top: 6px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: 2rem;
+  height : 39px;
+  color: #0693E3;
+  font-size: 18px;
+  text-decoration:none;
+  background-color: #ffffff;
+  display: inline-block;
+}
+
+.loginBtn:hover{
+  padding-top: 4px;
+  background-color: #0693E3;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+}
+
+.login:hover{
+  border-color: #ffffff;
+  color: #0693e3;
+}
+
+.menuheader{
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.hbgBtn{
+  padding-left: 130px;
+  margin-top: 10px;
+  font-size: 16px;
+  text-decoration:none;
+  background: #ffffff;
+  border: 5px solid #dddddd;
+  border-radius: 50px;
+  display: inline-block;
+  transition: .3s;
+}
+
+.hbgBtn .fivecharacters{
+  padding-left: 13px;
+}
+
+.hbgBtn .fourcharacters{
+  padding-left: 10px;
+}
+
+.hbgBtn:hover {
+  border: 5px solid #0693e3;
+}
+
+.logoutBtn{
+  padding-left: 143px;
+  margin-top: 50px;
+  font-size: 16px;
+  text-decoration:none;
+  background: #ffffff;
+  border: 5px solid #dddddd;
+  border-radius: 50px;
+  display: inline-block;
+  transition: .3s;
+}
+
+.logoutBtn:hover {
+  border: 5px solid #ff0000;
+}
+

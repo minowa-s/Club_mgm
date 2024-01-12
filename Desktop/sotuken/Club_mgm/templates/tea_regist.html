@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    教員アカウント登録 
+    <form action="{{url_for('account.tea_regist_conf')}}" method="post">
+        氏名<input type="text" name="name"><br>
+        メールアドレス<input type="email" name="mail">
+        <button type="submit">送信</button>
+</body>
+</html>

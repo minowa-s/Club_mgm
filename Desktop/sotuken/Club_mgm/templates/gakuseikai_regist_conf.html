@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    以下の学生を学生会として登録します。よろしいですか？
+    <table>
+        {% for mail_list in mail_list %}
+        <tr>
+            <td class="td1"></td>
+            <td class="td2">{{mail_list[0]}}</td>
+            <td class="td3">{{mail_list[1]}}</td>
+        </tr>
+        {% endfor%}<br>
+        <a id="mail" href="{{url_for('app_data.gakuseikai_regist_exe', mails=mails )}}">確定</a>
+</body>
+</html>

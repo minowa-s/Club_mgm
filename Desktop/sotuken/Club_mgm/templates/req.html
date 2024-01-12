@@ -1,0 +1,93 @@
+{% extends "top_layout.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='/css/request.css')}}">
+{% endblock %}
+
+{% block content %}
+<body>
+    <h4>サークル立ち上げ申請フォーム</h4>
+    {% if error != null %}
+        <p style="color:red">{{error}}</p>
+    {% endif %}
+        <form action="{{url_for('request_exe')}}" method="post">
+            <table id="frm">
+            <tr>
+                <th class="th1">
+                    サークル名
+                    <p id="required1">必須</P>
+                </th>
+                <td class="td1"><input id="inp1" type="text" name="club_name" value="{{club_name}}" required></td>
+            </tr>
+            <tr>
+                <th class="th2">
+                    代表者　メールアドレス
+                    <p id="required2">必須</P>
+                </th>
+                <td class="td2"><input id="inp2" type="mail" name="leader_mail" value="{{leader_mail}}" required></td>
+            </tr>
+            <tr>
+                <th class="th3">
+                    サークルメンバー　メールアドレス
+                    <p id="required3">必須</P>
+                </th>
+                <td class="td3"><input id="inp3" type="mail" name="member" value="{{member}}" required></td>
+            </tr>
+            <tr>
+                <th class="th4">
+                    サークルメンバー　メールアドレス
+                    <p id="required4">必須</P>
+                </th>
+                <td class="td4"><input id="inp4" type="mail" name="member" value="{{member}}" required></td>
+            </tr>
+            <tr>
+                <th>サークルメンバー　メールアドレス
+                    <p>サークルメンバーが4名以上いる場合は、<br>
+                    メールアドレスを入力してください。<br>
+                    また、1名ごとに改行してください。</p>
+                </th>
+                <td class="td5"><textarea id="inp5" type="mail" name="member" value="{{member}}"></textarea></td>
+            </tr>
+            <tr>
+                <th class="th5">活動目標
+                    <p id="required5">必須</P>
+                    <p>簡単でいいので活動目標を教えてください。</p>
+                </th>
+                <td class="td6"><textarea id="inp6" type="text" name="objective" value="{{objective}}" required></textarea></td>
+            </tr>
+            <tr>
+                <th class="th6">活動内容
+                    <p id="required6">必須</P>
+                    <p>簡単でいいので活動内容を教えてください。</p>
+                </th>
+                <td class="td7"><textarea id="inp7" type="text" name="activities" value="{{activities}}" required></textarea></td>
+            </tr>
+            <tr>
+                <th class="th7">サークル説明
+                    <p id="required7">必須</P>
+                    <p>サークルの説明を30文字以内で記入してください。</p>
+                </th>
+                <td class="td8"><textarea id="inp8" type="text" name="introduction" value="{{introduction}}" required></textarea></td>
+            </tr>
+            <tr>
+                <th>備考</th>
+                <td class="td9"><textarea id="inp9" type="text" name="note" value="{{note}}"></textarea></td>
+            </tr>    
+        </table>
+        <table id="frmBtn">
+            <tr>
+                <td>
+                    <div id="btn1">
+                        <button type="submit">戻る</button>
+                    </div>
+                </td>
+                <td id="tBtn">
+                    <div id="btn2">
+                        <button type="submit">登録</button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        </form>
+</body>
+{% endblock %}
