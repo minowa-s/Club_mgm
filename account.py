@@ -284,3 +284,96 @@ def tea_account_setting():
 @account_bp.route('/tea_account_setting_conf', methods=['POST'])
 def tea_account_setting_conf():
     return render_template("tea_account_setting_conf.html")
+
+#-ログイン----------------------------------------------
+
+#ログイン 
+@account_bp.route('/login')
+def login():
+    return render_template('login/student_login.html')
+
+#入力後の画面遷移
+@account_bp.route('/student_login_exe', methods=['POST'])
+def student_login_exe():
+    mail = request.form.get('mail')
+    password = request.form.get('password')
+    print('入力パスワード' + password)
+    #データベースからソルト取得
+    salt = get_account_salt(mail)
+    hashed_password = get_hash(password, salt)
+    
+    #データベースからパスワードとソルト取得
+    passw = get_account_pass(mail)
+    if  hashed_password == passw :
+        #成功でホーム画面
+        return render_template('top_stu.html', passw=passw, error='成功')
+    else :
+        return render_template('login/login.html', passw=passw, error='失敗')
+    
+@account_bp.route('/home')
+def move_home():
+    return render_template('admin_home.html')
+
+@account_bp.route('/index', methods=['POST'])
+def move_index():
+    return render_template('login/login.html')
+
+def login_process():
+    sql = 'SELECT * FROM student WHERE mail = %s AND password = %s'
+    mail = request.form.get('mail')
+    password = request.form.get('password')
+    
+    try:
+        connection = get_connection()
+        cursor = connection.cursor()
+        cursor.execute(sql, (mail, password))
+        user = cursor.fetchone()
+             
+    except psycopg2.DatabaseError:
+        flg = False
+    finally:
+        cursor.close()
+        connection.close()
+        print(type(user))
+    return flg
+
+
+#パスワード取得
+def get_account_pass(mail):
+    sql = 'SELECT password FROM student WHERE mail = %s'
+    
+    try:
+        connection = get_connection()
+        cursor = connection.cursor()
+        cursor.execute(sql, (mail,))
+        passw = cursor.fetchone()
+        str_pw = str(passw[0])
+        
+        
+    except psycopg2.DatabaseError:
+        flg = False
+    finally:
+        cursor.close()
+        connection.close()
+        
+    return str_pw
+
+#ソルト取得
+def get_account_salt(mail):
+    sql = 'SELECT salt FROM student WHERE mail = %s'
+    
+    try:
+        connection = get_connection()
+        cursor = connection.cursor()
+        cursor.execute(sql, (mail,))
+        salt = cursor.fetchone()
+        str_salt = str(salt[0])
+        
+        
+    except psycopg2.DatabaseError:
+        flg = False
+    finally:
+        cursor.close()
+        connection.close()
+        
+    return str_salt
