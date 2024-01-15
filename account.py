@@ -58,32 +58,6 @@ def otp_send():
 #アカウント登録
 @account_bp.route('/regist_execute', methods=['POST'])
 def regist_execute():
-#     onetimepassword = request.form.get("otp")
-#     name = session.get('name')
-#     mail = session.get('mail')
-#     entrance_year = session.get('entrance_year')
-#     department_id = session.get('department_id')
-#     department_id = str(department_id)
-#     password = session.get('password')
-#     salt = db.get_salt()    
-#     print(salt, password)
-#     hashed_password = db.get_hash(password, salt)
-#     otp = session.get("otp")
-#     if onetimepassword == otp:
-#         sql = 'INSERT INTO student(name, mail, password, entrance_year, department_id, is_gakuseikai, onetimepassword, salt) VALUES(%s, %s, %s, %s, %s, %s, %s, %s)' #name, mail,entrance_year, department,  hashedpassword, salt
-#         try :
-#             connection = get_connection()
-#             cursor = connection.cursor()   
-#             cursor.execute(sql, (name, mail, hashed_password, entrance_year, department_id, False, otp, salt))
-#             connection.commit()
-#         except psycopg2.DatabaseError:
-#             count = 0
-#         finally :
-#             cursor.close()
-#             connection.close()
-#         return render_template('regist_execute.html', name=name, mail=mail, hashed_password=hashed_password, entrance_year=entrance_year, department_id=department_id, salt=salt, error=0)
-#     else : return render_template('regist_execute.html', name=name, mail=mail, hashed_password=hashed_password, entrance_year=entrance_year, department_id=department_id, salt=salt, error=1)
-
     if request.method == 'POST':
         onetimepassword = request.form.get("otp")
         name = session.get('name')
@@ -105,10 +79,10 @@ def regist_execute():
                 return render_template('regist_execute.html')
 
             # 新しいユーザーをデータベースに追加
-            salt = db.get_salt()
-
+            hashed_pass = hashlib.sha256(password.encode()).hexdigest()
+            salt = "a"
             cursor.execute('INSERT INTO student(name, mail, password, entrance_year, department_id, is_gakuseikai, onetimepassword, salt) VALUES(%s, %s, %s, %s, %s, %s, %s, %s)',
-                           (name, mail, db.get_hash(password, salt), entrance_year, department_id, False, onetimepassword, salt))
+                           (name, mail, hashed_pass, entrance_year, department_id, False, onetimepassword, salt))
             connection.commit()
 
             return render_template('regist_execute.html', name=name, mail=mail, hashed_password=db.get_hash(password, salt), entrance_year=entrance_year, department_id=department_id, salt=salt, error=0)
@@ -204,39 +178,17 @@ def login():
 
 #入力後の画面遷移
 @account_bp.route('/student_login_exe', methods=['POST'])
-# def student_login_exe():
-#     mail = request.form.get('mail')
-#     print(mail)
-#     password = request.form.get('password')
-#     print(password)
-#     #データベースからソルト取得
-#     salt = get_account_salt(mail)
-#     print(type(salt))
-#     #入力されたパスワードをハッシュ化
-#     hashed_password = db.get_hash("test", salt)
-#     print(hashed_password)
-#     #データベースからパスワードとソルト取得
-#     passw = get_account_pass(mail)
-#     if  hashed_password == passw :
-#         #成功でホーム画面
-#         return render_template('top_stu.html', passw=passw, error='成功')
-#     else :
-#         return render_template('login/student_login.html', passw=passw, error='失敗')
 def student_login_exe():
-    if request.method == 'POST':
-        mail = request.form.get('mail')
-        password = request.form.get('password')
-
-        # データベースからソルトを取得
-        salt = get_account_salt(mail)
-
-        if salt is not None:
+    mail = request.form.get('mail')
+    password = request.form.get('password')
+    #データベースからソルト取得
+    salt = get_account_salt(mail)
+    if salt is not None:
             # パスワードとソルトを使ってハッシュを生成
-            hashed_password = db.get_hash(password, salt)
+            hashed_password = hashlib.sha256(password.encode()).hexdigest()
             print("hashed=", hashed_password)
             # データベースから保存されたハッシュを取得
             stored_password = get_account_pass(mail)
-            print("stored=", stored_password)
             # ハッシュが一致すればログイン成功
             if hashed_password == stored_password:
                 session['mail'] = mail  # セッションにユーザー情報を保存
@@ -244,38 +196,9 @@ def student_login_exe():
             else:
                 print('Invalid mail or password')
                 return render_template('login/student_login.html')
-        else:
-            print('Invalid mail or password')
-            return render_template('login/student_login.html')
-
-    return render_template('login/student_login.html')
-
-@account_bp.route('/home')
-def move_home():
-    return render_template('admin_home.html')
-
-@account_bp.route('/index', methods=['POST'])
-def move_index():
-    return render_template('login/login.html')
-
-def login_process():
-    sql = 'SELECT * FROM student WHERE mail = %s AND password = %s'
-    mail = request.form.get('mail')
-    password = request.form.get('password')
-    
-    try:
-        connection = get_connection()
-        cursor = connection.cursor()
-        cursor.execute(sql, (mail, password))
-        user = cursor.fetchone()
-             
-    except psycopg2.DatabaseError:
-        flg = False
-    finally:
-        cursor.close()
-        connection.close()
-    return flg
-
+    else:
+        print('Invalid mail or password')
+        return render_template('login/student_login.html')
 
 #パスワード取得
 def get_account_pass(mail):
@@ -292,7 +215,6 @@ def get_account_pass(mail):
     finally:
         cursor.close()
         connection.close()
-        print("get_account_pass", str_pw)
     return str_pw
 
 #ソルト取得
@@ -309,5 +231,4 @@ def get_account_salt(mail):
     finally:
         cursor.close()
         connection.close()
-        print("get_account_salt:" , str_salt)
     return str_salt
