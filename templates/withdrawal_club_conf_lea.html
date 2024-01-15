@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>このサークルから脱退しますか</p>
+    <input type="text" name="club_name" id="club_name" value="{{club_name}}" readonly>
+    <form action="{{ url_for('club_withdrawal.club_withdrawal_res_lea', club_name = club_name  )}}" method="post" >
+        <button type="submit">脱退</button></form>
+
+</body>
+</html>
