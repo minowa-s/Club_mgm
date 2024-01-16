@@ -6,9 +6,8 @@
     <title>Document</title>
 </head>
 <body>
-    登録しますか？
-    {{name}}
-    {{mail}}
-    <a href="{{ url_for('admin.tea_regist_exe') }}"><button></button></a>
+    サークル削除申請をしますか
+    <a href="{{url_for('app_data.club_delete_conf')}}">申請</a>
+    <a href="#">戻る</a>
 </body>
 </html>

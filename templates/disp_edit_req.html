@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="{{url_for('club_edit.disp_edit_req')}}" >
+        <p>サークル名</p><br>
+        <input type="text" name="club_name" id="club_name" value={{club_name[0]}} readonly> 
+        <p>リーダーのメールアドレス</p><br>
+        <input type="text" name="mail" id="mail" value={{mail[0]}} readonly>
+        <p>サークルの活動目標</p><br>
+        <input type="text" name="objective" id="objective" value={{objective[0]}} readonly>
+        <p>サークルの活動内容</p><br>
+        <input type="text" name="activities" id="activities" value={{activities[0]}} readonly>
+        <p>サークルの説明</p><br>
+        <input type="text" name="introduction" id="introduction" value={{introduction[0]}} readonly>
+        <p>備考</p><br>
+        <input type="text" name="note" id="note" value={{note[0]}} readonly>
+    
+    <form action="{{url_for('club_edit.club_edit_reqok')}}">
+        <button type="submit">承認</button>
+    </form>
+        <button type="submit">否認</button>
+    </form>
+</body>
+
+</html>
