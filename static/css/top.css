@@ -1,5 +1,5 @@
-@charset "utf-8";
-@media screen and (min-width: 481px) { }
+@charset 'utf-8';
+
 /* 検索 */
 #search{
     padding-top: 90px;
@@ -52,28 +52,27 @@
     content: '';
 }
 
-
 /* aタグ */
-.aBtn {
-    margin-left: 15px;
+a {
     color: #fff;
     font-size: 16px;
+    padding: 18px 30px;
     border-radius: 6px;
     transition: .3s;
-}
-.aBtn:hover {
+  }
+a:hover {
     opacity: 0.6;
 }
 
 /* table */
-.tblh3{
-    padding-top: 0.2rem;
-    padding-left: 1rem;
-}
-
 .tbl{
     display: flex;
-    padding-left: 13rem;
+    justify-content:  space-around;
+}
+
+.tab{
+    top: 50px;
+    left: 50px;
 }
 
 /* 左のボタン */
@@ -85,18 +84,18 @@
 
 .divlaunch{
     position: fixed;
-    border: 6px solid #EED243;
-    background-color: #ffffff;
+    border: 6px solid #ffd500;
     border-radius: 30px;
     width: 280px;
-    height: 290px;
-    margin-top: -4rem;
-    margin-left: 7rem;
+    height: 300px;
+    top: 230px;
+    right: 90px;
 }
+
 
 .p1{
     margin-top: 20px;
-    text-align: center;
+    margin-left: 60px;
     font-size: 18px;
     font-weight: bold;
 }
@@ -104,11 +103,7 @@
 .launch {
     position: absolute;
     top: 70px;
-    right: 72px;
-    width: 120px;
-    height: 50px;
-    padding-top: 12px;
-    text-align: center;
+    right: 80px;
     color: #000000;
     font-size: 16px;
     text-decoration:none;
@@ -118,18 +113,15 @@
     transition: .3s;
 }
 
-.launch:hover{
-    background: #ffdd8c;
-}
-
-.title{
-    text-decoration: none;
-}
-
 .p2{
-    margin-top: 90px;
-    margin-left: 4rem;
+    margin-top: 100px;
+    margin-left: 58px;
 }
+
+.p2 span{
+    font-weight: bold;
+}
+
 
 h3{
     margin-top: 10px;

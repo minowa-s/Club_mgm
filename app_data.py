@@ -54,12 +54,46 @@ def club_not_create_conf():
     reason = request.form.get('reason')
     return render_template('club_not_create_conf.html', reason=reason)
 
+#サークル立ち上げ否認確定
 @app_data_bp.route('/club_not_create_exe')
 def club_not_create_exe():
     club_id = session.get('club_id')
     db.delete_request(club_id)
     return render_template('club_not_create_exe.html')
 
+#学生会登録
+@app_data_bp.route('/gakuseikai_regist')
+def gakuseikai_regist():
+    return render_template('gakuseikai_regist.html')
+
+#学生会登録
+@app_data_bp.route('/gakuseikai_regist_conf', methods=['POST'])
+def gakuseikai_regist_conf():
+    mails = request.form.get('mail')
+    mails = mails.splitlines()
+    mail_list = []
+    for row in mails:
+        mail = db.student_seach_from_mail(row)
+        mail_list.append(mail)
+    print("conf____maillist")
+    print(mail_list)
+    print("conf____mails")
+    session['mails'] = mails
+    
+    #メールアドレスから名前とってくるのはできてる。次にやることはそれを画面に表示すること
+    return render_template('gakuseikai_regist_conf.html', mail_list=mail_list, mails=mails)
+
+@app_data_bp.route('/gakuseikai_regist_exe')
+def gakuseikai_regist_exe():
+    mails = session.get('mails')
+    mail_list = request.args.get('mails')
+    mail_list = mail_list.splitlines()
+    mail_list = []
+    for row in mails:
+        mail = db.gakuseikai_regist(row)
+        mail_list.append(mail)
+        db.gakuseikai_regist(row)
+    return render_template('gakuseikai_regist_exe.html')
 
     
 #申請ありサークルリスト表示
@@ -113,6 +147,34 @@ def update_club(club_id):
     cursor.close()
     connection.close()
 
+@app_data_bp.route('/club_delete', methods=['POST'])
+def club_delete():
+    club_id = request.form.get('club_id')
+    session['club_id'] = club_id
+    return render_template('club_delete.html')
+
+@app_data_bp.route('club_delete_conf')
+def club_delete_conf():
+    club_id = session.get('club_id')
+    db.delete_club(club_id)
+    print('A')
+    return render_template('club_delete_request_exe.html')
+
+@app_data_bp.route('mail_send')
+def mail_send():
+    return render_template('mail_send.html')
+
+@app_data_bp.route('mail_send_conf', methods=['POST'])
+def mail_send_conf():
+    subject = request.form.get('subject')
+    body = request.form.get('body')
+    leader_id_list = db.get_leader()
+    print(leader_id_list)
+    for row in leader_id_list:
+        leader = get_leader(row)
+        db.mail_send(leader[2], subject, body)
+    return render_template('mail_send_conf.html')
+    
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border>
+        <thead>
+            <tr>
+                <th>名前</th>
+                <th>メール</th>
+                <th>入学年度</th>
+                <th>アカウント削除</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for students in students %}
+            <tr>
+                <td>{{ students[1] }}</td>
+                <td>{{ students[2] }}</td>
+                <td>{{ students[4] }}</td>
+                <td><form action="{{ url_for('account_delete.account_delete', mail = students[2] , entrance_year = students[4]) }}" method="post" >
+                    <button type="submit">アカウント削除</button></form></td>
+                
+
+            </tr>
+            {% endfor %}
+        </tbody>
+</body>
+</html>

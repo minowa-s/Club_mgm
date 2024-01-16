@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>学生会登録</p>
+    <a>学生会として登録したい学生のメールアドレスを入力してください</a><br>
+    <table>
+        <tr>
+            <th>登録したいメンバーのメールアドレスを
+                入力してください。
+                また、複数人登録する場合は、1名ごとに
+                改行してください。
+                <td>
+                    <form action="{{url_for('app_data.gakuseikai_regist_conf')}}" method="POST">
+                        <textarea name="mail"></textarea><br> 
+                        <input type="submit" values="確認">
+                </td>
+            </th>
+        </tr>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    学生
+    <form action="{{url_for('account.student_login_exe')}}" method="post">
+        メール<input type="mail" name="mail">
+        パスワード<input type="text" name="password">
+        <button type="submit">ログイン</button>
+        </form>
+    <a href="{{url_for('admin.login')}}">管理者はこちら</a>
+    
+</body>
+</html>
