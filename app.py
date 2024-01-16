@@ -15,6 +15,8 @@ from club2 import club_bp2
 app.register_blueprint(club_bp2)
 from app_data import app_data_bp
 app.register_blueprint(app_data_bp)
+from admin import admin_bp
+app.register_blueprint(admin_bp)
 #------------------------------------
 
 def get_connection():
@@ -24,7 +26,7 @@ def get_connection():
     
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('top.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

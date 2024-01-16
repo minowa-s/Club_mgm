@@ -96,80 +96,6 @@ def regist_execute():
             connection.close()
 
     return render_template('regist.html')        
-# -----------------------------------------------------------------------------
-# 教員アカウント関連
-
-#アカウント登録
-# アカウント登録画面
-@account_bp.route('/tea_regist')
-def tea_regist():
-    return render_template('tea_regist.html')
-
-# アカウント登録確認画面
-@account_bp.route('/tea_regist_conf', methods=["POST"])
-def tea_regist_conf():
-    name = request.form.get('name')
-    session['name'] = name
-    mail = request.form.get('mail')
-    mail['name'] = mail
-    return render_template('tea_regist_conf.html', name=name, mail=mail)
-
-#アカウント登録完了画面
-@account_bp.route('/tea_regist_exe')
-def tea_regist_exe():
-    name = session.get('name')
-    mail = session.get('mail')
-    password = db.generate_pass()
-    salt = db.get_salt()
-    sql = 'INSERT INTO teacher(name, mail, password, first_pass_change, salt) VALUES(%s, %s, %s, %s, %s)' #name, mail,password, first_pass_change, salt
-    try :
-        connection = get_connection()
-        cursor = connection.cursor()   
-        cursor.execute(sql, (name, mail, password, False, salt))
-        connection.commit()
-    except psycopg2.DatabaseError:
-        count = 0
-    finally :
-        cursor.close()
-        connection.close()
-    subject =  "教員用サークルアプリ" # ここにアカウント設定用のurlと現在のパスワード貼りたい
-    body = "初期パスワード：" + "「" + password + "」"
-    tea_account_regist_mail(mail, subject, body)
-    return render_template('tea_regist_execute.html')
-
-
-#登録したい教員アカウントにメールを送信する
-def tea_account_regist_mail(to_address, subject, body):
-    from_address = "h.nakamura.sys22@morijyobi.ac.jp" # 送信元と送信先のメールアドレス
-    app_password = "lydt vxfw inil lffe"  # Gmailのアプリパスワードなどを使用してください
-    # subject ="件名"
-    # body ="本文"  URLを送る
-
-    msg = MIMEMultipart()# メールの設定
-    msg['From'] = from_address
-    msg['To'] = to_address
-    msg['Subject'] = subject
-
-    msg.attach(MIMEText(body, 'plain')) # メール本文
-
-    with smtplib.SMTP('smtp.gmail.com', 587) as server: # SMTPサーバーに接続してメールを送信
-        server.starttls()
-        server.login(from_address, app_password)
-        server.sendmail(from_address, to_address, msg.as_string())
-
-
-@account_bp.route('/tea_account_setting')
-def tea_account_setting():
-    nowpassword = request.form.get('nowpassword')
-    newpassword = request.form.get('newpassword')
-    newpassword2 = request.form.get('newpassword2')
-    #パスワードの認証と新しいパスワードの誤字チェック    
-    return render_template("tea_account_setting.html")
-
-@account_bp.route('/tea_account_setting_conf', methods=['POST'])
-def tea_account_setting_conf():
-    return render_template("tea_account_setting_conf.html")
-
 #-----------------------------------------------
 #ログイン 
 @account_bp.route('/login')
@@ -203,7 +129,6 @@ def student_login_exe():
 #パスワード取得
 def get_account_pass(mail):
     sql = 'SELECT password FROM student WHERE mail = %s'
-    
     try:
         connection = get_connection()
         cursor = connection.cursor()
