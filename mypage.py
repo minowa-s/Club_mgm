@@ -82,7 +82,7 @@ def mypage_lea():
     
     #下のget_club_idをstudent_idを引数に実行
     club_id_list = get_club_id(student_id)
-    print(club_id_list)
+    
     
     #下のget_club_nameをclub_idを引数に実行
     club_name_list = []
