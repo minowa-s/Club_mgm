@@ -17,6 +17,8 @@ from app_data import app_data_bp
 app.register_blueprint(app_data_bp)
 from admin import admin_bp
 app.register_blueprint(admin_bp)
+from club_search import club_search_bp
+app.register_blueprint(club_search_bp)
 #------------------------------------
 
 def get_connection():

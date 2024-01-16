@@ -26,9 +26,9 @@
     <div class="h4">
       <h4>あなたにピッタリのサークルが見つかる！</h4>
     </div>
-    <form class="search-form-001"  method="post">
+    <form action="{{url_for('club_search.club_search_nologres')}}"class="search-form-001"  method="post">
         <label>
-            <input type="text" placeholder="例 ）バスケ">
+            <input type="text" placeholder="例 ）バスケ" name="name">
         </label>
         <button type="submit" aria-label="検索"></button>
     </form>
