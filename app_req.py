@@ -1,4 +1,4 @@
-from flask import Blueprint, Flask, render_template, request
+from flask import Blueprint, Flask, render_template, request, session
 import db, club
 
 app = Flask(__name__)
@@ -26,17 +26,15 @@ def request_conf():
     else : print('メールアドレスが登録されてないです')
     if menber_adresses != None: 
         menber_adresses = menber_adresses.splitlines()
-        print(menber_adresses)
         for row in menber_adresses:
-            print(row)
             mail = db.student_seach_from_mail_in_clubcreate(row)
             if mail != None :
                 member_list.append(mail[0])
+    session['member_list'] = member_list
     objective = request.form.get('objective')
     activities = request.form.get('activities')
     introduction = request.form.get('introduction')
     note = request.form.get('note', '')
-    print(member_list)
     if len(member_list) >= 2:
         return render_template('request_conf.html', club_name=club_name, leader_mail=leader_mail, member_list=member_list, objective=objective, activities=activities, introduction=introduction, note=note)
     else:
@@ -47,17 +45,26 @@ def request_conf():
 @app_req_bp.route('/request_exe', methods=['POST'])
 def request_exe():
     club_name = request.form.get('club_name')
-    leader_mail = request.form.get('leader_mail')
-    menber_adress1  =request.form.get('member_adress1')
-    menber_adress2  =request.form.get('member_adress2')
-    menber_adresses = request.form.get('menber_adresses')
     objective = request.form.get('objective')
     activities = request.form.get('activities')
     introduction = request.form.get('introduction')
     note = request.form.get('note', '')
-    leader_id = db.get_id(leader_mail)
-    
+    member_list = session.get("member_list")
+    print(member_list)
+    leader_id = db.get_id(member_list[0])
     db.request_club(club_name, leader_id, objective, activities, introduction, note)
+    club_id = db.get_club_id(leader_id)
+    count = 0 
+    for row in member_list:
+        id = db.get_id(row)
+        print(id)
+        if count == 0 :
+            flg = True
+            db.first_club_member_add(id, club_id, flg)
+        else : 
+            flg = False
+            db.first_club_member_add(id, club_id, flg)
+        count += 1
     
     return render_template('request_exe.html')
 
