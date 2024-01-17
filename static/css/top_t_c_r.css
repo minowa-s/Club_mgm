@@ -1,0 +1,119 @@
+@charset "utf-8";
+@media screen and (min-width: 481px) { }
+/* 検索 */
+#search{
+    padding-top: 90px;
+    padding-left: 450px;
+}
+
+.h4{
+    margin-left: 12px;
+}
+
+.search-form-001 {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    width: 400px;
+    border: 3px solid #64b894;
+    border-radius: 20px;
+}
+
+.search-form-001 input {
+    width: 345px;
+    height: 45px;
+    padding: 5px 10px;
+    border: none;
+    box-sizing: border-box;
+    font-size: 1em;
+    outline: none;
+}
+
+.search-form-001 input::placeholder{
+    color: #767d83;
+}
+
+.search-form-001 button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 45px;
+    border: none;
+    background-color: #64b894;
+    cursor: pointer;
+}
+
+.search-form-001 button::after {
+    width: 20px;
+    height: 20px;
+    background-image: url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%20%3Cpath%20d%3D%22M23.7%2020.8%2019%2016.1c-.2-.2-.5-.3-.8-.3h-.8c1.3-1.7%202-3.7%202-6C19.5%204.4%2015.1%200%209.7%200S0%204.4%200%209.7s4.4%209.7%209.7%209.7c2.3%200%204.3-.8%206-2v.8c0%20.3.1.6.3.8l4.7%204.7c.4.4%201.2.4%201.6%200l1.3-1.3c.5-.5.5-1.2.1-1.6zm-14-5.1c-3.3%200-6-2.7-6-6s2.7-6%206-6%206%202.7%206%206-2.6%206-6%206z%22%20fill%3D%22%23fff%22%3E%3C%2Fpath%3E%20%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    content: '';
+}
+
+/* table */
+.tblh3{
+    padding-top: 0.2rem;
+    padding-left: 1rem;
+}
+
+.tbl{
+    display: flex;
+    padding-left: 13rem;
+}
+
+/* 左のボタン */
+.ta{
+    position: relative;
+    top: 50px;
+    left: 50px;
+}
+
+.divlaunch{
+    position: fixed;
+    border: 6px solid #EED243;
+    background-color: #ffffff;
+    border-radius: 30px;
+    width: 280px;
+    height: 175px;
+    margin-top: -4rem;
+    margin-left: 7rem;
+}
+
+.p1{
+    margin-top: 20px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.launch {
+    position: absolute;
+    top: 90px;
+    right: 72px;
+    width: 120px;
+    height: 50px;
+    padding-top: 12px;
+    padding-left: 25px;
+    color: #000000;
+    font-size: 16px;
+    text-decoration:none;
+    background: #FFD165;
+    border-radius: 35px;
+    display: inline-block;
+    transition: .3s;
+}
+
+.launch:hover{
+    background-color: #fee09b;
+}
+
+.title{
+    text-decoration: none;
+}
+
+h3{
+    margin-top: 10px;
+    margin-left: 200px;
+}

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>このサークルを削除しますか</p>
+    <input type="text" id="name" name="name" value="{{name}}" readonly>
+    <form action="{{ url_for('club_delete_tea.club_delete_tea_conf', name = name ) }}" method="post" >
+        <button type="submit">サークル削除</button></form>
+</body>
+</html>
