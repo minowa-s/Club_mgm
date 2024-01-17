@@ -1,6 +1,6 @@
 from curses import flash
 from flask import Blueprint, redirect, render_template, request, session, url_for
-import hashlib, string, random, psycopg2, db, os, bcrypt, datetime, smtplib
+import hashlib, string, random, psycopg2, db, os, bcrypt, datetime, smtplib, club
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
@@ -118,7 +118,8 @@ def student_login_exe():
             # ハッシュが一致すればログイン成功
             if hashed_password == stored_password:
                 session['mail'] = mail  # セッションにユーザー情報を保存
-                return render_template('top_stu.html')
+                club_list = club.club_list()
+                return render_template('top_stu.html', club_list=club_list)
             else:
                 print('Invalid mail or password')
                 return render_template('login/student_login.html')

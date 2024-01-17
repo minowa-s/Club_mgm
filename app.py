@@ -1,7 +1,7 @@
 from flask import Flask,Blueprint,  render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
-import os, psycopg2, string, random, hashlib
+import os, psycopg2, string, random, hashlib, db, club
 
 app = Flask(__name__)
 app.secret_key = 'secret_key'
@@ -43,11 +43,13 @@ def get_connection():
     
 @app.route('/')
 def index():
-    return render_template('top.html')
+    club_list = club.club_list()
+    return render_template('top/top.html', club_list=club_list)
 
 @app.route('/backtop')
 def backtop_student():
-    return render_template('top_stu.html')
+    club_list = club.club_list()
+    return render_template('top/top_stu.html', club_list=club_list)
 
 if __name__ == '__main__':
     app.run(debug=True)

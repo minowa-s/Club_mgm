@@ -25,7 +25,7 @@ def mypage():
     club_name_list = []
     for n in club_id_list:
         club_name_list.append(get_club_name(n)) 
-    return render_template('mypage.html', mail = mail, name = name, entrance_year = entrance_year, department = department, club_name_list = club_name_list)
+    return render_template('mypage/mypage.html', mail = mail, name = name, entrance_year = entrance_year, department = department, club_name_list = club_name_list)
     
 #サークルリーダー
 #マイページ機能
@@ -66,7 +66,7 @@ def mypage_lea():
         
     print(club_name_list)
         
-    return render_template('mypage_lea.html', mail = mail, name = name, entrance_year = entrance_year, department = department, club_name_list = club_name_list)
+    return render_template('mypage/mypage_lea.html', mail = mail, name = name, entrance_year = entrance_year, department = department, club_name_list = club_name_list)
 
 #学生会マイページ機能
 @mypage_bp.route('/mypage_cou', methods=["POST"])
@@ -106,7 +106,7 @@ def mypage_cou():
         
     print(club_name_list)
         
-    return render_template('mypage_cou.html', mail = mail, name = name, entrance_year = entrance_year, department = department, club_name_list = club_name_list)
+    return render_template('mypage/mypage_cou.html', mail = mail, name = name, entrance_year = entrance_year, department = department, club_name_list = club_name_list)
 
 #名前を取得するメソッド    
 def get_name(mail):

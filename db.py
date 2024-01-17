@@ -325,3 +325,26 @@ def student_seach_from_mail_in_clubcreate(mail):
     cursor.close()
     connection.close()
     return list
+
+#-----------------
+#topおすすめサークル表示
+def get_club_list():
+    sql = "SELECT club_id, name, introduction FROM club"
+    connection = get_connection()
+    cursor = connection.cursor()
+    cursor.execute(sql)
+    list = cursor.fetchall()
+    cursor.close()
+    connection.close()
+    return list
+
+#サークル加入人数取得
+def count_joinedclub(club_id):
+    sql = "SELECT count(student_id) FROM student_club WHERE club_id = %s"
+    connection = get_connection()
+    cursor = connection.cursor()
+    cursor.execute(sql, (club_id,))
+    list = cursor.fetchall()
+    cursor.close()
+    connection.close()
+    return list

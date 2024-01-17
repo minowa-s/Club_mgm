@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, session
-import hashlib, string, random, psycopg2, os, bcrypt, datetime, smtplib
+import hashlib, string, random, psycopg2, os, bcrypt, datetime, smtplib, db
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
@@ -42,3 +42,10 @@ def club_join_req3():
             connection.close()     
     return render_template('club_join_reqres.html')
 
+#おすすめサークル表示
+def club_list():
+    club = []
+    for row in db.get_club_list() :
+        count = db.count_joinedclub(row[0])
+        club.append((row, count))
+    return club

@@ -15,7 +15,7 @@ def get_connection():
 @club_withdrawal_bp.route('/club_withdrawal', methods=['POST'])
 def club_withdrawal():
     club_name = request.args.get('club_name')
-    return render_template('withdrawal_club_conf.html', club_name = club_name)
+    return render_template('withdrawal/withdrawal_club_conf.html', club_name = club_name)
     
 @club_withdrawal_bp.route('/club_withdrawal_res', methods=['POST'])
 def club_withdrawal_res():
@@ -25,13 +25,13 @@ def club_withdrawal_res():
     student_id = get_student_id(mail)
     
     delete_student_club(student_id, club_id)
-    return render_template('withdrawal_club_res.html')
+    return render_template('withdrawal/withdrawal_club_res.html')
 
 #サークルリーダー脱退機能
 @club_withdrawal_bp.route('/club_withdrawal_lea', methods=['POST'])
 def club_withdrawal_lea():
     club_name = request.args.get('club_name')
-    return render_template('withdrawal_club_conf_lea.html', club_name = club_name)
+    return render_template('withdrawal/withdrawal_club_conf_lea.html', club_name = club_name)
     
 @club_withdrawal_bp.route('/club_withdrawal_res_lea', methods=['POST'])
 def club_withdrawal_res_lea():
@@ -41,13 +41,13 @@ def club_withdrawal_res_lea():
     student_id = get_student_id(mail)
     
     delete_student_club(student_id, club_id)
-    return render_template('withdrawal_club_res_lea.html')
+    return render_template('withdrawal/withdrawal_club_res_lea.html')
 
 #学生会サークル脱退機能
 @club_withdrawal_bp.route('/club_withdrawal_cou', methods=['POST'])
 def club_withdrawal_cou():
     club_name = request.args.get('club_name')
-    return render_template('withdrawal_club_conf_cou.html', club_name = club_name)
+    return render_template('withdrawal/withdrawal_club_conf_cou.html', club_name = club_name)
     
 @club_withdrawal_bp.route('/club_withdrawal_res_cou', methods=['POST'])
 def club_withdrawal_res_cou():
@@ -57,7 +57,7 @@ def club_withdrawal_res_cou():
     student_id = get_student_id(mail)
     
     delete_student_club(student_id, club_id)
-    return render_template('withdrawal_club_res_cou.html')
+    return render_template('withdrawal/withdrawal_club_res_cou.html')
 
 def get_student_id(mail):
     sql = "SELECT student_id FROM student WHERE mail = %s"

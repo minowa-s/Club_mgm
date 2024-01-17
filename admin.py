@@ -71,7 +71,7 @@ def login_exe():
             # ハッシュが一致すればログイン成功
             if admin_db.login(mail, password) == True:
                 session['mail'] = mail  # セッションにユーザー情報を保存
-                return render_template('top_teacher.html')
+                return render_template('top/top_teacher.html')
             else:
                 print('Invalid password')
                 return render_template('admin/login.html')
