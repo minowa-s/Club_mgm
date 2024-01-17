@@ -5,14 +5,14 @@
 {% endblock %}
 
 {% block content %}
-  <h4>サークル立ち上げ申請フォーム</h4>
+  <h4>以下の内容でサークル立ち上げ申請をします。よろしいですか。</h4>
   {% if error %}
     <p style="color:red">{{ error }}</p>
   {% endif %}
   {% if msg %}
     <p style="color:blue">{{ msg }}</p>
   {% endif %}
-  <form action="{{ url_for('req.request_conf') }}" method="post">
+  <form action="{{ url_for('req.request_exe') }}" method="post">
     <table id="frm">
       <tr>
         <th class="th1">
@@ -26,21 +26,21 @@
           代表者　メールアドレス
           <p id="required2">必須</p>
         </th>
-        <td class="td2"><input id="inp2" type="email" name="leader_mail" value="{{ leader_mail }}" required></td>
+        <td class="td2"><input id="inp2" type="email" name="leader_mail" value="{{ member_list[0] }}" required></td>
       </tr>
       <tr>
         <th class="th2">
           サークルメンバー　メールアドレス
           <p id="required2">必須</p>
         </th> 
-        <td class="td2"><input id="inp2" type="email" name="member_adress1" value="{{ member_adress1 }}" required></td>
+        <td class="td2"><input id="inp2" type="email" name="member_adress1" value="{{ member_list[1] }}" required></td>
       </tr>
       <tr>
         <th class="th2">
           サークルメンバー　メールアドレス
           <p id="required2">必須</p>
         </th> 
-        <td class="td2"><input id="inp2" type="email" name="member_adress2" value="{{ member_adress2 }}" required></td>
+        <td class="td2"><input id="inp2" type="email" name="member_adress2" value="{{ member_list[2] }}" required></td>
       </tr>
       <tr>
         <th class="th2">
@@ -49,7 +49,8 @@
             メールアドレスを入力してください。
             また、1名ごとに空白で改行してください。</p>
         </th> 
-        <td class="td3"><textarea id="inp3" rows="10" cols="3" name="member_adresses" value="{{ member_adresses }}" ></textarea></td>
+        <td class="td3"><input id="inp3" type="email" name="member_adresses"{% for row in range(3, member_list|length) %} value="{{ member_list[row] }}" {% endfor %}></td>
+
       </tr>
       <tr>
         <th class="th5">

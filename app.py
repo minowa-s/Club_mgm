@@ -19,6 +19,8 @@ from admin import admin_bp
 app.register_blueprint(admin_bp)
 from club_search import club_search_bp
 app.register_blueprint(club_search_bp)
+from app_req import app_req_bp
+app.register_blueprint(app_req_bp)
 #------------------------------------
 
 def get_connection():
@@ -29,6 +31,10 @@ def get_connection():
 @app.route('/')
 def index():
     return render_template('top.html')
+
+@app.route('/backtop')
+def backtop_student():
+    return render_template('top_stu.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
