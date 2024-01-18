@@ -74,13 +74,17 @@ def club_search_restea():
     
 #サークル検索機能
 def club_search(name,introduction):
-    connection = get_connection()
-    cursor = connection.cursor()
-    sql = "SELECT * FROM club WHERE name LIKE %s or introduction LIKE %s"
-    name2 = "%" + name + "%"
-    introduction2 = "%" + introduction + "%"
-    cursor.execute(sql,(name2,introduction2))
-    rows = cursor.fetchall()
-    cursor.close()
-    connection.close()
+    try:
+        connection = get_connection()
+        cursor = connection.cursor()
+        sql = "SELECT * FROM club WHERE name LIKE %s or introduction LIKE %s"
+        name2 = "%" + name + "%"
+        introduction2 = "%" + introduction + "%"
+        cursor.execute(sql,(name2,introduction2))
+        rows = cursor.fetchall()
+    except  psycopg2.DatabaseError:
+        flg = False
+    finally:
+        cursor.close()
+        connection.close()
     return rows

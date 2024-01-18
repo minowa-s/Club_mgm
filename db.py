@@ -278,3 +278,50 @@ def get_leader():
     cursor.close()
     connection.close()
     return leader_list
+    
+#初期サークルメンバー追加
+def first_club_member_add(student_id, club_id, flg):
+    sql = "INSERT INTO student_club (student_id, club_id, is_leader, allow) VALUES (%s, %s, %s, %s)"
+    try :
+        connection = get_connection()
+        cursor = connection.cursor()   
+        cursor.execute(sql, (student_id, club_id, flg, 0))
+        connection.commit()
+    except psycopg2.DatabaseError:
+            count = 0
+    finally :
+            cursor.close()
+            connection.close()
+            
+#メールアドレスから学生id取得
+def get_id(mail):
+    sql = "SELECT student_id FROM student WHERE mail = %s"
+    connection = get_connection()
+    cursor = connection.cursor()
+    cursor.execute(sql, (mail,))
+    id = cursor.fetchone()
+    cursor.close()
+    connection.close()
+    return id
+
+#リーダーidからサークルid取得
+def get_club_id(id):
+    sql = "SELECT club_id FROM club WHERE leader_id = %s"
+    connection = get_connection()
+    cursor = connection.cursor()
+    cursor.execute(sql, (id,))
+    id = cursor.fetchone()
+    cursor.close()
+    connection.close()
+    return id
+
+#サークルメンバー登録時のメールアドレス検索
+def student_seach_from_mail_in_clubcreate(mail):
+    sql = "SELECT mail FROM student WHERE mail = %s"
+    connection = get_connection()
+    cursor = connection.cursor()
+    cursor.execute(sql, (mail,))
+    list = cursor.fetchone()
+    cursor.close()
+    connection.close()
+    return list

@@ -26,9 +26,9 @@
     <div class="h4">
       <h4>あなたにピッタリのサークルが見つかる！</h4>
     </div>
-    <form class="search-form-001"  method="post">
+    <form action="{{url_for('club_search.club_search_nologres')}}" class="search-form-001"  method="post">
         <label>
-            <input type="text" placeholder="例 ）バスケ">
+            <input type="text" placeholder="例 ）バスケ" name="name">
         </label>
         <button type="submit" aria-label="検索"></button>
     </form>
@@ -102,7 +102,7 @@
       <div class="ta">
         <div class="divlaunch">
           <p class="p1">ログイン・登録はこちら</p>
-          <a class="launch" href="#" >ログイン</a>
+          <a class="launch" href="{{url_for('account.login')}}" >ログイン</a>
           <p class="p2">ログインをすると<br>
                         <span>・サークルへの参加</span><br>
                         <span>・サークル立ち上げ</span><br>
