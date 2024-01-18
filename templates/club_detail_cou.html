@@ -1,0 +1,92 @@
+{% extends "layout_council.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='/css/club_detail.css')}}">
+<link rel="icon" href="{{url_for('static', filename='/favicon/favicon.ico')}}">
+{% endblock %}
+
+
+{% block content %}
+<h2 class="h2">○○サークル</h2>
+      <div class="container">
+        <div class="main">
+          <div>
+              <h4>活動内容</h4>
+              <p class="content">活動内容を表示するところ</p>
+          </div>
+          <br>
+          <div>
+              <h4>活動目標</h4>
+              <p class="content">活動目標を表示するところ</p>
+          </div>
+          <br>
+        </div>
+        <div class="join">
+          <button class="joinbtn" onclick="location.href='club_detail.html'">参加申請</button>
+        </div>
+        <div class="pagetop">
+          <canvas id="canvas1" width="50" height="50"></canvas>
+        </div>
+        <br>
+        <div class="main">
+          <h4 class="h4-5">メンバー</h4>
+          <div class="member">
+            <table class="table table-bordered"  style="margin-bottom: 60px;">
+              <tbody>
+              <!-- 4人ずつ表示できるならいいなあ -->
+                <tr>
+                  <td>メンバー1</td>
+                  <td>メンバー2</td>
+                  <td>メンバー3</td>
+                  <td>メンバー4</td>
+                </tr>
+             </tbody>
+           </table>
+          </div>
+        </div>
+      </div>    
+
+<script> 
+    /*上ボタン*/
+    const canvas = document.querySelector('#canvas1')
+    const context = canvas.getContext('2d')
+
+    //イベント
+    canvas.addEventListener("click",function(){
+      window.scroll({
+        top: 0,
+        behavior: "smooth",
+      });
+    })
+
+    //描画
+    context.strokeStyle = "#FFFFFF"
+    context.lineWidth = 4
+
+    context.beginPath()
+
+    context.moveTo(25,15)
+    context.lineTo(25,14)
+
+    context.stroke()
+    context.fill()
+
+    context.beginPath()
+
+    context.moveTo(25,15)
+    context.lineTo(10,35)
+
+    context.stroke()
+    context.fill()
+
+    context.beginPath()
+
+    context.moveTo(25,15)
+    context.lineTo(40,35)
+
+    context.stroke()
+    context.fill()
+
+</script>
+
+{% endblock %}
