@@ -127,6 +127,13 @@ def student_login_exe():
     else:
         print('Invalid mail or password')
         return render_template('login/student_login.html')
+    
+#------------------------------
+#ログアウト
+@account_bp.route('logout')
+def logout():
+    club_list = club.club_list()
+    return render_template('top/top.html', club_list=club_list)
 
 #パスワード取得
 def get_account_pass(mail):
