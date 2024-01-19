@@ -87,8 +87,3 @@ body {
 .logoutBtn:hover {
   border: 5px solid #ff0000;
 }
-
-footer {
-  text-align: center;
-  margin: auto;
-}

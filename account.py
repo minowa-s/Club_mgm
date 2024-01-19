@@ -157,3 +157,8 @@ def get_account_salt(mail):
         cursor.close()
         connection.close()
     return str_salt
+
+@account_bp.route('/logout')
+def logout():
+    session.pop('user', None)
+    return render_template('top.html')

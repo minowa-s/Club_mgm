@@ -14,7 +14,7 @@
 <nav class="navbar fixed-top" style="background-color: #0693E3;">
   <div class="container-fluid">
     <div class="aBtn">
-      <a class="navbar-brand" href="#" style="color: #ffffff; font-size: 25px" >サークル活動アプリケーション</a>
+      <a class="navbar-brand topA" href="{{url_for('index')}}" style="color: #ffffff; font-size: 25px" >サークル活動アプリケーション</a>
     </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" style="opacity: 0;">
       <span class="navbar-toggler-icon" style="opacity: 0;"></span>
@@ -102,7 +102,7 @@
       <div class="ta">
         <div class="divlaunch">
           <p class="p1">ログイン・登録はこちら</p>
-          <a class="launch" href="{{url_for('account.regist')}}" >ログイン</a>
+          <a class="launch" href="{{url_for('account.login')}}" >ログイン</a>
           <p class="p2">ログインをすると<br>
                         <span>・サークルへの参加</span><br>
                         <span>・サークル立ち上げ</span><br>
