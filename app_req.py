@@ -7,7 +7,7 @@ app_req_bp = Blueprint('req', __name__, url_prefix='/req')
 
 @app_req_bp.route('/', methods=['GET'])
 def request_form():
-    return render_template('request_form.html')
+    return render_template('club_create/request_form.html')
 
 @app_req_bp.route('/request_conf', methods=['POST'])
 def request_conf():
