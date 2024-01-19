@@ -243,19 +243,15 @@ def club_edit_reqok():
     note = request.args.get("note")
     student_id= get_student_id2(club_id)
     print(club_name)
-    
     #student_clubのis_leaderをfalseにする
     leader_false(club_id)
-    
     #clubテーブルのデータを変更する
     update_club(club_name, mail, objective, activities, note, club_id)
-    
     #student_clubのis_leaderをtrueにする
     leader_true(student_id)
-    
     #club_changeテーブルのデータを削除する。
     delete_change(club_id)
-    return render_template('club_editreq_ok.html')
+    return render_template('club_edit/club_editreq_ok.html')
 
 def leader_false(club_id):
     sql = "UPDATE student_club SET is_leader = 'f' WHERE club_id = %s"

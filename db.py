@@ -164,7 +164,7 @@ def get_request_club():
     return rows
 
 #サークル詳細
-def get_club_dedtail(club_id):
+def get_club_detail(club_id):
     connection = get_connection()
     cursor = connection.cursor()
     sql = "SELECT name, leader_id, objective, activities, introduction, note FROM club where club_id = %s"
@@ -185,10 +185,11 @@ def get_student_id_from_student_club(club_id):
     connection.close()
     return student_id_list
 
-def get_student_mail(student_id):
+#学生idから学生の情報取得
+def get_student(student_id):
     connection = get_connection()
     cursor = connection.cursor()
-    sql = "SELECT mail FROM student WHERE student_id = %s"
+    sql = "SELECT * FROM student WHERE student_id = %s"
     cursor.execute(sql, (student_id,))
     student_mail = cursor.fetchone()
     cursor.close()
@@ -325,3 +326,49 @@ def student_seach_from_mail_in_clubcreate(mail):
     cursor.close()
     connection.close()
     return list
+
+#-----------------
+#topおすすめサークル表示
+def get_club_list():
+    sql = "SELECT club_id, name, introduction FROM club"
+    connection = get_connection()
+    cursor = connection.cursor()
+    cursor.execute(sql)
+    list = cursor.fetchall()
+    cursor.close()
+    connection.close()
+    return list
+
+#サークル加入人数取得
+def count_joinedclub(club_id):
+    sql = "SELECT count(student_id) FROM student_club WHERE club_id = %s"
+    connection = get_connection()
+    cursor = connection.cursor()
+    cursor.execute(sql, (club_id,))
+    list = cursor.fetchall()
+    cursor.close()
+    connection.close()
+    return list
+
+#サークル加入人数取得
+def get_joinedmember(club_id):
+    sql = "SELECT student_id FROM student_club WHERE club_id = %s"
+    connection = get_connection()
+    cursor = connection.cursor()
+    cursor.execute(sql, (club_id,))
+    student_ids = cursor.fetchall()
+    cursor.close()
+    connection.close()
+    return student_ids
+
+#----------------------------------------
+#スケジュール取得
+def get_schedule(club_id):
+    sql = "SELECT * FROM schedule WHERE club_id = %s"
+    connection = get_connection()
+    cursor = connection.cursor()
+    cursor.execute(sql, (club_id,))
+    schedule = cursor.fetchall()
+    cursor.close()
+    connection.close()
+    return schedule

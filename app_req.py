@@ -36,10 +36,10 @@ def request_conf():
     introduction = request.form.get('introduction')
     note = request.form.get('note', '')
     if len(member_list) >= 2:
-        return render_template('request_conf.html', club_name=club_name, leader_mail=leader_mail, member_list=member_list, objective=objective, activities=activities, introduction=introduction, note=note)
+        return render_template('club_create/request_conf.html', club_name=club_name, leader_mail=leader_mail, member_list=member_list, objective=objective, activities=activities, introduction=introduction, note=note)
     else:
         error = '登録に失敗しました。'
-    return render_template('request_form.html', error=error)
+    return render_template('club_create/request_form.html', error=error)
 
 #立ち上げ申請確定
 @app_req_bp.route('/request_exe', methods=['POST'])
@@ -66,7 +66,7 @@ def request_exe():
             db.first_club_member_add(id, club_id, flg)
         count += 1
     
-    return render_template('request_exe.html')
+    return render_template('club_create/request_exe.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
