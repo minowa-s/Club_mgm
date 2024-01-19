@@ -29,8 +29,8 @@ def get_request_conf():
     count = 0
     student_mail_list = []
     for row in student_ids :
-        student_mail = db.get_student_mail(student_ids[count])
-        student_mail_list.append(student_mail)
+        student_mail = db.get_student(student_ids[count])
+        student_mail_list.append(student_mail[2])
         count+= 1
     return render_template('club_create/request.detail.html', request_detail=request_detail, leader_mail=leader_mail, student_mail_list=student_mail_list, club_id=club_id)
 
