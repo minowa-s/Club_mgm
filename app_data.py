@@ -16,7 +16,7 @@ def get_connection():
 @app_data_bp.route('/approve_list_st')
 def approve_list_st():
     club_list = select_allow1_club()
-    return render_template('approve_list_te.html', club_list=club_list)
+    return render_template('approve_list/approve_list_te.html', club_list=club_list)
 
 #サークル立ち上げ申請確認
 @app_data_bp.route('/get_request_conf')
@@ -29,42 +29,42 @@ def get_request_conf():
     count = 0
     student_mail_list = []
     for row in student_ids :
-        student_mail = db.get_student_mail(student_ids[count])
-        student_mail_list.append(student_mail)
+        student_mail = db.get_student(student_ids[count])
+        student_mail_list.append(student_mail[2])
         count+= 1
-    return render_template('request.detail.html', request_detail=request_detail, leader_mail=leader_mail, student_mail_list=student_mail_list, club_id=club_id)
+    return render_template('club_create/request.detail.html', request_detail=request_detail, leader_mail=leader_mail, student_mail_list=student_mail_list, club_id=club_id)
 
 #サークル立ち上げ承認
 @app_data_bp.route('/request_exe', methods=['POST'])
 def request_exe():
     club_id = request.form.get('club_id')
     update_club(club_id)
-    return render_template('request_exe.html')
+    return render_template('club_create/request_exe.html')
     
 #サークル立ち上げ拒否
 @app_data_bp.route('/club_not_create', methods=['POST'])
 def club_not_create():
     club_id = request.form.get('club_id')
     session['club_id'] = club_id
-    return render_template('club_not_create.html', club_id=club_id)
+    return render_template('club_create/club_not_create.html', club_id=club_id)
 
 #サークル立ち上げ否認理由確認
 @app_data_bp.route('/club_not_create_conf', methods=['POST'])
 def club_not_create_conf():
     reason = request.form.get('reason')
-    return render_template('club_not_create_conf.html', reason=reason)
+    return render_template('club_create/club_not_create_conf.html', reason=reason)
 
 #サークル立ち上げ否認確定
 @app_data_bp.route('/club_not_create_exe')
 def club_not_create_exe():
     club_id = session.get('club_id')
     db.delete_request(club_id)
-    return render_template('club_not_create_exe.html')
+    return render_template('club_create/club_not_create_exe.html')
 
 #学生会登録
 @app_data_bp.route('/gakuseikai_regist')
 def gakuseikai_regist():
-    return render_template('gakuseikai_regist.html')
+    return render_template('gakuseikai_regist/gakuseikai_regist.html')
 
 #学生会登録
 @app_data_bp.route('/gakuseikai_regist_conf', methods=['POST'])
@@ -79,9 +79,7 @@ def gakuseikai_regist_conf():
     print(mail_list)
     print("conf____mails")
     session['mails'] = mails
-    
-    #メールアドレスから名前とってくるのはできてる。次にやることはそれを画面に表示すること
-    return render_template('gakuseikai_regist_conf.html', mail_list=mail_list, mails=mails)
+    return render_template('gakuseikai_regist/gakuseikai_regist_conf.html', mail_list=mail_list, mails=mails)
 
 @app_data_bp.route('/gakuseikai_regist_exe')
 def gakuseikai_regist_exe():
@@ -93,7 +91,7 @@ def gakuseikai_regist_exe():
         mail = db.gakuseikai_regist(row)
         mail_list.append(mail)
         db.gakuseikai_regist(row)
-    return render_template('gakuseikai_regist_exe.html')
+    return render_template('gakuseikai_regist/gakuseikai_regist_exe.html')
 
     
 #申請ありサークルリスト表示

@@ -10,12 +10,17 @@
         <thead>
             <tr>
                 <th>クラブ名</th>
+                <th>サークル説明</th>
+                <th>サークル削除</th>
             </tr>
         </thead>
         <tbody>
             {% for clubs in club %}
             <tr>
                 <td>{{ clubs[1] }}</td>
+                <td>{{ clubs[5] }}</td>
+                <td><form action="{{ url_for('club_delete_tea.club_delete_tea', name = clubs[1] ) }}" method="post" >
+                    <button type="submit">サークル削除</button></form></td>
 
             </tr>
             {% endfor %}

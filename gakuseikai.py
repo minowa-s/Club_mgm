@@ -16,7 +16,7 @@ def get_connection():
 @gakuseikai_bp.route('/approve_list_st')
 def approve_list_st():
     club_list = select_allow0_club()
-    return render_template('approve_list_te.html', club_list=club_list)
+    return render_template('approve_list/approve_list_te.html', club_list=club_list)
 
 #サークル立ち上げ申請確認
 @gakuseikai_bp.route('/get_request_conf')
@@ -29,36 +29,36 @@ def get_request_conf():
     count = 0
     student_mail_list = []
     for row in student_ids :
-        student_mail = db.get_student_mail(student_ids[count])
-        student_mail_list.append(student_mail)
+        student_mail = db.get_student(student_ids[count])
+        student_mail_list.append(student_mail[2])
         count+= 1
-    return render_template('request.detail.html', request_detail=request_detail, leader_mail=leader_mail, student_mail_list=student_mail_list, club_id=club_id)
+    return render_template('club_create/request.detail.html', request_detail=request_detail, leader_mail=leader_mail, student_mail_list=student_mail_list, club_id=club_id)
 
 #サークル立ち上げ承認
 @gakuseikai_bp.route('/request_exe', methods=['POST'])
 def request_exe():
     club_id = request.form.get('club_id')
     app_data.update_club(club_id)
-    return render_template('request_exe.html')
+    return render_template('club_create/request_exe.html')
     
 #サークル立ち上げ拒否
 @gakuseikai_bp.route('/club_not_create', methods=['POST'])
 def club_not_create():
     club_id = request.form.get('club_id')
     session['club_id'] = club_id
-    return render_template('club_not_create.html', club_id=club_id)
+    return render_template('club_create/club_not_create.html', club_id=club_id)
 
 #サークル立ち上げ否認理由確認
 @gakuseikai_bp.route('/club_not_create_conf', methods=['POST'])
 def club_not_create_conf():
     reason = request.form.get('reason')
-    return render_template('club_not_create_conf.html', reason=reason)
+    return render_template('club_create/club_not_create_conf.html', reason=reason)
 
 @gakuseikai_bp.route('/club_not_create_exe')
 def club_not_create_exe():
     club_id = session.get('club_id')
     db.delete_request(club_id)
-    return render_template('club_not_create_exe.html')
+    return render_template('club_create/club_not_create_exe.html')
 
 
 #申請ありサークルリスト表示
