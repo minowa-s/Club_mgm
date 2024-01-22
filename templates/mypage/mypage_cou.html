@@ -36,7 +36,7 @@
             {% for club_name_list in club_name_list %}
               <td>              
                 <input class="myinput" type="text" name="club_name" id="club_name" value="{{club_name_list[0]}}" readonly>
-                <form action="{{ url_for('club_withdrawal.club_withdrawal', club_name = club_name_list[0]  )}}" method="post" >
+                <form action="{{ url_for('club_withdrawal.club_withdrawal_cou', club_name = club_name_list[0]  )}}" method="post" >
                 <div class="mydiv">
                   <button class="mybtn" type="submit">脱退</button>
                 </div>
