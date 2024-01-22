@@ -88,7 +88,7 @@ def regist_execute():
 
         except psycopg2.Error as e:
             print(f"データベースエラー: {e}")
-            return render_template('regist_execute.html', name=name, mail=mail, hashed_password=hashed_password, entrance_year=entrance_year, department_id=department_id, salt=salt, error=1)
+            return render_template('regist_execute.html', name=name, mail=mail, hashed_password=hashed_pass, entrance_year=entrance_year, department_id=department_id, salt=salt, error=1)
 
         finally:
             cursor.close()
@@ -111,9 +111,9 @@ def student_login_exe():
     if salt is not None:
             # パスワードとソルトを使ってハッシュを生成
             hashed_password = hashlib.sha256(password.encode()).hexdigest()
-            print("hashed=", hashed_password)
             # データベースから保存されたハッシュを取得
             stored_password = get_account_pass(mail)
+            session['mail'] = mail
             # ハッシュが一致すればログイン成功
             if hashed_password == stored_password:
                 id = db.get_id(mail)
@@ -126,6 +126,13 @@ def student_login_exe():
     else:
         print('Invalid mail or password')
         return render_template('login/student_login.html')
+    
+#------------------------------
+#ログアウト
+@account_bp.route('logout')
+def logout():
+    club_list = club.club_list()
+    return render_template('top/top.html', club_list=club_list)
 
 #パスワード取得
 def get_account_pass(mail):
