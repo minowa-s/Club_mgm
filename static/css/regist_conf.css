@@ -4,9 +4,14 @@ body {
     text-align: center;
   }
   
-  h4 {
+  h3 {
     text-align: center;
-    margin: 50px auto;
+    margin-top: auto;
+  }
+
+  #a {
+    font-size: 20px;
+    color: #F9406E;
   }
 
   #frm {
@@ -26,6 +31,9 @@ body {
   }
    
   #frm td{
+    text-align: left;
+    padding-left: 1em;
+    font-size: 15px;
     width: 450px;
     height: 50px;
     border:1px solid #DCDCDC;
@@ -40,7 +48,7 @@ body {
     width: 420px;
     height: 35px;
     border: 0px;
-    background-color: #F3F3F3;
+    background-color: #ffffff;
   }
 
   select {

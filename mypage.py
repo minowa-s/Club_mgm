@@ -4,7 +4,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
 
-mypage_bp = Blueprint('mypage', __name__, url_prefix='/mypage')
+mypage_bp = Blueprint('mypage_bp', __name__, url_prefix='/mypage_bp')
 
 #DB接続
 def get_connection():

@@ -1,20 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{url_for('static', filename='/css/regist.css')}}">
-    <title>アカウント登録</title>
-</head>
+{% extends "layout.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='/css/regist_conf.css')}}">
+{% endblock %}
+
+{% block content %}
 <body>
-    <a>登録しますか？</a><br>
+    <h3>学生アカウント登録</h3>
+    <a id="a">以下の内容で登録しますか？</a>
     <form action="{{url_for('account.otp_send')}}" method="POST">
-        氏名<a>{{name}}</a><br>
-        メールアドレス<input type="readonly" value={{mail}} name="mail"><br>
-        入学年度<a>{{entrance_year}}</a><br>
-        学科<a>{{department_id}}</a><br>
-        パスワード<a>**********</a><br>
-        <button type="submit" >登録</button>
+        <table id="frm">
+            <tr>
+                <th class="th1">氏名</th>
+                <td>{{name}}</td>
+            </tr>
+            <tr>
+                <th class="th2">メールアドレス</th>
+                <td><input type="readonly" value={{mail}} name="mail"></td>
+            </tr>
+            <tr>
+                <th class="th3">入学年度</th>
+                <td>{{entrance_year}}</td>
+            </tr>
+            <tr>    
+                <th>学科</th>
+                <td>{{department_id}}</td>
+            </tr>
+            <tr>
+                <th>パスワード</th>
+                <td>**********</td>
+            </tr>
+        </table>
+        <table id="frmBtn">
+            <tr>
+              <td>
+                <div id="btn1">
+                  <button type="button" onclick="history.back()">戻る</button>
+                </div>
+              </td>
+              <td>
+                <div id="btn2">
+                  <button type="submit">登録</button>
+                </div>
+              </td>
+            </tr>
+          </table>
     </form>
 </body>
-</html>
+{% endblock %}
