@@ -112,7 +112,6 @@ def student_login_exe():
     if salt is not None:
             # パスワードとソルトを使ってハッシュを生成
             hashed_password = hashlib.sha256(password.encode()).hexdigest()
-            print("hashed=", hashed_password)
             # データベースから保存されたハッシュを取得
             stored_password = get_account_pass(mail)
             session['mail'] = mail
