@@ -336,7 +336,6 @@ def get_club_list():
     list = cursor.fetchall()
     cursor.close()
     connection.close()
-    print("LIST" , list)
     return list
 
 #サークル加入人数取得

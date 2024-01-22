@@ -52,7 +52,6 @@ def club_list():
     for row in db.get_club_list() :
         count = db.count_joinedclub(row[0])
         club.append((row, count))
-    print("club=",)
     return club
 
 #サークル詳細表示
