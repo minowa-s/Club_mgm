@@ -22,7 +22,7 @@ def approve_list_st():
 @app_data_bp.route('/get_request_conf')
 def get_request_conf():
     club_id = request.args.get('club_id')
-    request_detail = db.get_club_dedtail(club_id)
+    request_detail = db.get_club_detail(club_id)
     leader_mail = get_leader(request_detail[1])
     #サークルに入っている学生のメールアドレスを取得
     student_ids = list(db.get_student_id_from_student_club(club_id))

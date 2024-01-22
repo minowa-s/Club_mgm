@@ -18,13 +18,6 @@ def get_connection():
     )
     return connection
 
-#ハッシュ取得
-# def get_hash(password, salt):
-#     b_pw = bytes(password, 'utf-8')
-#     b_salt = bytes(salt, 'utf-8')
-#     hashed_password = hashlib.pbkdf2_hmac('sha256', b_pw, b_salt, 200).hex()
-#     return hashed_password
-    #------------
 def get_hash(password, salt):
     # 文字列をバイト列に変換
     b_password = bytes(password, 'utf-8')
@@ -343,6 +336,7 @@ def get_club_list():
     list = cursor.fetchall()
     cursor.close()
     connection.close()
+    print("LIST" , list)
     return list
 
 #サークル加入人数取得
