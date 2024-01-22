@@ -115,6 +115,7 @@ def student_login_exe():
             print("hashed=", hashed_password)
             # データベースから保存されたハッシュを取得
             stored_password = get_account_pass(mail)
+            session['mail'] = mail
             # ハッシュが一致すればログイン成功
             if hashed_password == stored_password:
                 id = db.get_id(mail)
