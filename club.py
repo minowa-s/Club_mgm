@@ -18,7 +18,7 @@ def club_join_req():
     club_id =  request.form.get("club_id")
     session["student_id"] = student_id
     session["club_id"] = club_id
-    return render_template("club_join.html" ,student_id = student_id, club_id=club_id)
+    return render_template("club_join_send.html" ,student_id = student_id, club_id=club_id)
 
 @club_bp.route("/club_join_req2", methods=["POST"])
 def club_join_req2():
