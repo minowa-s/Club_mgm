@@ -40,16 +40,20 @@ def get_connection():
     url = os.environ['DATABASE_URL']
     connection = psycopg2.connect(url)
     return connection
-    
+
 @app.route('/')
 def index():
+    return render_template('top/top.html')
+    
+@app.route('/')
+def top_student():
     club_list = club.club_list()
-    return render_template('top/top_stu.html', club_list=club_list)
+    return render_template('top/top_student.html', club_list=club_list)
 
 @app.route('/backtop')
 def backtop_student():
     club_list = club.club_list()
-    return render_template('top/top_stu.html', club_list=club_list)
+    return render_template('top/top_student.html', club_list=club_list)
 
 if __name__ == '__main__':
     app.run(debug=True)

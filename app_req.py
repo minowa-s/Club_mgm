@@ -1,15 +1,16 @@
-from flask import Flask, render_template, request, session
-from flask import Blueprint
-import db
+from flask import Blueprint, Flask, render_template, request, session
+import db, club
 
-app_req_bp = Blueprint('app_req_bp', __name__, url_prefix='/app_req_bp')
+app = Flask(__name__)
+app.secret_key = 'your_secret_key'  # セッション管理のための秘密鍵を設定
+app_req_bp = Blueprint('req', __name__, url_prefix='/req')
 
 @app_req_bp.route('/', methods=['GET'])
 def request_form():
     return render_template('club_create/request_form.html')
 
-@app_req_bp.route('/request_exe', methods=['POST'])
-def request_exe():
+@app_req_bp.route('/request_conf', methods=['POST'])
+def request_conf():
     club_name = request.form.get('club_name')
     leader_mail = request.form.get('leader_mail')
     menber_adress1  =request.form.get('member_adress1')
@@ -68,4 +69,4 @@ def request_exe():
     return render_template('club_create/request_exe.html')
 
 if __name__ == '__main__':
-    app_req_bp.run(debug=True)
+    app.run(debug=True)
