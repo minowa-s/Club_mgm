@@ -158,6 +158,7 @@ def club_delete_conf():
     print('A')
     return render_template('club_delete_request_exe.html')
 
+#----------------メール送信
 @app_data_bp.route('mail_send')
 def mail_send():
     return render_template('mail_send.html')
