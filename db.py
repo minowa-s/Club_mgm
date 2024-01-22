@@ -329,7 +329,7 @@ def student_seach_from_mail_in_clubcreate(mail):
 #-----------------
 #topおすすめサークル表示
 def get_club_list():
-    sql = "SELECT club_id, name, introduction FROM club"
+    sql = "SELECT club_id, name, introduction FROM club WWHERE allow = 2"
     connection = get_connection()
     cursor = connection.cursor()
     cursor.execute(sql)
