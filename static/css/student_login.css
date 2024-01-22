@@ -21,12 +21,12 @@
 input {
     border: none;
     outline: none;
-    width: 270px;
+    width: 100%;
 }
 
 .inp1 {
     margin: 0 auto;
-    padding-top: 3.5em;
+    padding-top: 2em;
     text-align: left;
     border-bottom: 2px solid #707070;
     width: 350px;
@@ -57,7 +57,7 @@ input {
 }
 
 .btn2 {
-  margin-top: 3em;
+  margin-top: 2.5em;
 }
 
 .b2 {
@@ -65,7 +65,7 @@ input {
   font-size: 15px;
   color: #000;
   background-color: #FFFFFF;
-  padding:10px 130px;
+  padding:10px 128.5px;
   border: solid 2px #000;
   }
 
