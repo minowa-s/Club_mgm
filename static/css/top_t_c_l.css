@@ -63,7 +63,7 @@
     padding-left: 13rem;
 }
 
-/* 左のボタン */
+/* 右のボタン */
 .ta{
     position: relative;
     top: 50px;
@@ -76,7 +76,7 @@
     background-color: #ffffff;
     border-radius: 30px;
     width: 280px;
-    height: 175px;
+    height: 260px;
     margin-top: -4rem;
     margin-left: 7rem;
 }
@@ -111,6 +111,12 @@
 
 .title{
     text-decoration: none;
+}
+
+.p2{
+    margin-top: 130px;
+    margin-left: 0.25rem;
+    text-align: center;
 }
 
 h3{
