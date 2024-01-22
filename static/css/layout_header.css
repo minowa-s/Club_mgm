@@ -1,5 +1,10 @@
 @charset "utf-8";
 
+body {
+  margin: 0;
+  padding: 80px;
+}
+
 /* aタグ */
 .aBtn {
   margin-left: 15px;
@@ -82,4 +87,3 @@
 .logoutBtn:hover {
   border: 5px solid #ff0000;
 }
-
