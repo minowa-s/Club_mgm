@@ -12,7 +12,7 @@
   {% if msg %}
     <p style="color:blue">{{ msg }}</p>
   {% endif %}
-  <form action="{{ url_for('req.request_conf') }}" method="post">
+  <form action="{{ url_for('app_req_bp.request_exe') }}" method="post">
     <table id="frm">
       <tr>
         <th class="th1">

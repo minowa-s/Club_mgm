@@ -31,8 +31,9 @@ from club_withdrawal import club_withdrawal_bp
 app.register_blueprint(club_withdrawal_bp)
 from admin import admin_bp
 app.register_blueprint(admin_bp)
-from app_req import req
-app.register_blueprint(req)
+from app_req import app_req_bp
+app.register_blueprint(app_req_bp)
+
 #------------------------------------
 
 def get_connection():
@@ -43,7 +44,7 @@ def get_connection():
 @app.route('/')
 def index():
     club_list = club.club_list()
-    return render_template('top/top.html', club_list=club_list)
+    return render_template('top/top_stu.html', club_list=club_list)
 
 @app.route('/backtop')
 def backtop_student():
