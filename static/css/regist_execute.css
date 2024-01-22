@@ -1,0 +1,26 @@
+@charset 'utf-8';
+
+body {
+    text-align: center;
+}
+
+#p1 {
+    margin-top: 200px;
+    margin-bottom: 60px;
+    font-size: 30px;
+}
+
+.to {
+    text-decoration: none;
+    font-size: 25px;
+    color: #0693E3;
+    padding:10px 60px;
+    border-radius:50px;
+    border: solid 5px;
+    border-color: #0693E3;
+}
+
+.to:hover {
+  color: #FFFFFF;
+  background-color: #0693E3;
+}

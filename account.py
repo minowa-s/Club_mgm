@@ -1,4 +1,3 @@
-from curses import flash
 from flask import Blueprint, redirect, render_template, request, session, url_for
 import hashlib, string, random, psycopg2, db, os, bcrypt, datetime, smtplib, club
 from email.mime.text import MIMEText
@@ -79,17 +78,17 @@ def regist_execute():
                 return render_template('regist_execute.html')
 
             # 新しいユーザーをデータベースに追加
-            hashed_pass = hashlib.sha256(password.encode()).hexdigest()
+            hashed_password = hashlib.sha256(password.encode()).hexdigest()
             salt = "a"
             cursor.execute('INSERT INTO student(name, mail, password, entrance_year, department_id, is_gakuseikai, onetimepassword, salt) VALUES(%s, %s, %s, %s, %s, %s, %s, %s)',
-                           (name, mail, hashed_pass, entrance_year, department_id, False, onetimepassword, salt))
+                           (name, mail, hashed_password, entrance_year, department_id, False, onetimepassword, salt))
             connection.commit()
 
             return render_template('regist_execute.html', name=name, mail=mail, hashed_password=db.get_hash(password, salt), entrance_year=entrance_year, department_id=department_id, salt=salt, error=0)
 
         except psycopg2.Error as e:
             print(f"データベースエラー: {e}")
-            return render_template('regist_execute.html', name=name, mail=mail, hashed_password=hashed_pass, entrance_year=entrance_year, department_id=department_id, salt=salt, error=1)
+            return render_template('regist_execute.html', name=name, mail=mail, hashed_password=hashed_password, entrance_year=entrance_year, department_id=department_id, salt=salt, error=1)
 
         finally:
             cursor.close()
@@ -120,7 +119,7 @@ def student_login_exe():
                 id = db.get_id(mail)
                 student = db.get_student(id)
                 club_list = club.club_list()
-                return render_template('top/top_stu.html', club_list=club_list, student=student)
+                return render_template('top/top_student.html', club_list=club_list, student=student)
             else:
                 print('Invalid mail or password')
                 return render_template('login/student_login.html')
