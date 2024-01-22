@@ -2,7 +2,7 @@
 
 .mypageall{
     text-align: center;
-    margin-top: 8em;
+    margin-top: 5em;
     margin-left: 10rem;
     margin-right: 10rem;
 }
@@ -61,7 +61,7 @@
 
 #bkbtn {
     float: left;
-    margin-top: -50px;
+    margin-top: 15px;
     padding-left: 20px;
 }
 
