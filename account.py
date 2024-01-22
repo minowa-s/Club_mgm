@@ -1,4 +1,3 @@
-from curses import flash
 from flask import Blueprint, redirect, render_template, request, session, url_for
 import hashlib, string, random, psycopg2, db, os, bcrypt, datetime, smtplib, club
 from email.mime.text import MIMEText
@@ -89,7 +88,7 @@ def regist_execute():
 
         except psycopg2.Error as e:
             print(f"データベースエラー: {e}")
-            return render_template('regist_execute.html', name=name, mail=mail, hashed_password=hashed_password, entrance_year=entrance_year, department_id=department_id, salt=salt, error=1)
+            return render_template('regist_execute.html', name=name, mail=mail, hashed_password=password, entrance_year=entrance_year, department_id=department_id, salt=salt, error=1)
 
         finally:
             cursor.close()
@@ -166,8 +165,3 @@ def get_account_salt(mail):
         cursor.close()
         connection.close()
     return str_salt
-
-@account_bp.route('/logout')
-def logout():
-    session.pop('user', None)
-    return render_template('top.html')

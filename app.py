@@ -31,10 +31,8 @@ from club_withdrawal import club_withdrawal_bp
 app.register_blueprint(club_withdrawal_bp)
 from admin import admin_bp
 app.register_blueprint(admin_bp)
-from mypage import mypage_bp
-app.register_blueprint(mypage_bp)
-from app_req import app_req_bp
-app.register_blueprint(app_req_bp)
+from app_req import req
+app.register_blueprint(req)
 #------------------------------------
 
 def get_connection():

@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, session
 import hashlib, string, random, psycopg2, os, bcrypt, datetime, smtplib, db
-from numpy import argsort
+# from numpy import argsort
 from datetime import date
 
 club_bp = Blueprint('club', __name__, url_prefix='/club')

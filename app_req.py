@@ -2,13 +2,13 @@ from flask import Flask, render_template, request, session
 from flask import Blueprint
 import db
 
-app_req_bp = Blueprint('app_req', __name__, url_prefix='/app_req')
+req = Blueprint('req', __name__, url_prefix='/req')
 
-@app_req_bp.route('/', methods=['GET'])
+@req.route('/', methods=['GET'])
 def request_form():
     return render_template('club_create/request_form.html')
 
-@app_req_bp.route('/request_exe', methods=['POST'])
+@req.route('/request_exe', methods=['POST'])
 def request_exe():
     club_name = request.form.get('club_name')
     leader_mail = request.form.get('leader_mail')
@@ -41,7 +41,7 @@ def request_exe():
     return render_template('club_create/request_form.html', error=error)
 
 #立ち上げ申請確定
-@app_req_bp.route('/request_exe', methods=['POST'])
+@req.route('/request_exe', methods=['POST'])
 def request_exe():
     club_name = request.form.get('club_name')
     objective = request.form.get('objective')
@@ -68,4 +68,4 @@ def request_exe():
     return render_template('club_create/request_exe.html')
 
 if __name__ == '__main__':
-    app_req_bp.run(debug=True)
+    req.run(debug=True)
