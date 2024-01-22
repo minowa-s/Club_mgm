@@ -8,8 +8,13 @@ teacher_mgm_bp = Blueprint('teacher_mgm', __name__, url_prefix='/teacher_mgm')
 
 #DB接続
 def get_connection():
-    url = os.environ['DATABASE_URL']
-    connection = psycopg2.connect(url)
+    connection = psycopg2.connect(
+        host = 'ec2-44-213-151-75.compute-1.amazonaws.com',
+        port = 5432,
+        user = 'uzfoqqwpjlxmdm',
+        database = 'd6nhl8cv0snufq',
+        password = '3d0d14a3a20adcd96401c248ed43ca6df9072fac916521987ebe79a2c711cbd4'
+    )
     return connection
 
 @teacher_mgm_bp.route('/teacher_display')
