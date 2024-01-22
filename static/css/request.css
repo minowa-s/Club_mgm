@@ -37,21 +37,20 @@
     background:#ffffff;
   }
 
-
   th p {
     font-size: 13px;
   }
 
   input {
     padding: 0.5em;
-    width: 530px;
+    width: 550px;
     border: 0px;
     background-color: #F3F3F3;
   }
 
   textarea {
     padding: 0.5em;
-    width: 530px;
+    width: 550px;
     border: 0px;
     background-color: #F3F3F3;
   }
