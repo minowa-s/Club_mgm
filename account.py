@@ -1,6 +1,6 @@
 from curses import flash
 from flask import Blueprint, redirect, render_template, request, session, url_for
-import hashlib, string, random, psycopg2, db, os, bcrypt, datetime, smtplib
+import hashlib, string, random, psycopg2, db, os, bcrypt, datetime, smtplib, club
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
@@ -89,7 +89,7 @@ def regist_execute():
 
         except psycopg2.Error as e:
             print(f"データベースエラー: {e}")
-            return render_template('regist_execute.html, name=name, mail=mail, hashed_password=hashed_password, entrance_year=entrance_year, department_id=department_id, salt=salt, error=1')
+            return render_template('regist_execute.html', name=name, mail=mail, hashed_password=hashed_password, entrance_year=entrance_year, department_id=department_id, salt=salt, error=1)
 
         finally:
             cursor.close()
@@ -117,8 +117,10 @@ def student_login_exe():
             stored_password = get_account_pass(mail)
             # ハッシュが一致すればログイン成功
             if hashed_password == stored_password:
-                session['mail'] = mail  # セッションにユーザー情報を保存
-                return render_template('top_stu.html')
+                id = db.get_id(mail)
+                student = db.get_student(id)
+                club_list = club.club_list()
+                return render_template('top/top_stu.html', club_list=club_list, student=student)
             else:
                 print('Invalid mail or password')
                 return render_template('login/student_login.html')

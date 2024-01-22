@@ -164,7 +164,7 @@ def get_request_club():
     return rows
 
 #サークル詳細
-def get_club_dedtail(club_id):
+def get_club_detail(club_id):
     connection = get_connection()
     cursor = connection.cursor()
     sql = "SELECT name, leader_id, objective, activities, introduction, note FROM club where club_id = %s"
@@ -185,10 +185,11 @@ def get_student_id_from_student_club(club_id):
     connection.close()
     return student_id_list
 
-def get_student_mail(student_id):
+#学生idから学生の情報取得
+def get_student(student_id):
     connection = get_connection()
     cursor = connection.cursor()
-    sql = "SELECT mail FROM student WHERE student_id = %s"
+    sql = "SELECT * FROM student WHERE student_id = %s"
     cursor.execute(sql, (student_id,))
     student_mail = cursor.fetchone()
     cursor.close()
@@ -278,3 +279,96 @@ def get_leader():
     cursor.close()
     connection.close()
     return leader_list
+    
+#初期サークルメンバー追加
+def first_club_member_add(student_id, club_id, flg):
+    sql = "INSERT INTO student_club (student_id, club_id, is_leader, allow) VALUES (%s, %s, %s, %s)"
+    try :
+        connection = get_connection()
+        cursor = connection.cursor()   
+        cursor.execute(sql, (student_id, club_id, flg, 0))
+        connection.commit()
+    except psycopg2.DatabaseError:
+            count = 0
+    finally :
+            cursor.close()
+            connection.close()
+            
+#メールアドレスから学生id取得
+def get_id(mail):
+    sql = "SELECT student_id FROM student WHERE mail = %s"
+    connection = get_connection()
+    cursor = connection.cursor()
+    cursor.execute(sql, (mail,))
+    id = cursor.fetchone()
+    cursor.close()
+    connection.close()
+    return id
+
+#リーダーidからサークルid取得
+def get_club_id(id):
+    sql = "SELECT club_id FROM club WHERE leader_id = %s"
+    connection = get_connection()
+    cursor = connection.cursor()
+    cursor.execute(sql, (id,))
+    id = cursor.fetchone()
+    cursor.close()
+    connection.close()
+    return id
+
+#サークルメンバー登録時のメールアドレス検索
+def student_seach_from_mail_in_clubcreate(mail):
+    sql = "SELECT mail FROM student WHERE mail = %s"
+    connection = get_connection()
+    cursor = connection.cursor()
+    cursor.execute(sql, (mail,))
+    list = cursor.fetchone()
+    cursor.close()
+    connection.close()
+    return list
+
+#-----------------
+#topおすすめサークル表示
+def get_club_list():
+    sql = "SELECT club_id, name, introduction FROM club"
+    connection = get_connection()
+    cursor = connection.cursor()
+    cursor.execute(sql)
+    list = cursor.fetchall()
+    cursor.close()
+    connection.close()
+    return list
+
+#サークル加入人数取得
+def count_joinedclub(club_id):
+    sql = "SELECT count(student_id) FROM student_club WHERE club_id = %s"
+    connection = get_connection()
+    cursor = connection.cursor()
+    cursor.execute(sql, (club_id,))
+    list = cursor.fetchall()
+    cursor.close()
+    connection.close()
+    return list
+
+#サークル加入人数取得
+def get_joinedmember(club_id):
+    sql = "SELECT student_id FROM student_club WHERE club_id = %s"
+    connection = get_connection()
+    cursor = connection.cursor()
+    cursor.execute(sql, (club_id,))
+    student_ids = cursor.fetchall()
+    cursor.close()
+    connection.close()
+    return student_ids
+
+#----------------------------------------
+#スケジュール取得
+def get_schedule(club_id):
+    sql = "SELECT * FROM schedule WHERE club_id = %s"
+    connection = get_connection()
+    cursor = connection.cursor()
+    cursor.execute(sql, (club_id,))
+    schedule = cursor.fetchall()
+    cursor.close()
+    connection.close()
+    return schedule
