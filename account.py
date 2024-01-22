@@ -88,7 +88,7 @@ def regist_execute():
 
         except psycopg2.Error as e:
             print(f"データベースエラー: {e}")
-            return render_template('regist_execute.html', name=name, mail=mail, hashed_password=hashed_pass, entrance_year=entrance_year, department_id=department_id, salt=salt, error=1)
+            return render_template('regist_execute.html', name=name, mail=mail, hashed_password=hashed_password, entrance_year=entrance_year, department_id=department_id, salt=salt, error=1)
 
         finally:
             cursor.close()
