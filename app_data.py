@@ -6,10 +6,15 @@ app = Flask(__name__)
 app.secret_key = ''.join(random.choices(string.ascii_letters, k=256))
 app_data_bp = Blueprint('app_data', __name__, url_prefix='/app_data')
 
-#DB接続
 def get_connection():
     url = os.environ['DATABASE_URL']
-    connection = psycopg2.connect(url)
+    connection = psycopg2.connect(
+        host = 'ec2-3-232-218-211.compute-1.amazonaws.com',
+        port = 5432,
+        user = 'gqaqbmtphalgvd',
+        database = 'df9807ov4tu95n',
+        password = 'cfd499e6588a1ebed523b87fb09090aa8fbdd70f43ac32ff2bc715a197cf3efb'
+    )
     return connection
 
 #サークル立ち上げ申請リスト
