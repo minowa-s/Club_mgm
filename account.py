@@ -1,4 +1,3 @@
-from curses import flash
 from flask import Blueprint, redirect, render_template, request, session, url_for
 import hashlib, string, random, psycopg2, db, os, bcrypt, datetime, smtplib, club
 from email.mime.text import MIMEText
@@ -120,7 +119,7 @@ def student_login_exe():
                 id = db.get_id(mail)
                 student = db.get_student(id)
                 club_list = club.club_list()
-                return render_template('top/top_stu.html', club_list=club_list, student=student)
+                return render_template('login/student_login.html', club_list=club_list, student=student)
             else:
                 print('Invalid mail or password')
                 return render_template('login/student_login.html')
