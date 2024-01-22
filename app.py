@@ -50,6 +50,7 @@ def top_student():
     club_list = club.club_list()
     return render_template('top/top_student.html', club_list=club_list)
 
+
 @app.route('/backtop')
 def backtop_student():
     club_list = club.club_list()

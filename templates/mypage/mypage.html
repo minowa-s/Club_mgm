@@ -14,36 +14,38 @@
   <div class="position-relative">
     <div position-absolute top-100px start-20px>
       <table id="frm" style="margin-bottom: 20px;">
-          <tr>
-            <th align="center">名前</th>
-            <td><input type="text" name="name" id="name" value="{{name}}" readonly></th>
-          </tr>
-          <tr>
-            <th align="center">メールアドレス</th>
-            <td><input type="text" name="mail" id="mail" value="{{mail}}" readonly></td>
-          </tr>
-          <tr>
-            <th align="center">入学年度</th>
-            <td><input type="text" name="entrance_year" id="entrance_year" value="{{entrance_year}}" readonly></td>
-          </tr>
-          <tr>
-            <th align="center">学科</th>
-            <td><input type="text" name="department" id="department" value="{{department}}" readonly></td>
-          </tr>
-          <tr>
-            <th align="center">所属サークル</th>
-              {% for club_name_list in club_name_list %}
-                <td>              
-                  <input type="text" name="club_name" id="club_name" value="{{club_name_list[0]}}" readonly>
-                  <form action="{{ url_for('club_withdrawal.club_withdrawal', club_name = club_name_list[0]  )}}" method="post" >
-                    <button type="submit">脱退</button>
-                  </form>
-                </td>
-              {% endfor%}
-          </tr>
-            <th align="center">パスワード</th>
-            <td><input type="text" name="password" id="password" value="*************" readonly></td>
-          </tr>
+        <tr>
+          <th align="center">名前</th>
+          <td><input class="input" type="text" name="name" id="name" value="{{name}}" readonly></th>
+        </tr>
+        <tr>
+          <th align="center">メールアドレス</th>
+          <td><input class="input" type="text" name="mail" id="mail" value="{{mail}}" readonly></td>
+        </tr>
+        <tr>
+          <th align="center">入学年度</th>
+          <td><input class="input" type="text" name="entrance_year" id="entrance_year" value="{{entrance_year}}" readonly></td>
+        </tr>
+        <tr>
+          <th align="center">学科</th>
+          <td><input class="input" type="text" name="department" id="department" value="{{department}}" readonly></td>
+        </tr>
+        <tr>
+          <th align="center">所属サークル</th>
+            {% for club_name_list in club_name_list %}
+              <td>              
+                <input class="myinput" type="text" name="club_name" id="club_name" value="{{club_name_list[0]}}" readonly>
+                <form action="{{ url_for('club_withdrawal.club_withdrawal', club_name = club_name_list[0]  )}}" method="post" >
+                <div class="mydiv">
+                  <button class="mybtn" type="submit">脱退</button>
+                </div>
+                </form>
+              </td>
+            {% endfor%}
+        </tr>
+          <th align="center">パスワード</th>
+          <td><input class="input" type="text" name="password" id="password" value="*************" readonly></td>
+        </tr>
       </table>
     </div>
   </div>
