@@ -190,3 +190,17 @@ td.today {
 .member td{
     width: 200px;
 }
+
+#bkbtn {
+    float: left;
+    padding-left: 20px;
+}
+
+#back {
+    text-decoration: none;
+    font-size: 25px;
+    color: black;
+    border: none;
+    outline: none;
+    background: none;
+}
