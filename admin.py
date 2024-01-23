@@ -6,17 +6,21 @@ from email.mime.application import MIMEApplication
 
 admin_bp = Blueprint('admin', __name__, url_prefix='/admin')
 
+# def get_connection():
+#     url = os.environ['DATABASE_URL']
+#     connection = psycopg2.connect(
+#         host = 'ec2-3-232-218-211.compute-1.amazonaws.com',
+#         port = 5432,
+#         user = 'gqaqbmtphalgvd',
+#         database = 'df9807ov4tu95n',
+#         password = 'cfd499e6588a1ebed523b87fb09090aa8fbdd70f43ac32ff2bc715a197cf3efb'
+#     )
+#     return connection
+# #DB接続
 def get_connection():
     url = os.environ['DATABASE_URL']
-    connection = psycopg2.connect(
-        host = 'ec2-3-232-218-211.compute-1.amazonaws.com',
-        port = 5432,
-        user = 'gqaqbmtphalgvd',
-        database = 'df9807ov4tu95n',
-        password = 'cfd499e6588a1ebed523b87fb09090aa8fbdd70f43ac32ff2bc715a197cf3efb'
-    )
+    connection = psycopg2.connect(url)
     return connection
-
 @admin_bp.route('/tea_regist')
 def tea_regist():
     return render_template('tea_regist.html')

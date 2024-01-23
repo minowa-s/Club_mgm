@@ -7,15 +7,20 @@ import string
 import random
 import smtplib
 
+# def get_connection():
+#     url = os.environ['DATABASE_URL']
+#     connection = psycopg2.connect(
+#         host = 'ec2-3-232-218-211.compute-1.amazonaws.com',
+#         port = 5432,
+#         user = 'gqaqbmtphalgvd',
+#         database = 'df9807ov4tu95n',
+#         password = 'cfd499e6588a1ebed523b87fb09090aa8fbdd70f43ac32ff2bc715a197cf3efb'
+#     )
+#     return connection
+# #DB接続
 def get_connection():
     url = os.environ['DATABASE_URL']
-    connection = psycopg2.connect(
-        host = 'ec2-3-232-218-211.compute-1.amazonaws.com',
-        port = 5432,
-        user = 'gqaqbmtphalgvd',
-        database = 'df9807ov4tu95n',
-        password = 'cfd499e6588a1ebed523b87fb09090aa8fbdd70f43ac32ff2bc715a197cf3efb'
-    )
+    connection = psycopg2.connect(url)
     return connection
 
 def get_hash(password, salt):
@@ -329,7 +334,7 @@ def student_seach_from_mail_in_clubcreate(mail):
 #-----------------
 #topおすすめサークル表示
 def get_club_list():
-    sql = "SELECT club_id, name, introduction FROM club WWHERE allow = 2"
+    sql = "SELECT club_id, name, introduction FROM club WHERE allow = 2"
     connection = get_connection()
     cursor = connection.cursor()
     cursor.execute(sql)

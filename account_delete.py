@@ -6,21 +6,21 @@ from email.mime.application import MIMEApplication
 
 account_delete_bp = Blueprint('account_delete', __name__, url_prefix='/account_delete')
 
-def get_connection():
-    url = os.environ['DATABASE_URL']
-    connection = psycopg2.connect(
-        host = 'ec2-3-232-218-211.compute-1.amazonaws.com',
-        port = 5432,
-        user = 'gqaqbmtphalgvd',
-        database = 'df9807ov4tu95n',
-        password = 'cfd499e6588a1ebed523b87fb09090aa8fbdd70f43ac32ff2bc715a197cf3efb'
-    )
-    return connection
-# #DB接続
 # def get_connection():
 #     url = os.environ['DATABASE_URL']
-#     connection = psycopg2.connect(url)
+#     connection = psycopg2.connect(
+#         host = 'ec2-3-232-218-211.compute-1.amazonaws.com',
+#         port = 5432,
+#         user = 'gqaqbmtphalgvd',
+#         database = 'df9807ov4tu95n',
+#         password = 'cfd499e6588a1ebed523b87fb09090aa8fbdd70f43ac32ff2bc715a197cf3efb'
+#     )
 #     return connection
+#DB接続
+def get_connection():
+    url = os.environ['DATABASE_URL']
+    connection = psycopg2.connect(url)
+    return connection
 
 @account_delete_bp.route('/account_delete', methods = ["POST"])
 def account_delete():

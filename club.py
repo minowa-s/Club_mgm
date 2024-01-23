@@ -5,15 +5,20 @@ from datetime import date
 club_bp = Blueprint('club', __name__, url_prefix='/club')
 
 
+# def get_connection():
+#     url = os.environ['DATABASE_URL']
+#     connection = psycopg2.connect(
+#         host = 'ec2-3-232-218-211.compute-1.amazonaws.com',
+#         port = 5432,
+#         user = 'gqaqbmtphalgvd',
+#         database = 'df9807ov4tu95n',
+#         password = 'cfd499e6588a1ebed523b87fb09090aa8fbdd70f43ac32ff2bc715a197cf3efb'
+#     )
+#     return connection
+# #DB接続
 def get_connection():
     url = os.environ['DATABASE_URL']
-    connection = psycopg2.connect(
-        host = 'ec2-3-232-218-211.compute-1.amazonaws.com',
-        port = 5432,
-        user = 'gqaqbmtphalgvd',
-        database = 'df9807ov4tu95n',
-        password = 'cfd499e6588a1ebed523b87fb09090aa8fbdd70f43ac32ff2bc715a197cf3efb'
-    )
+    connection = psycopg2.connect(url)
     return connection
 
 #サークル参加申請処理
@@ -51,7 +56,13 @@ def club_join_req3():
             connection.close()     
     return render_template('club_join_reqres.html')
 
-
+#おすすめサークル表示
+def club_list():
+    club = []
+    for row in db.get_club_list() :
+        count = db.count_joinedclub(row[0])
+        club.append((row, count))
+    return club
 
 #サークル詳細表示
 @club_bp.route("/club_detail", methods=['GET'])
