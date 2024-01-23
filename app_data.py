@@ -50,7 +50,7 @@ def request_exe():
     update_club(club_id)
     club = db.get_club_detail(club_id)
     update_leader_flg(club[1])
-    return render_template('club_create/request_exe.html')
+    return render_template('club_create/create_exe.html')
     
 #サークル立ち上げ拒否
 @app_data_bp.route('/club_not_create', methods=['POST'])
@@ -159,7 +159,7 @@ def update_club(club_id):
 #サークル承認(リーダーフラグ変更)
 def update_leader_flg(student_id):
     print(student_id)
-    sql = "UPDATE student SET is_leader = True WHERE club_id = %s"
+    sql = "UPDATE student_Club SET is_leader = True WHERE student_id = %s"
     connection = get_connection()
     cursor = connection.cursor()
     cursor.execute(sql, (student_id,))
