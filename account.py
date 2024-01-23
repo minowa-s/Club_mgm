@@ -131,9 +131,12 @@ def student_login_exe():
                 id = db.get_id(mail)
                 student = db.get_student(id)
                 club_list = club.club_list()
-                if student[6] == True:
+                leader = db.get_sc(id)
+                if leader[3] == True:
+                    print("リーダーログイン")
                     return render_template('top/top_leader.html', club_list=club_list, student=student)
-                else:        
+                else:    
+                    print("ふつうの")    
                     return render_template('top/top_student.html', club_list=club_list, student=student)
             else:
                 print('Invalid mail or password')
