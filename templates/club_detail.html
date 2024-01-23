@@ -54,6 +54,8 @@
                         <td>              
                             <input class="meminput" type="text" name="club_name" id="club_name" value="{{ memberlist[index*2 + 1] }}" readonly>
                         </td>
+                    {% else %}
+                        <td></td>
                     {% endif %}
                 </tr>
             {% endfor %}
