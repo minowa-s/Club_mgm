@@ -117,7 +117,7 @@ def select_department():
 #入学年度選択
 def select_year():
     current_year = datetime.datetime.now().year
-    year_range = range(current_year, current_year - 4, -1)
+    year_range = range(current_year, current_year - 5, -1)
     return year_range
 
 #メール送信 

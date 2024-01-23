@@ -88,7 +88,7 @@ def club_search(name,introduction):
     try:
         connection = get_connection()
         cursor = connection.cursor()
-        sql = "SELECT * FROM club WHERE name LIKE %s or introduction LIKE %s"
+        sql = "SELECT * FROM club WHERE allow = 2 and (name LIKE %s or introduction LIKE %s) "
         name2 = "%" + name + "%"
         introduction2 = "%" + introduction + "%"
         cursor.execute(sql,(name2,introduction2))
