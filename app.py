@@ -57,13 +57,13 @@ def index():
     club_list = club.club_list()
     return render_template('top/top.html', club_list=club_list)
 
-@app.route('/backtop')
+@app.route('/backtop_s')
 def backtop_student():
     club_list = club.club_list()
     return render_template('top/top_student.html', club_list=club_list)
 
 
-@app.route('/backtop')
+@app.route('/backtop_t')
 def backtop_teacher():
     club_list = club.club_list()
     return render_template('top/top_teacher.html', club_list=club_list)

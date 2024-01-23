@@ -45,12 +45,18 @@
                         </td>
                         <td id="tBtn">
                             <div id="btn2">
-                                <button type="submit" class="btn">否認</button>
+                                <form action="/app_data/club_not_create" method="POST">
+                                    <input type="hidden" name="club_id" value="{{club_id}}" >
+                                    <button type="submit" >否認</button>
+                                </form>
                             </div>
                         </td>
                         <td id="tBtn">
                             <div id="btn3">
-                                <button type="submit">承認</button>
+                                <form action="/app_data/request_exe" method="POST">
+                                    <input type="hidden" name="club_id" value="{{club_id}}" >
+                                    <button type="submit" >承認</button>
+                                </form>
                             </div>
                         </td>
                     </tr>

@@ -22,8 +22,8 @@ def get_connection():
     connection = psycopg2.connect(url)
     return connection
 #サークル立ち上げ申請リスト
-@app_data_bp.route('/approve_list_st')
-def approve_list_st():
+@app_data_bp.route('/approve_list_te')
+def approve_list_te():
     club_list = select_allow1_club()
     return render_template('approve_list/approve_list_te.html', club_list=club_list)
 
@@ -48,6 +48,8 @@ def get_request_conf():
 def request_exe():
     club_id = request.form.get('club_id')
     update_club(club_id)
+    club = db.get_club_detail(club_id)
+    update_leader_flg(club[1])
     return render_template('club_create/request_exe.html')
     
 #サークル立ち上げ拒否
@@ -153,13 +155,26 @@ def update_club(club_id):
     connection.commit()
     cursor.close()
     connection.close()
+    
+#サークル承認(リーダーフラグ変更)
+def update_leader_flg(student_id):
+    print(student_id)
+    sql = "UPDATE student SET is_leader = True WHERE club_id = %s"
+    connection = get_connection()
+    cursor = connection.cursor()
+    cursor.execute(sql, (student_id,))
+    connection.commit()
+    cursor.close()
+    connection.close()
 
+#サークル削除
 @app_data_bp.route('/club_delete', methods=['POST'])
 def club_delete():
     club_id = request.form.get('club_id')
     session['club_id'] = club_id
     return render_template('club_delete.html')
 
+#サークル削除確認
 @app_data_bp.route('club_delete_conf')
 def club_delete_conf():
     club_id = session.get('club_id')
