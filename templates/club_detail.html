@@ -45,12 +45,12 @@
       <div class="member">
         <table class="table table-bordered"  style="margin-bottom: 60px;">
           <tbody>
-            {% for index in range(memberlist|length//2) %}
+            {% for index in range((memberlist|length + 1)//2) %}
                 <tr>
                     <td>              
                         <input class="meminput" type="text" name="club_name" id="club_name" value="{{ memberlist[index*2] }}" readonly>
                     </td>
-                    {% if index + 1 < memberlist|length %}
+                    {% if index*2 + 1 < memberlist|length %}
                         <td>              
                             <input class="meminput" type="text" name="club_name" id="club_name" value="{{ memberlist[index*2 + 1] }}" readonly>
                         </td>
