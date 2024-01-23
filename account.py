@@ -6,17 +6,7 @@ from email.mime.application import MIMEApplication
 
 account_bp = Blueprint('account', __name__, url_prefix='/account')
 
-# def get_connection():
-#     url = os.environ['DATABASE_URL']
-#     connection = psycopg2.connect(
-#         host = 'ec2-3-232-218-211.compute-1.amazonaws.com',
-#         port = 5432,
-#         user = 'gqaqbmtphalgvd',
-#         database = 'df9807ov4tu95n',
-#         password = 'cfd499e6588a1ebed523b87fb09090aa8fbdd70f43ac32ff2bc715a197cf3efb'
-#     )
-#     return connection
-# #DB接続
+#DB接続
 def get_connection():
     connection = psycopg2.connect(
         host = 'ec2-54-234-13-16.compute-1.amazonaws.com',
@@ -26,6 +16,7 @@ def get_connection():
         password = '736926275fcb36df9c9fc0255fe0cb285a3155d3c91a6bc3aeb6a67dbb505869'
     )
     return connection
+
 # アカウント登録画面
 @account_bp.route('/regist')
 def regist():
