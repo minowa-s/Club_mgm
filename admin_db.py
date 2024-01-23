@@ -7,6 +7,7 @@ import string
 import random
 import smtplib
 
+#DB接続
 def get_connection():
     url = os.environ['DATABASE_URL']
     connection = psycopg2.connect(url)

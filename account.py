@@ -124,7 +124,10 @@ def student_login_exe():
                 id = db.get_id(mail)
                 student = db.get_student(id)
                 club_list = club.club_list()
-                return render_template('top/top_student.html', club_list=club_list, student=student)
+                if student[6] == True:
+                    return render_template('top/top_leader.html', club_list=club_list, student=student)
+                else:        
+                    return render_template('top/top_student.html', club_list=club_list, student=student)
             else:
                 print('Invalid mail or password')
                 return render_template('login/student_login.html')

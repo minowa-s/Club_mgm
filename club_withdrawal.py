@@ -6,6 +6,7 @@ from email.mime.application import MIMEApplication
 
 club_withdrawal_bp =  Blueprint('club_withdrawal', __name__, url_prefix='/club_withdrawal')
 
+#DB接続
 def get_connection():
     url = os.environ['DATABASE_URL']
     connection = psycopg2.connect(url)

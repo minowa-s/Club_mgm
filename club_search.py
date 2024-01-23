@@ -6,6 +6,7 @@ from email.mime.application import MIMEApplication
 
 club_search_bp =  Blueprint('club_search', __name__, url_prefix='/club_search')
 
+#DB接続
 def get_connection():
     connection = psycopg2.connect(
         host = 'ec2-54-234-13-16.compute-1.amazonaws.com',

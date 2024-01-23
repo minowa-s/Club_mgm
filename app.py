@@ -36,6 +36,17 @@ app.register_blueprint(app_req_bp)
 
 #------------------------------------
 
+# def get_connection():
+#     url = os.environ['DATABASE_URL']
+#     connection = psycopg2.connect(
+#         host = 'ec2-3-232-218-211.compute-1.amazonaws.com',
+#         port = 5432,
+#         user = 'gqaqbmtphalgvd',
+#         database = 'df9807ov4tu95n',
+#         password = 'cfd499e6588a1ebed523b87fb09090aa8fbdd70f43ac32ff2bc715a197cf3efb'
+#     )
+#     return connection
+# #DB接続
 def get_connection():
     url = os.environ['DATABASE_URL']
     connection = psycopg2.connect(url)
@@ -43,18 +54,19 @@ def get_connection():
 
 @app.route('/')
 def index():
-    return render_template('top/top.html')
-    
-@app.route('/')
-def top_student():
     club_list = club.club_list()
-    return render_template('top/top_student.html', club_list=club_list)
+    return render_template('top/top.html', club_list=club_list)
 
-
-@app.route('/backtop')
+@app.route('/backtop_s')
 def backtop_student():
     club_list = club.club_list()
     return render_template('top/top_student.html', club_list=club_list)
+
+
+@app.route('/backtop_t')
+def backtop_teacher():
+    club_list = club.club_list()
+    return render_template('top/top_teacher.html', club_list=club_list)
 
 if __name__ == '__main__':
     app.run(debug=True)

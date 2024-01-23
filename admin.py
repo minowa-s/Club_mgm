@@ -59,11 +59,13 @@ def login():
 def login_exe():
     mail = request.form.get('mail')
     password = request.form.get('password')
+    hashed_password = hashlib.sha256(password.encode()).hexdigest()
+    print(hashed_password)
     #データベースからソルト取得
     salt = admin_db.get_account_salt(mail)
     if salt is not None:
             # パスワードとソルトを使ってハッシュを生成
-            # hashed_password = hashlib.sha256(password.encode()).hexdigest()
+            hashed_password = hashlib.sha256(password.encode()).hexdigest()
             # データベースから保存されたハッシュを取得
             stored_password = admin_db.get_account_pass(mail)
             print(stored_password)
