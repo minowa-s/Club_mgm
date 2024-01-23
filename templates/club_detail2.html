@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -137,109 +137,13 @@ function createCalendar(year, month) {
         createCalendar(currentDate.getFullYear(), currentDate.getMonth());
     </script>
     メンバーリスト{{memberlist}}
+    {{daylist}}
     {% if student != none %}
-    <form action="{{ url_for('club.club_join_req')}}" method="POST">
-        <input type="hidden" name="student_id" value="{{student}}">
-        <input type="hidden" name="club_id" value="{{club_detail[1]}}">
-        <button type="submit">サークル参加申請</button>
-    </form>
-{% endif %}
+        <form action="{{ url_for('club.club_join_req')}}" method="POST">
+            <input type="hidden" name="student_id" value="{{student}}">
+            <input type="hidden" name="club_id" value="{{club_detail[1]}}">
+            <button type="submit">サークル参加申請</button>
+        </form>
+    {% endif %}
 </body>
 </html>
-=======
-{% extends "layout_student.html" %}
-
-{% block css %}
-<link rel="stylesheet" href="{{url_for('static', filename='/css/club_detail.css')}}">
-<link rel="icon" href="{{url_for('static', filename='/favicon/favicon.ico')}}">
-{% endblock %}
-
-
-{% block content %}
-    <div id="bkbtn">
-      <button id="back" onclick="history.back()">←戻る</button>
-    </div>
-      <h2 class="h2">{{ club_detail[0] }}</h2>
-      <div class="container">
-        <div class="main">
-          <div> 
-              <h4>活動内容</h4>
-              <p class="content">{{ club_detail[2] }}</p>
-          </div>
-          <br>
-          <div>
-              <h4>活動目標</h4>
-              <p class="content">{{ club_detail[3] }}</p>
-          </div>
-          <br>
-        </div>
-        <div class="join">
-            {% if student != none %}
-                <form action="{{ url_for('club.club_join_req')}}" method="POST">
-                    <input type="hidden" name="student_id" value="{{student}}">
-                    <input type="hidden" name="club_id" value="{{club_detail[1]}}">
-                    <button class="joinbtn" type="submit">参加申請</button>
-                </form>
-            {% endif %}
-        </div>
-        <div class="pagetop">
-          <canvas id="canvas1" width="50" height="50"></canvas>
-        </div>
-        <br>
-        <div class="main">
-          <h4 class="h4-5">メンバー</h4>
-          <div class="member">
-            <table class="table table-bordered"  style="margin-bottom: 60px;">
-              <tbody>
-                {{memberlist}}
-             </tbody>
-           </table>
-          </div>
-        </div>
-      </div>    
-
-      
-<script> 
-    /*上ボタン*/
-    const canvas = document.querySelector('#canvas1')
-    const context = canvas.getContext('2d')
-
-    //イベント
-    canvas.addEventListener("click",function(){
-      window.scroll({
-        top: 0,
-        behavior: "smooth",
-      });
-    })
-
-    //描画
-    context.strokeStyle = "#FFFFFF"
-    context.lineWidth = 4
-
-    context.beginPath()
-
-    context.moveTo(25,15)
-    context.lineTo(25,14)
-
-    context.stroke()
-    context.fill()
-
-    context.beginPath()
-
-    context.moveTo(25,15)
-    context.lineTo(10,35)
-
-    context.stroke()
-    context.fill()
-
-    context.beginPath()
-
-    context.moveTo(25,15)
-    context.lineTo(40,35)
-
-    context.stroke()
-    context.fill()
-
-</script>
-
-{% endblock %}

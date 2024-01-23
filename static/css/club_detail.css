@@ -1,0 +1,206 @@
+@charset "utf-8";
+
+.h2{
+    margin-top: 90px;
+    text-align: center;
+}
+.main{
+    margin-left: 3rem;
+    margin-right: 3rem;
+}
+.content{
+    font-size: 18px;
+}
+
+.join{
+    position: relative;
+    top: 110px;
+    left: 1065px;
+}
+
+.joinbtn{
+    position: fixed;
+    font-size: 18px;
+    color: #0693E3;
+    width: 110px;
+    height: 45px;
+    border-radius:30px;
+    border: solid 5px;
+    background-color: #FFFFFF;
+    border-color: #0693E3;
+}
+
+.joinbtn:hover{
+    color: #FFFFFF;
+    background-color: #0693E3;
+}
+
+.pagetop{
+    position: relative;
+    top: 180px;
+    left: 1100px;
+}
+
+canvas{
+    position: fixed;
+    border: 1px solid #0693e3;
+    background-color: #0693E3;
+}
+
+
+/*カレンダーの全体*/
+.wrapper{
+    max-width: 1000px;
+    color: #000000;
+}
+#header {
+    text-align: center;
+    font-size: 24px;
+    width: 100%;
+    margin: 1rem 0 0;
+}
+
+/*カレンダー*/
+#calendar {
+    width: 100%;
+}
+
+table {
+    outline: 2px solid #ddd;
+    border-collapse: collapse;
+    width: 100%;
+}
+th, td{
+    color: #000;
+}
+
+th{
+    text-align: center;
+    outline: 1px solid #ddd;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+td{
+    outline: 1px solid #ddd;
+    padding-top: 3px;
+    padding-left: 2px;
+    padding-bottom: 50px;
+}
+
+/* 祝日 */
+
+/*日曜日*/
+th:first-child {
+    color: red;
+}
+/*土曜日*/
+th:last-child {
+    color: blue;
+}
+/*前後月の日付*/
+td.disabled {
+    color: #ccc;
+}
+/*本日*/
+td.today {
+    background-color: #0693E3;
+    color: #fff;
+}
+
+/*ボタン*/
+#next-prev-button {
+    position: relative;
+}
+#next-prev-button button{
+    cursor: pointer;
+    background: #0693E3;
+    color: #fff;
+    border: 1px solid #0693E3;
+    border-radius: 4px;
+    font-size: 1rem;
+    padding: 0.5rem 2rem;
+    margin: 1rem 0;
+}
+#next-prev-button button:hover{
+    background-color: #0693E3;
+    border-color: #0693E3;
+}
+#prev {
+    float: left;
+    font-weight: bold;
+}
+#next {
+    float: right;
+    font-weight: bold;
+}
+
+.cal1{
+    text-decoration: none;
+    color: #ccc;
+}
+
+.cal2{
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.cal3{
+    text-decoration: none;
+    color: #000000;
+}
+
+
+/* 活動記録 */
+.record{
+    margin-top: 20px;
+    margin-right: 1.45rem;
+}
+
+.katsudobi{
+    text-align:center; 
+    font:middle;
+    width: 180px;
+}
+
+.ktitle{
+    text-align:center; 
+    font:middle;
+    width: 400px;
+}
+
+.recordspan{
+    font-size: 18px;
+    padding-left: 45.5em;
+}
+
+.recorda{
+    text-decoration: none;
+}
+
+
+/* メンバー */
+.member{
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 20px;
+    margin-right: 1.3rem;
+}
+
+.member td{
+    width: 200px;
+}
+
+#bkbtn {
+    float: left;
+    padding-left: 20px;
+}
+
+#back {
+    text-decoration: none;
+    font-size: 25px;
+    color: black;
+    border: none;
+    outline: none;
+    background: none;
+}

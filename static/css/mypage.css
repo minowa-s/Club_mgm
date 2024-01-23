@@ -2,7 +2,7 @@
 
 .mypageall{
     text-align: center;
-    margin-top: 8em;
+    margin-top: 3em;
     margin-left: 10rem;
     margin-right: 10rem;
 }
@@ -24,6 +24,7 @@
 #frm td{
     text-align: left;
     padding-left: 1em;
+    padding-right: 1em;
     font-size: 18px;
     width: 600px;
     height: 60px;
@@ -31,14 +32,35 @@
     background:#ffffff;
 }
 
-input{
+.input{
     border: none;
     outline: none;
+    width: 100%;
 }
+
+.myinput{
+    border: none;
+    outline: none;
+    width: 70%;
+}
+
+.mydiv .mybtn{
+    margin-right: 10px;
+    margin-top: -28px;
+    font-size: 15px;
+    float: right;
+    color: #ffffff;
+    width: 60px;
+    height: 35px;
+    border-radius:30px;
+    border: solid 2px;
+    background-color: #ff0000;
+    border-color: #ff0000;
+}
+
 
 #bkbtn {
     float: left;
-    margin-top: -50px;
     padding-left: 20px;
 }
 
