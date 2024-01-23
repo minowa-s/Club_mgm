@@ -7,12 +7,21 @@ from email.mime.application import MIMEApplication
 
 admin_bp = Blueprint('admin', __name__, url_prefix='/admin')
 
-#DB接続
+# def get_connection():
+#     url = os.environ['DATABASE_URL']
+#     connection = psycopg2.connect(
+#         host = 'ec2-3-232-218-211.compute-1.amazonaws.com',
+#         port = 5432,
+#         user = 'gqaqbmtphalgvd',
+#         database = 'df9807ov4tu95n',
+#         password = 'cfd499e6588a1ebed523b87fb09090aa8fbdd70f43ac32ff2bc715a197cf3efb'
+#     )
+#     return connection
+# #DB接続
 def get_connection():
     url = os.environ['DATABASE_URL']
     connection = psycopg2.connect(url)
     return connection
-
 @admin_bp.route('/tea_regist')
 def tea_regist():
     return render_template('tea_regist.html')
@@ -59,11 +68,13 @@ def login():
 def login_exe():
     mail = request.form.get('mail')
     password = request.form.get('password')
+    hashed_password = hashlib.sha256(password.encode()).hexdigest()
+    print(hashed_password)
     #データベースからソルト取得
     salt = admin_db.get_account_salt(mail)
     if salt is not None:
             # パスワードとソルトを使ってハッシュを生成
-            # hashed_password = hashlib.sha256(password.encode()).hexdigest()
+            hashed_password = hashlib.sha256(password.encode()).hexdigest()
             # データベースから保存されたハッシュを取得
             stored_password = admin_db.get_account_pass(mail)
             print(stored_password)

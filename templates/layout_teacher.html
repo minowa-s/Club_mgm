@@ -13,7 +13,7 @@
   <nav class="navbar fixed-top" style="background-color: #0693E3;">
     <div class="container-fluid">
       <div class="aBtn">
-        <a class="navbar-brand" href="#" style="color: #ffffff; font-size: 25px" >サークル活動アプリケーション</a>
+        <a class="navbar-brand" href="{{url_for('backtop_teacher')}}" style="color: #ffffff; font-size: 25px" >サークル活動アプリケーション</a>
       </div>
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" style="background-color: #fff; margin-right:30px">
         <span class="navbar-toggler-icon"></span>
@@ -35,14 +35,14 @@
             <div class="hbgBtn">
               <div class="fourcharacters">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="####">申請承認</a>
+                  <a class="nav-link active" aria-current="page" href="{{url_for('app_data.approve_list_te')}}">申請承認</a>
                 </li>                    
               </div>
             </div>
             <div class="hbgBtn">
               <div class="fourcharacters">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#####">連絡送信</a>
+                  <a class="nav-link active" aria-current="page" href="{{url_for('app_data.mail_send')}}">連絡送信</a>
                 </li>                    
               </div>
             </div>

@@ -6,15 +6,24 @@ app = Flask(__name__)
 app.secret_key = ''.join(random.choices(string.ascii_letters, k=256))
 app_data_bp = Blueprint('app_data', __name__, url_prefix='/app_data')
 
-#DB接続
+# def get_connection():
+#     url = os.environ['DATABASE_URL']
+#     connection = psycopg2.connect(
+#         host = 'ec2-3-232-218-211.compute-1.amazonaws.com',
+#         port = 5432,
+#         user = 'gqaqbmtphalgvd',
+#         database = 'df9807ov4tu95n',
+#         password = 'cfd499e6588a1ebed523b87fb09090aa8fbdd70f43ac32ff2bc715a197cf3efb'
+#     )
+#     return connection
+# #DB接続
 def get_connection():
     url = os.environ['DATABASE_URL']
     connection = psycopg2.connect(url)
     return connection
-
 #サークル立ち上げ申請リスト
-@app_data_bp.route('/approve_list_st')
-def approve_list_st():
+@app_data_bp.route('/approve_list_te')
+def approve_list_te():
     club_list = select_allow1_club()
     return render_template('approve_list/approve_list_te.html', club_list=club_list)
 
@@ -22,7 +31,7 @@ def approve_list_st():
 @app_data_bp.route('/get_request_conf')
 def get_request_conf():
     club_id = request.args.get('club_id')
-    request_detail = db.get_club_dedtail(club_id)
+    request_detail = db.get_club_detail(club_id)
     leader_mail = get_leader(request_detail[1])
     #サークルに入っている学生のメールアドレスを取得
     student_ids = list(db.get_student_id_from_student_club(club_id))
@@ -39,7 +48,9 @@ def get_request_conf():
 def request_exe():
     club_id = request.form.get('club_id')
     update_club(club_id)
-    return render_template('club_create/request_exe.html')
+    club = db.get_club_detail(club_id)
+    update_leader_flg(club[1])
+    return render_template('club_create/create_exe.html')
     
 #サークル立ち上げ拒否
 @app_data_bp.route('/club_not_create', methods=['POST'])
@@ -144,13 +155,26 @@ def update_club(club_id):
     connection.commit()
     cursor.close()
     connection.close()
+    
+#サークル承認(リーダーフラグ変更)
+def update_leader_flg(student_id):
+    print(student_id)
+    sql = "UPDATE student_Club SET is_leader = True WHERE student_id = %s"
+    connection = get_connection()
+    cursor = connection.cursor()
+    cursor.execute(sql, (student_id,))
+    connection.commit()
+    cursor.close()
+    connection.close()
 
+#サークル削除
 @app_data_bp.route('/club_delete', methods=['POST'])
 def club_delete():
     club_id = request.form.get('club_id')
     session['club_id'] = club_id
     return render_template('club_delete.html')
 
+#サークル削除確認
 @app_data_bp.route('club_delete_conf')
 def club_delete_conf():
     club_id = session.get('club_id')
