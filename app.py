@@ -68,5 +68,10 @@ def backtop_teacher():
     club_list = club.club_list()
     return render_template('top/top_teacher.html', club_list=club_list)
 
+@app.route('/backtop_l')
+def backtop_leader():
+    club_list = club.club_list()
+    return render_template('top/top_leader.html', club_list=club_list)
+
 if __name__ == '__main__':
     app.run(debug=True)
