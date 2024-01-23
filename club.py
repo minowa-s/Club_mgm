@@ -1,14 +1,19 @@
 from flask import Blueprint, render_template, request, session
 import hashlib, string, random, psycopg2, os, bcrypt, datetime, smtplib, db
-from numpy import argsort
+#from numpy import argsort
 from datetime import date
 
 club_bp = Blueprint('club', __name__, url_prefix='/club')
 
 #DB接続
 def get_connection():
-    url = os.environ['DATABASE_URL']
-    connection = psycopg2.connect(url)
+    connection = psycopg2.connect(
+        host = 'ec2-44-213-151-75.compute-1.amazonaws.com',
+        port = 5432,
+        user = 'uzfoqqwpjlxmdm',
+        database = 'd6nhl8cv0snufq',
+        password = '3d0d14a3a20adcd96401c248ed43ca6df9072fac916521987ebe79a2c711cbd4'
+    )
     return connection
 
 #サークル参加申請処理
@@ -18,7 +23,7 @@ def club_join_req():
     club_id =  request.form.get("club_id")
     session["student_id"] = student_id
     session["club_id"] = club_id
-    return render_template("club_join.html" ,student_id = student_id, club_id=club_id)
+    return render_template("club_join_send.html" ,student_id = student_id, club_id=club_id)
 
 @club_bp.route("/club_join_req2", methods=["POST"])
 def club_join_req2():

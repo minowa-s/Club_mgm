@@ -1,4 +1,6 @@
 
+
+
 from flask import Blueprint, redirect, render_template, request, session, url_for
 import hashlib, string, random, psycopg2, db, os, bcrypt, datetime, smtplib, club
 from email.mime.text import MIMEText
@@ -9,8 +11,13 @@ account_bp = Blueprint('account', __name__, url_prefix='/account')
 
 #DB接続
 def get_connection():
-    url = os.environ['DATABASE_URL']
-    connection = psycopg2.connect(url)
+    connection = psycopg2.connect(
+        host = 'ec2-44-213-151-75.compute-1.amazonaws.com',
+        port = 5432,
+        user = 'uzfoqqwpjlxmdm',
+        database = 'd6nhl8cv0snufq',
+        password = '3d0d14a3a20adcd96401c248ed43ca6df9072fac916521987ebe79a2c711cbd4'
+    )
     return connection
 
 # アカウント登録画面
@@ -79,10 +86,10 @@ def regist_execute():
                 return render_template('regist_execute.html')
 
             # 新しいユーザーをデータベースに追加
-            hashed_pass = hashlib.sha256(password.encode()).hexdigest()
+            hashed_password = hashlib.sha256(password.encode()).hexdigest()
             salt = "a"
             cursor.execute('INSERT INTO student(name, mail, password, entrance_year, department_id, is_gakuseikai, onetimepassword, salt) VALUES(%s, %s, %s, %s, %s, %s, %s, %s)',
-                           (name, mail, hashed_pass, entrance_year, department_id, False, onetimepassword, salt))
+                           (name, mail, hashed_password, entrance_year, department_id, False, onetimepassword, salt))
             connection.commit()
 
             return render_template('regist_execute.html', name=name, mail=mail, hashed_password=db.get_hash(password, salt), entrance_year=entrance_year, department_id=department_id, salt=salt, error=0)
@@ -112,21 +119,28 @@ def student_login_exe():
     if salt is not None:
             # パスワードとソルトを使ってハッシュを生成
             hashed_password = hashlib.sha256(password.encode()).hexdigest()
-            print("hashed=", hashed_password)
             # データベースから保存されたハッシュを取得
             stored_password = get_account_pass(mail)
+            session['mail'] = mail
             # ハッシュが一致すればログイン成功
             if hashed_password == stored_password:
                 id = db.get_id(mail)
                 student = db.get_student(id)
                 club_list = club.club_list()
-                return render_template('top/top_stu.html', club_list=club_list, student=student)
+                return render_template('top/top_student.html', club_list=club_list, student=student)
             else:
                 print('Invalid mail or password')
                 return render_template('login/student_login.html')
     else:
         print('Invalid mail or password')
         return render_template('login/student_login.html')
+    
+#------------------------------
+#ログアウト
+@account_bp.route('logout')
+def logout():
+    club_list = club.club_list()
+    return render_template('top/top.html', club_list=club_list)
 
 #パスワード取得
 def get_account_pass(mail):

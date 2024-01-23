@@ -8,8 +8,13 @@ import random
 import smtplib
 
 def get_connection():
-    url = os.environ['DATABASE_URL']
-    connection = psycopg2.connect(url)
+    connection = psycopg2.connect(
+        host = 'ec2-44-213-151-75.compute-1.amazonaws.com',
+        port = 5432,
+        user = 'uzfoqqwpjlxmdm',
+        database = 'd6nhl8cv0snufq',
+        password = '3d0d14a3a20adcd96401c248ed43ca6df9072fac916521987ebe79a2c711cbd4'
+    )
     return connection
 
 #ハッシュ取得
@@ -113,7 +118,7 @@ def select_department():
 #入学年度選択
 def select_year():
     current_year = datetime.datetime.now().year
-    year_range = range(current_year, current_year - 4, -1)
+    year_range = range(current_year, current_year - 5, -1)
     return year_range
 
 #メール送信 

@@ -4,12 +4,17 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
 
-mypage_bp = Blueprint('mypage', __name__, url_prefix='/mypage')
+mypage_bp = Blueprint('mypage_bp', __name__, url_prefix='/mypage_bp')
 
 #DB接続
 def get_connection():
-    url = os.environ['DATABASE_URL']
-    connection = psycopg2.connect(url)
+    connection = psycopg2.connect(
+        host = 'ec2-44-213-151-75.compute-1.amazonaws.com',
+        port = 5432,
+        user = 'uzfoqqwpjlxmdm',
+        database = 'd6nhl8cv0snufq',
+        password = '3d0d14a3a20adcd96401c248ed43ca6df9072fac916521987ebe79a2c711cbd4'
+    )
     return connection
 
 #マイページ機能

@@ -1,5 +1,5 @@
-@charset 'utf-8';
-
+@charset "utf-8";
+@media screen and (min-width: 481px) { }
 /* 検索 */
 #search{
     padding-top: 90px;
@@ -52,30 +52,31 @@
     content: '';
 }
 
+
 /* aタグ */
-a {
+.aBtn {
+    margin-left: 15px;
     color: #fff;
     font-size: 16px;
-    padding: 18px 30px;
     border-radius: 6px;
     transition: .3s;
-  }
-a:hover {
+}
+.aBtn:hover {
     opacity: 0.6;
 }
 
 /* table */
+.tblh3{
+    padding-top: 0.2rem;
+    padding-left: 1rem;
+}
+
 .tbl{
     display: flex;
-    justify-content:  space-around;
+    padding-left: 13rem;
 }
 
-.tab{
-    top: 50px;
-    left: 50px;
-}
-
-/* 左のボタン */
+/* 右のボタン */
 .ta{
     position: relative;
     top: 50px;
@@ -84,18 +85,18 @@ a:hover {
 
 .divlaunch{
     position: fixed;
-    border: 6px solid #ffd500;
+    border: 6px solid #EED243;
+    background-color: #ffffff;
     border-radius: 30px;
     width: 280px;
-    height: 300px;
-    top: 230px;
-    right: 90px;
+    height: 290px;
+    margin-top: -4rem;
+    margin-left: 7rem;
 }
-
 
 .p1{
     margin-top: 20px;
-    margin-left: 60px;
+    text-align: center;
     font-size: 18px;
     font-weight: bold;
 }
@@ -103,7 +104,11 @@ a:hover {
 .launch {
     position: absolute;
     top: 70px;
-    right: 80px;
+    right: 72px;
+    width: 120px;
+    height: 50px;
+    padding-top: 12px;
+    text-align: center;
     color: #000000;
     font-size: 16px;
     text-decoration:none;
@@ -113,15 +118,18 @@ a:hover {
     transition: .3s;
 }
 
+.launch:hover{
+    background: #ffdd8c;
+}
+
+.title{
+    text-decoration: none;
+}
+
 .p2{
-    margin-top: 100px;
-    margin-left: 58px;
+    margin-top: 90px;
+    margin-left: 4rem;
 }
-
-.p2 span{
-    font-weight: bold;
-}
-
 
 h3{
     margin-top: 10px;

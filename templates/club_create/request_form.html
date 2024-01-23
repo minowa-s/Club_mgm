@@ -1,4 +1,4 @@
-{% extends "top_student.html" %}
+{% extends "layout_student.html" %}
 
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='/css/request.css') }}">
@@ -7,7 +7,7 @@
 {% block content %}
   <h4>サークル立ち上げ申請フォーム</h4>
   {% if error %}
-    <p style="color:red">{{ error }}</p>
+    <p style="color:red" id="er">{{ error }}</p>
   {% endif %}
   {% if msg %}
     <p style="color:blue">{{ msg }}</p>
@@ -43,7 +43,7 @@
         <td class="td2"><input id="inp2" type="email" name="member_adress2" value="{{ member_adress2 }}" required></td>
       </tr>
       <tr>
-        <th class="th2">
+        <th class="th3">
           サークルメンバー　メールアドレス
           <p> サークルメンバーが4名以上いる場合は、
             メールアドレスを入力してください。
@@ -84,12 +84,12 @@
       <tr>
         <td>
           <div id="btn1">
-            <button type="button" onclick="history.back()">戻る</button>
+            <button type="button" onclick="location.href='#'" class="b1">戻る</button>
           </div>
         </td>
         <td>
           <div id="btn2">
-            <button type="submit">登録</button>
+            <button type="submit" class="b2">登録</button>
           </div>
         </td>
       </tr>

@@ -8,8 +8,13 @@ app_data_bp = Blueprint('app_data', __name__, url_prefix='/app_data')
 
 #DB接続
 def get_connection():
-    url = os.environ['DATABASE_URL']
-    connection = psycopg2.connect(url)
+    connection = psycopg2.connect(
+        host = 'ec2-44-213-151-75.compute-1.amazonaws.com',
+        port = 5432,
+        user = 'uzfoqqwpjlxmdm',
+        database = 'd6nhl8cv0snufq',
+        password = '3d0d14a3a20adcd96401c248ed43ca6df9072fac916521987ebe79a2c711cbd4'
+    )
     return connection
 
 #サークル立ち上げ申請リスト
@@ -158,6 +163,7 @@ def club_delete_conf():
     print('A')
     return render_template('club_delete_request_exe.html')
 
+#----------------メール送信
 @app_data_bp.route('mail_send')
 def mail_send():
     return render_template('mail_send.html')
