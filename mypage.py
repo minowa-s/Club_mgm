@@ -8,13 +8,8 @@ mypage_bp = Blueprint('mypage_bp', __name__, url_prefix='/mypage_bp')
 
 #DB接続
 def get_connection():
-    connection = psycopg2.connect(
-        host = 'ec2-44-213-151-75.compute-1.amazonaws.com',
-        port = 5432,
-        user = 'uzfoqqwpjlxmdm',
-        database = 'd6nhl8cv0snufq',
-        password = '3d0d14a3a20adcd96401c248ed43ca6df9072fac916521987ebe79a2c711cbd4'
-    )
+    url = os.environ['DATABASE_URL']
+    connection = psycopg2.connect(url)
     return connection
 
 #マイページ機能
@@ -34,13 +29,10 @@ def mypage():
     
 #サークルリーダー
 #マイページ機能
-@mypage_bp.route('/mypage_lea', methods=["POST"])
+@mypage_bp.route('/mypage_lea')
 def mypage_lea():
     
-    #セッションからメールアドレスを取得
-    # mail = request.session.get['mail']
-    mail = request.form.get("mail")
-    session['mail'] = mail
+    mail = session.get('mail')
     
     #下のget_nameをメールアドレスを引数に実行
     name = get_name(mail)
@@ -74,7 +66,7 @@ def mypage_lea():
     return render_template('mypage/mypage_lea.html', mail = mail, name = name, entrance_year = entrance_year, department = department, club_name_list = club_name_list)
 
 #学生会マイページ機能
-@mypage_bp.route('/mypage_cou', methods=["POST"])
+@mypage_bp.route('/mypage_cou')
 def mypage_cou():
     
     #セッションからメールアドレスを取得
@@ -192,3 +184,18 @@ def get_club_name(club_id_list):
     connection.close()
     return club_name
     
+@mypage_bp.route('/mypage_tea')
+def mypage_tea():
+    mail = session.get('mail')
+    name = get_tea_name(mail)
+    return render_template('mypage/mypage_tea.html', mail = mail, name = name)
+
+def get_tea_name(mail):
+    sql = "SELECT name FROM teacher WHERE mail = %s"
+    connection = get_connection()
+    cursor = connection.cursor()
+    cursor.execute(sql, (mail,))
+    name = cursor.fetchone()
+    cursor.close()
+    connection.close()
+    return name[0] if name else None

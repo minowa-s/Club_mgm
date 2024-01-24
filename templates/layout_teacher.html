@@ -30,33 +30,33 @@
             <div class="hbgBtn">
               <div class="fivecharacters">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="##">マイページ</a>
+                  <a class="nav-link active" aria-current="page" href="{{url_for('mypage_bp.mypage_tea')}}">マイページ</a>
                 </li>
               </div>
             </div>
             <div class="hbgBtn">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="###">アカウント管理</a>
+                  <a class="nav-link active" aria-current="page" href="{{url_for('account_search.student_search')}}">アカウント管理</a>
                 </li>                    
             </div>
             <div class="hbgBtn">
               <div class="fourcharacters">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="####">申請承認</a>
+                  <a class="nav-link active" aria-current="page" href="{{url_for('app_data.approve_list_st')}}">申請承認</a>
                 </li>                    
               </div>
             </div>
             <div class="hbgBtn">
               <div class="fourcharacters">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#####">連絡送信</a>
+                  <a class="nav-link active" aria-current="page" href="{{url_for('app_data.mail_send')}}">連絡送信</a>
                 </li>                    
               </div>
             </div>
             <div class="logoutBtn">
               <div class="fivecharacters">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="######">ログアウト</a>
+                  <a class="nav-link active" aria-current="page" href="{{url_for('account.logout')}}">ログアウト</a>
                 </li>                    
               </div>
             </div>
