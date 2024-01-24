@@ -5,17 +5,19 @@
 }
 
 .box {
-    margin: 0 auto;
-    padding: 40px;
-    width: 500px;
-    height: 430px;
-    border: solid 2px #000000;
-    margin-top: 1in;
-    position: relative;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }
 
 .frm {
     text-align: center;
+    padding: 40px;
+    width: 500px;
+    height: 430px;
+    border: solid 2px #000000;
+    position: relative;
 }
 
 input {
