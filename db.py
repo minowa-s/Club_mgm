@@ -9,13 +9,8 @@ import smtplib
 
 #DB接続
 def get_connection():
-    connection = psycopg2.connect(
-        host = 'ec2-54-234-13-16.compute-1.amazonaws.com',
-        port = 5432,
-        user = 'pcdytjuqlssmhk',
-        database = 'de5b43sf8b9ocm',
-        password = '736926275fcb36df9c9fc0255fe0cb285a3155d3c91a6bc3aeb6a67dbb505869'
-    )
+    url = os.environ['DATABASE_URL']
+    connection = psycopg2.connect(url)
     return connection
 
 def get_hash(password, salt):
@@ -299,6 +294,17 @@ def get_id(mail):
     connection = get_connection()
     cursor = connection.cursor()
     cursor.execute(sql, (mail,))
+    id = cursor.fetchone()
+    cursor.close()
+    connection.close()
+    return id
+
+#メールアドレスから学生id取得
+def get_sc(id):
+    sql = "SELECT * FROM student_club WHERE student_id = %s"
+    connection = get_connection()
+    cursor = connection.cursor()
+    cursor.execute(sql, (id,))
     id = cursor.fetchone()
     cursor.close()
     connection.close()
