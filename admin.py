@@ -9,13 +9,8 @@ admin_bp = Blueprint('admin', __name__, url_prefix='/admin')
 
 #DB接続
 def get_connection():
-    connection = psycopg2.connect(
-        host = 'ec2-44-213-151-75.compute-1.amazonaws.com',
-        port = 5432,
-        user = 'uzfoqqwpjlxmdm',
-        database = 'd6nhl8cv0snufq',
-        password = '3d0d14a3a20adcd96401c248ed43ca6df9072fac916521987ebe79a2c711cbd4'
-    )
+    url = os.environ['DATABASE_URL']
+    connection = psycopg2.connect(url)
     return connection
 
 @admin_bp.route('/tea_regist')
@@ -64,11 +59,13 @@ def login():
 def login_exe():
     mail = request.form.get('mail')
     password = request.form.get('password')
+    hashed_password = hashlib.sha256(password.encode()).hexdigest()
+    print(hashed_password)
     #データベースからソルト取得
     salt = admin_db.get_account_salt(mail)
     if salt is not None:
             # パスワードとソルトを使ってハッシュを生成
-            # hashed_password = hashlib.sha256(password.encode()).hexdigest()
+            hashed_password = hashlib.sha256(password.encode()).hexdigest()
             # データベースから保存されたハッシュを取得
             stored_password = admin_db.get_account_pass(mail)
             print(stored_password)

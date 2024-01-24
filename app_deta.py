@@ -11,7 +11,7 @@ def approve_list_st():
 
 @app.route('/request_detail')
 def get_request_exe():
-    request_detail = db.get_club_dedtail()
+    request_detail = db.get_club_detail()
     return render_template('request_detail.html', request_detail=request_detail)
 
 if __name__ == '__main__':

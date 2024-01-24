@@ -8,7 +8,7 @@
 
 {% block content %}
 <div id="bkbtn">
-  <button id="back" href="#">←戻る</button>
+  <button id="back" href="{{url_for('backtop_student')}}">←戻る</button>
 </div>
 <div class="mypageall">
   <div class="position-relative">
@@ -53,3 +53,4 @@
 </div>
 
 {% endblock %}
+<a href="{{url_for('backtop_student')}}">もどる</a>

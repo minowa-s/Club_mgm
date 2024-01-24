@@ -7,23 +7,17 @@ import string
 import random
 import smtplib
 
+#DB接続
 def get_connection():
     connection = psycopg2.connect(
-        host = 'ec2-44-213-151-75.compute-1.amazonaws.com',
+        host = 'ec2-54-234-13-16.compute-1.amazonaws.com',
         port = 5432,
-        user = 'uzfoqqwpjlxmdm',
-        database = 'd6nhl8cv0snufq',
-        password = '3d0d14a3a20adcd96401c248ed43ca6df9072fac916521987ebe79a2c711cbd4'
+        user = 'pcdytjuqlssmhk',
+        database = 'de5b43sf8b9ocm',
+        password = '736926275fcb36df9c9fc0255fe0cb285a3155d3c91a6bc3aeb6a67dbb505869'
     )
     return connection
 
-#ハッシュ取得
-# def get_hash(password, salt):
-#     b_pw = bytes(password, 'utf-8')
-#     b_salt = bytes(salt, 'utf-8')
-#     hashed_password = hashlib.pbkdf2_hmac('sha256', b_pw, b_salt, 200).hex()
-#     return hashed_password
-    #------------
 def get_hash(password, salt):
     # 文字列をバイト列に変換
     b_password = bytes(password, 'utf-8')

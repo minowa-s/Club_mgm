@@ -1,6 +1,5 @@
 from flask import Blueprint, render_template, request, session
 import hashlib, string, random, psycopg2, os, bcrypt, datetime, smtplib, db
-#from numpy import argsort
 from datetime import date
 
 club_bp = Blueprint('club', __name__, url_prefix='/club')
@@ -8,11 +7,11 @@ club_bp = Blueprint('club', __name__, url_prefix='/club')
 #DB接続
 def get_connection():
     connection = psycopg2.connect(
-        host = 'ec2-44-213-151-75.compute-1.amazonaws.com',
+        host = 'ec2-54-234-13-16.compute-1.amazonaws.com',
         port = 5432,
-        user = 'uzfoqqwpjlxmdm',
-        database = 'd6nhl8cv0snufq',
-        password = '3d0d14a3a20adcd96401c248ed43ca6df9072fac916521987ebe79a2c711cbd4'
+        user = 'pcdytjuqlssmhk',
+        database = 'de5b43sf8b9ocm',
+        password = '736926275fcb36df9c9fc0255fe0cb285a3155d3c91a6bc3aeb6a67dbb505869'
     )
     return connection
 

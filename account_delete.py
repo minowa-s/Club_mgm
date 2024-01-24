@@ -9,23 +9,14 @@ account_delete_bp = Blueprint('account_delete', __name__, url_prefix='/account_d
 #DB接続
 def get_connection():
     connection = psycopg2.connect(
-        host = 'ec2-44-213-151-75.compute-1.amazonaws.com',
+        host = 'ec2-54-234-13-16.compute-1.amazonaws.com',
         port = 5432,
-        user = 'uzfoqqwpjlxmdm',
-        database = 'd6nhl8cv0snufq',
-        password = '3d0d14a3a20adcd96401c248ed43ca6df9072fac916521987ebe79a2c711cbd4'
+        user = 'pcdytjuqlssmhk',
+        database = 'de5b43sf8b9ocm',
+        password = '736926275fcb36df9c9fc0255fe0cb285a3155d3c91a6bc3aeb6a67dbb505869'
     )
     return connection
 
-"""
-@account_delete_bp.route('/account_delete', methods = ['POST'])
-def account_delete():
-    mail = request.args.get("mail")
-    department = request.args.get("department")
-    session["student_mail"] = mail
-    session["department"] = department
-    return render_template("account_delete_conf.html")
-"""
 @account_delete_bp.route('/account_delete', methods = ["POST"])
 def account_delete():
     #セッションからメールアドレスを取得する
