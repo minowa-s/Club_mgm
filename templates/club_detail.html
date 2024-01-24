@@ -27,11 +27,11 @@
       <br>
     </div>
     <div class="join">
-            <form action="{{ url_for('club.club_join_req')}}" method="POST">
-                <input type="hidden" name="student_id" value="{{student}}">
-                <input type="hidden" name="club_id" value="{{club_detail[1]}}">
-                <button class="joinbtn" onclick="location.href='club_detail.html'">参加申請</button>
-            </form>
+        <form action="{{ url_for('club.club_join_req')}}" method="POST">
+            <input type="hidden" name="student_id" value="{{student}}">
+            <input type="hidden" name="club_id" value="{{club_detail[1]}}">
+            <button class="joinbtn" onclick="location.href='club_detail.html'">参加申請</button>
+        </form>
     </div>
 
     <div class="pagetop">
@@ -45,16 +45,20 @@
       <div class="member">
         <table class="table table-bordered"  style="margin-bottom: 60px;">
           <tbody>
-              {% for index in range(memberlist|length//2) %}
-                  <tr>
-                      <td>              
-                          <input class="meminput" type="text" name="club_name" id="club_name" value="{{ memberlist[index*2] }}" readonly>
-                      </td>
-                      <td>              
-                          <input class="meminput" type="text" name="club_name" id="club_name" value="{{ memberlist[index*2 + 1] }}" readonly>
-                      </td>
-                  </tr>
-              {% endfor %}  
+            {% for index in range((memberlist|length + 1)//2) %}
+                <tr>
+                    <td>              
+                        <input class="meminput" type="text" name="club_name" id="club_name" value="{{ memberlist[index*2] }}" readonly>
+                    </td>
+                    {% if index*2 + 1 < memberlist|length %}
+                        <td>              
+                            <input class="meminput" type="text" name="club_name" id="club_name" value="{{ memberlist[index*2 + 1] }}" readonly>
+                        </td>
+                    {% else %}
+                        <td></td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
           </tbody>
        </table>
       </div>
