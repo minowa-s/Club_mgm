@@ -34,43 +34,19 @@ def mypage():
     
 #サークルリーダー
 #マイページ機能
-@mypage_bp.route('/mypage_lea', methods=["POST"])
+@mypage_bp.route('/mypage_lea')
 def mypage_lea():
-    
-    #セッションからメールアドレスを取得
-    # mail = request.session.get['mail']
-    mail = request.form.get("mail")
-    session['mail'] = mail
-    
-    #下のget_nameをメールアドレスを引数に実行
+    mail = session.get('mail')
     name = get_name(mail)
-    
-    #下のget_entrance_yearをメールアドレスを引数に実行
     entrance_year = get_entrance_year(mail)
-    
-    #下のget_department_idをメールアドレスを引数に実行
     department_id = get_department_id(mail)
-    
-    #下のget_departmentをdepartment_idを引数に実行
     department = get_department(department_id)
-    
-    print(name)
-    
-    # 下のget_student_idをメールアドレスを引数に実行
     student_id = get_student_id(mail)
-    
-    #下のget_club_idをstudent_idを引数に実行
     club_id_list = get_club_id(student_id)
-    
-    
-    #下のget_club_nameをclub_idを引数に実行
     club_name_list = []
-    
     for n in club_id_list:
         club_name_list.append(get_club_name(n)) 
-        
     print(club_name_list)
-        
     return render_template('mypage/mypage_lea.html', mail = mail, name = name, entrance_year = entrance_year, department = department, club_name_list = club_name_list)
 
 #学生会マイページ機能

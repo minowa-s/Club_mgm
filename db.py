@@ -304,6 +304,17 @@ def get_id(mail):
     connection.close()
     return id
 
+#メールアドレスから学生id取得
+def get_sc(id):
+    sql = "SELECT * FROM student_club WHERE student_id = %s"
+    connection = get_connection()
+    cursor = connection.cursor()
+    cursor.execute(sql, (id,))
+    id = cursor.fetchone()
+    cursor.close()
+    connection.close()
+    return id
+
 #リーダーidからサークルid取得
 def get_club_id(id):
     sql = "SELECT club_id FROM club WHERE leader_id = %s"

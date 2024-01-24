@@ -155,7 +155,7 @@ def update_club(club_id):
 #サークル承認(リーダーフラグ変更)
 def update_leader_flg(student_id):
     print(student_id)
-    sql = "UPDATE student_Club SET is_leader = True WHERE student_id = %s"
+    sql = "UPDATE student_Club SET is_leader = True, allow = 1 WHERE student_id = %s"
     connection = get_connection()
     cursor = connection.cursor()
     cursor.execute(sql, (student_id,))
