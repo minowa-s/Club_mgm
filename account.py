@@ -126,7 +126,7 @@ def student_login_exe():
                 club_list = club.club_list()
                 leader = db.get_sc(id)
                 gakuseikai = db.get_student(id)
-                if leader[3] == True:
+                if leader is not None and leader[3] == True:
                     if gakuseikai[6] == True :
                         return render_template('top/top_council.html', club_list=club_list, student=student)    
                     return render_template('top/top_leader.html', club_list=club_list, student=student)
