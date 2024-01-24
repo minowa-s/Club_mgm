@@ -1,4 +1,4 @@
-@charset 'utf-8';
+@charset "utf-8";
   
   h4 {
     text-align: center;
@@ -272,3 +272,28 @@
   #btn2 {
     float: right;
   }
+
+.reqdiv1{
+  text-align: center;
+}
+
+.reqp1{
+  font-size: 30px;
+  margin-top: 6em;
+}
+
+.reqa1{
+  text-decoration: none;
+  font-size: 25px;
+  color: #0693E3;
+  width: 200px;
+  height: 60px;
+  padding-top: 9px;
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-bottom: 9px;
+  border-radius:30px;
+  border: solid 5px;
+  background-color: #FFFFFF;
+  border-color: #0693E3;
+}
