@@ -1,0 +1,106 @@
+{% extends "layout.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='/css/club_detail.css')}}">
+<link rel="icon" href="{{url_for('static', filename='/favicon/favicon.ico')}}">
+{% endblock %}
+
+
+{% block content %}
+<div>
+  <h2 class="h2">club_detail[0]</h2>
+  <div id="bkbtn">
+      <button id="back" onclick="history.back()">←戻る</button>
+  </div>
+  <br>
+  <div class="container">
+    <div class="main">
+      <div> 
+          <h4>活動内容</h4>
+          <p class="content">club_detail[2]</p>
+      </div>
+      <br>
+      <div>
+          <h4>活動目標</h4>
+          <p class="content">club_detail[3]</p>
+      </div>
+      <br>
+    </div>
+
+    <div class="pagetop">
+      <canvas id="canvas1" width="50" height="50"></canvas>
+    </div>
+
+    <br>
+    
+    <div class="main">
+      <h4 class="h4-5">メンバー</h4>
+      <div class="member">
+        <table class="table table-bordered"  style="margin-bottom: 60px;">
+          <tbody>
+            {% for index in range((memberlist|length + 1)//2) %}
+                <tr>
+                    <td>              
+                        <input class="meminput" type="text" name="club_name" id="club_name" value="{{ memberlist[index*2] }}" readonly>
+                    </td>
+                    {% if index*2 + 1 < memberlist|length %}
+                        <td>              
+                            <input class="meminput" type="text" name="club_name" id="club_name" value="{{ memberlist[index*2 + 1] }}" readonly>
+                        </td>
+                    {% else %}
+                        <td></td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+          </tbody>
+       </table>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+
+<script> 
+  /*上ボタン*/
+  const canvas = document.querySelector('#canvas1')
+  const context = canvas.getContext('2d')
+
+  //イベント
+  canvas.addEventListener("click",function(){
+  window.scroll({
+  top: 0,
+  behavior: "smooth",
+  });
+  })
+
+  //描画
+  context.strokeStyle = "#FFFFFF"
+  context.lineWidth = 4
+
+  context.beginPath()
+
+  context.moveTo(25,15)
+  context.lineTo(25,14)
+
+  context.stroke()
+  context.fill()
+
+  context.beginPath()
+
+  context.moveTo(25,15)
+  context.lineTo(10,35)
+
+  context.stroke()
+  context.fill()
+
+  context.beginPath()
+
+  context.moveTo(25,15)
+  context.lineTo(40,35)
+
+  context.stroke()
+  context.fill()
+
+</script>
+{% endblock %}
