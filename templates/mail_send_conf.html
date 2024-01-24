@@ -1,11 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    送信完了しました
-</body>
-</html>
+{% extends "layout_teacher.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='/css/mail.css')}}">
+<link rel="icon" href="{{url_for('static', filename='/favicon/favicon.ico')}}">
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="reqdiv1">
+        <p class="reqp1">連絡の送信をしました。</p>
+        <br>
+        <br>
+        <button class="backbtn" onclick="location.href='#'">topに戻る</button>
+      </div>
+
+{% endblock %}
