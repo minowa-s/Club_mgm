@@ -8,13 +8,8 @@ app_data_bp = Blueprint('app_data', __name__, url_prefix='/app_data')
 
 #DB接続
 def get_connection():
-    connection = psycopg2.connect(
-        host = 'ec2-54-205-67-130.compute-1.amazonaws.com',
-        port = 5432,
-        user = 'hpmpphajmsgupf',
-        database = 'def063tgglhgba',
-        password = 'e8d1d1bce580c7529b0a61b91773c3b407b77ac49ba0a91ac20388370e7b3c47'
-    )
+    url = os.environ['DATABASE_URL']
+    connection = psycopg2.connect(url)
     return connection
 
 #サークル立ち上げ申請リスト
