@@ -21,6 +21,7 @@ def get_connection():
     url = os.environ['DATABASE_URL']
     connection = psycopg2.connect(url)
     return connection
+
 #サークル立ち上げ申請リスト
 @app_data_bp.route('/approve_list_te')
 def approve_list_te():

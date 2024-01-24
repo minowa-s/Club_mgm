@@ -33,7 +33,8 @@ from admin import admin_bp
 app.register_blueprint(admin_bp)
 from app_req import app_req_bp
 app.register_blueprint(app_req_bp)
-
+from gakuseikai import gakuseikai_bp
+app.register_blueprint(gakuseikai_bp)
 #------------------------------------
 
 # def get_connection():
@@ -72,6 +73,11 @@ def backtop_teacher():
 def backtop_leader():
     club_list = club.club_list()
     return render_template('top/top_leader.html', club_list=club_list)
+
+@app.route('/backtop_g')
+def backtop_gakuseikai():
+    club_list = club.club_list()
+    return render_template('top/top_council.html', club_list=club_list)
 
 if __name__ == '__main__':
     app.run(debug=True)
