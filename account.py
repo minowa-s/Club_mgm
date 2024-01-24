@@ -8,13 +8,8 @@ account_bp = Blueprint('account', __name__, url_prefix='/account')
 
 #DB接続
 def get_connection():
-    connection = psycopg2.connect(
-        host = 'ec2-54-234-13-16.compute-1.amazonaws.com',
-        port = 5432,
-        user = 'pcdytjuqlssmhk',
-        database = 'de5b43sf8b9ocm',
-        password = '736926275fcb36df9c9fc0255fe0cb285a3155d3c91a6bc3aeb6a67dbb505869'
-    )
+    url = os.environ['DATABASE_URL']
+    connection = psycopg2.connect(url)
     return connection
 
 # アカウント登録画面
@@ -124,9 +119,15 @@ def student_login_exe():
                 id = db.get_id(mail)
                 student = db.get_student(id)
                 club_list = club.club_list()
-                if student[6] == True:
+                leader = db.get_sc(id)
+                gakuseikai = db.get_student(id)
+                if leader[3] == True:
+                    if gakuseikai[6] == True :
+                        return render_template('top/top_council.html', club_list=club_list, student=student)    
                     return render_template('top/top_leader.html', club_list=club_list, student=student)
-                else:        
+                else:
+                    if gakuseikai[6] == True :
+                        return render_template('top/top_council.html', club_list=club_list, student=student)
                     return render_template('top/top_student.html', club_list=club_list, student=student)
             else:
                 print('Invalid mail or password')

@@ -80,7 +80,8 @@ def login_exe():
     else:
         print('Invalid mail ')
         return render_template('admin/login.html')
-    
+
+#アカウントセッティング    
 @admin_bp.route('/tea_account_setting')
 def tea_account_setting():
     nowpassword = request.form.get('nowpassword')
@@ -89,6 +90,12 @@ def tea_account_setting():
     #パスワードの認証と新しいパスワードの誤字チェック    
     return render_template("tea_account_setting.html")
 
+#アカウントセッティング確認画面
 @admin_bp.route('/tea_account_setting_conf', methods=['POST'])
 def tea_account_setting_conf():
     return render_template("tea_account_setting_conf.html")
+
+#アカウント管理画面へ
+@admin_bp.route('/account_mgm_top')
+def account_mgm_top():
+    return render_template("admin/account_mgm/account_mgm_top.html")
