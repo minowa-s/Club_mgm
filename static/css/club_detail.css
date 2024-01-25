@@ -1,20 +1,26 @@
 @charset "utf-8";
 
+
+.club{
+    margin-top: 1em;
+}
+
 .h2{
-    margin-top: 2.7em;
     text-align: center;
 }
+
 .main{
     margin-left: 3rem;
     margin-right: 3rem;
 }
+
 .content{
     font-size: 20px;
 }
 
 .join{
     position: relative;
-    top: 80px;
+    top: 70px;
     left: 1065px;
 }
 
@@ -37,7 +43,13 @@
 
 .pagetop{
     position: relative;
-    top: 160px;
+    top: 150px;
+    left: 1100px;
+}
+
+.pagetop0{
+    position: relative;
+    top: 130px;
     left: 1100px;
 }
 
