@@ -35,6 +35,8 @@ from app_req import app_req_bp
 app.register_blueprint(app_req_bp)
 from gakuseikai import gakuseikai_bp
 app.register_blueprint(gakuseikai_bp)
+from leader import leader_bp
+app.register_blueprint(leader_bp)
 #------------------------------------
 
 #DB接続

@@ -6,6 +6,14 @@
     <title>Document</title>
 </head>
 <body>
-    {{request_list}}
+    {{student[1]}}
+    {{student[2]}}
+    {{student[4]}}
+    {{department}}
+    <form action="{{ url_for('club2.join_req') }}" method='post'>
+        <input type="hidden" name="student_id" value="{{student[0]}}" readonly>
+        <button type="submit" name="approve" value="1">承認</button>
+        <button type="submit" name="approve" value="0">否認</button>
+    </form>
 </body>
 </html>
