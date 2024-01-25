@@ -1,5 +1,5 @@
-from flask import Blueprint, redirect, render_template, request, session, url_for
-import hashlib, string, random, psycopg2, db, os, bcrypt, datetime, smtplib, club
+from flask import Blueprint,  render_template, request, session, url_for
+import psycopg2, db, os, app_data
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
@@ -12,16 +12,21 @@ def get_connection():
     connection = psycopg2.connect(url)
     return connection
 
-@leader_bp.route()
+@leader_bp.route("/requst_list")
 def request_list():
     mail = session.get('mail')
     id = db.get_id(mail)
     club_id = db.get_club_id(id)
     request_list = get_request(club_id)
-    return render_template('leader/request_list.html', request_list=request_list)
+    print(request_list)
+    student = db.get_student(request_list[0][1])
+    department = app_data.get_department(student[5])
+    department = department[1]
+    
+    return render_template('leader/request_list.html', student=student, department=department)
 
-def get_request():
-    sql = "SELECT * FROM student_club WHERE allow = 0, club_id = %s"
+def get_request(club_id):
+    sql = "SELECT * FROM student_club WHERE allow = 0 and club_id = %s"
     connection = get_connection()
     cursor = connection.cursor()
     cursor.execute(sql, (club_id,))

@@ -23,6 +23,7 @@ def club_search_nologres():
     name = request.form.get("name")
     introduction = name
     club_list = club_search(name,introduction)
+    print(name, introduction)
     return render_template("club_search/club_search_nologres.html", club=club_list)
 
 #学生サークル検索

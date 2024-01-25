@@ -41,6 +41,7 @@ def request_exe():
     update_club(club_id)
     club = db.get_club_detail(club_id)
     update_leader_flg(club[1])
+    update_member_allow(club_id)
     return render_template('club_create/create_exe.html')
     
 #サークル立ち上げ拒否
@@ -150,10 +151,19 @@ def update_club(club_id):
 #サークル承認(リーダーフラグ変更)
 def update_leader_flg(student_id):
     print(student_id)
-    sql = "UPDATE student_Club SET is_leader = True, allow = 1 WHERE student_id = %s"
+    sql = "UPDATE student_club SET is_leader = True, allow = 1 WHERE student_id = %s"
     connection = get_connection()
     cursor = connection.cursor()
     cursor.execute(sql, (student_id,))
+    connection.commit()
+    cursor.close()
+    connection.close()#サークル承認(リーダーフラグ変更)
+    
+def update_member_allow(club_id):
+    sql = "UPDATE student_club SET allow = 1 WHERE club_id = %s"
+    connection = get_connection()
+    cursor = connection.cursor()
+    cursor.execute(sql, (club_id,))
     connection.commit()
     cursor.close()
     connection.close()
