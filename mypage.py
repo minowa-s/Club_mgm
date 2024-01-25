@@ -8,6 +8,7 @@ mypage_bp = Blueprint('mypage_bp', __name__, url_prefix='/mypage_bp')
 
 #DB接続
 def get_connection():
+
     url = os.environ['DATABASE_URL']
     connection = psycopg2.connect(url)
     return connection
@@ -31,7 +32,9 @@ def mypage():
 #マイページ機能
 @mypage_bp.route('/mypage_lea')
 def mypage_lea():
+
     mail = session.get('mail')
+
     name = get_name(mail)
     entrance_year = get_entrance_year(mail)
     department_id = get_department_id(mail)
@@ -45,7 +48,7 @@ def mypage_lea():
     return render_template('mypage/mypage_lea.html', mail = mail, name = name, entrance_year = entrance_year, department = department, club_name_list = club_name_list)
 
 #学生会マイページ機能
-@mypage_bp.route('/mypage_cou', methods=["POST"])
+@mypage_bp.route('/mypage_cou')
 def mypage_cou():
     
     #セッションからメールアドレスを取得
@@ -163,3 +166,18 @@ def get_club_name(club_id_list):
     connection.close()
     return club_name
     
+@mypage_bp.route('/mypage_tea')
+def mypage_tea():
+    mail = session.get('mail')
+    name = get_tea_name(mail)
+    return render_template('mypage/mypage_tea.html', mail = mail, name = name)
+
+def get_tea_name(mail):
+    sql = "SELECT name FROM teacher WHERE mail = %s"
+    connection = get_connection()
+    cursor = connection.cursor()
+    cursor.execute(sql, (mail,))
+    name = cursor.fetchone()
+    cursor.close()
+    connection.close()
+    return name[0] if name else None

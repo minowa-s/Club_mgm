@@ -125,8 +125,10 @@ def student_login_exe():
                 print(leader)
                 print("aaa")
                 gakuseikai = db.get_student(id)
+
                 #リーダー判定
                 if leader is not None and leader[3] == True and leader[4] == 1:    
+
                     return render_template('top/top_leader.html', club_list=club_list, student=student)
                 else:
                     if gakuseikai[6] == True :
