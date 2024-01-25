@@ -8,7 +8,7 @@
 
 {% block content %}
 <div id="bkbtn">
-  <button id="back" href="{{url_for('backtop_student')}}">←戻る</button>
+  <button id="back" onclick="location.href='{{url_for('backtop_student')}}'">←戻る</button>
 </div>
 <div class="mypageall">
   <div class="position-relative">
@@ -33,12 +33,10 @@
         <tr>
           <th align="center">所属サークル</th>
             {% for club_name_list in club_name_list %}
-              <td>              
+              <td class="list">              
                 <input class="myinput" type="text" name="club_name" id="club_name" value="{{club_name_list[0]}}" readonly>
                 <form action="{{ url_for('club_withdrawal.club_withdrawal', club_name = club_name_list[0]  )}}" method="post" >
-                <div class="mydiv">
-                  <button class="mybtn" type="submit">脱退</button>
-                </div>
+                <button class="mybtn" type="submit">脱退</button>
                 </form>
               </td>
             {% endfor%}
@@ -53,4 +51,3 @@
 </div>
 
 {% endblock %}
-<a href="{{url_for('backtop_student')}}">もどる</a>

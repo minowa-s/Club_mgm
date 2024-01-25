@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+{% extends "layout_leader.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='/css/top_t_c_l.css')}}">
+<link rel="icon" href="{{url_for('static', filename='/favicon/favicon.ico')}}">
+{% endblock %}
+
+
+{% block content %}
 <body>
     {% for list in list %}
     <option value="{{ list }}">{{ list }}</option>
@@ -25,4 +27,4 @@
 {% endfor %}
 
 </body>
-</html>
+{% endblock %}
