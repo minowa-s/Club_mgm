@@ -7,11 +7,12 @@
 }
 
 .form{
-    margin-top: 9em;
+    margin-top: 4em;
     text-align: center;
 }
 
 input{
+    margin-top: 60px;
     border: none;
     outline: none;
     width: 500px;
@@ -42,7 +43,8 @@ input{
 }
 .p{
     font-size: 30px;
-    margin-top: 6em;
+    margin-top: 4.5em;
+    margin-bottom: 2.5em;
 }
 
 .button2{
