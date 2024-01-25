@@ -28,7 +28,7 @@
             <a id="ad">管理者</a>
             <form action="{{url_for('admin.login_exe')}}" method="post">
                 <div class="inp1">メール　<input type="mail" name="mail"></div>
-                <div class="inp2">パスワード　<input type="text" name="password"></div><br>
+                <div class="inp2">パスワード　<input type="password" name="password"></div><br>
                 <button class="btn1" type="submit">ログイン</button><br>
             </form>
             <div class="btn2"><a href="{{url_for('account.login')}}" class="b2">学生はこちら</a></div>

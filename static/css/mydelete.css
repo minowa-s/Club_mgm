@@ -3,6 +3,7 @@
 /* 確認画面 */
 .h2{
     text-align: center;
+    margin-top: 2em;
 }
 
 .form{
@@ -62,7 +63,7 @@ input{
 
 #bkbtn {
     float: left;
-    padding-left: 20px;
+    margin-top: -100px;
 }
 
 #back {
