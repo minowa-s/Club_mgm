@@ -23,6 +23,7 @@ def club_join_req():
 def club_join_req2():
     club_id = session.get("club_id")
     student_id = session.get("student_id")
+    print(club_id, student_id)
     return render_template("club_join_send.html" ,student_id = student_id, club_id=club_id)
 
 #サークル参加申請確認処理
@@ -30,6 +31,7 @@ def club_join_req2():
 def club_join_req3():
     club_id = session.get("club_id")
     student_id = session.get("student_id")
+    print("club_jpin_req3")
     print(student_id)
     print(club_id)
     sql = "INSERT INTO student_club (student_id, club_id, is_leader, allow) VALUES (%s, %s, %s, %s)"
@@ -73,4 +75,24 @@ def club_detail():
     for row in schedule:
         formatted_date = row[2].strftime('%Y-%m-%d')
         daylist.append(formatted_date)
-    return render_template('club_detail.html', club_detail=club_detail, memberlist=memberlist, schedulelist=schedulelist, daylist=daylist, student=student)
+    return render_template('club_detail.html', club_id=club_id, club_detail=club_detail, memberlist=memberlist, schedulelist=schedulelist, daylist=daylist, student=student)
+
+#サークル詳細表示
+@club_bp.route("/club_detail_nolog", methods=['GET'])
+def club_detail_nolog():
+    club_id = request.args.get('club_id')
+    club_detail = db.get_club_detail(club_id)
+    member = db.get_joinedmember(club_id)
+    schedule = db.get_schedule(club_id)
+    schedulelist = []
+    daylist = []
+    memberlist = []
+    for row in member:
+        member = db.get_student(row)
+        memberlist.append(member[1])
+    for row in schedule:
+        schedulelist.append(row)
+    for row in schedule:
+        formatted_date = row[2].strftime('%Y-%m-%d')
+        daylist.append(formatted_date)
+    return render_template('club_detail_nolog.html', club_id=club_id, club_detail=club_detail, memberlist=memberlist, schedulelist=schedulelist, daylist=daylist)

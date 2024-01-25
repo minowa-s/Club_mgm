@@ -26,13 +26,6 @@
       </div>
       <br>
     </div>
-    <div class="join">
-        <form action="{{ url_for('club.club_join_req')}}" method="POST">
-            <input type="hidden" name="student_id" value="{{student}}">
-            <input type="hidden" name="club_id" value="{{club_id}}">
-            <button class="joinbtn" onclick="location.href='club_detail.html'">参加申請</button>
-        </form>
-    </div>
 
     <div class="pagetop">
       <canvas id="canvas1" width="50" height="50"></canvas>

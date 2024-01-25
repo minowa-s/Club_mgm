@@ -27,8 +27,9 @@ def request_list():
     mail = session.get('mail')
     id = db.get_id(mail)
     club_id = db.get_club_id(id)
+    print(club_id)
     request_list = get_request(club_id)
-    print(request_list)
+    print("requ==", request_list)
     student = db.get_student(request_list[0][1])
     department = app_data.get_department(student[5])
     department = department[1]
