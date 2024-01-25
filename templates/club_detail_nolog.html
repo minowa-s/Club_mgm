@@ -7,7 +7,7 @@
 
 
 {% block content %}
-<div>
+<div class="club" >
   <h2 class="h2">club_detail[0]</h2>
   <div id="bkbtn">
       <button id="back" onclick="history.back()">←戻る</button>
@@ -36,7 +36,7 @@
     <div class="main">
       <h4 class="h4-5">メンバー</h4>
       <div class="member">
-        <table class="table table-bordered"  style="margin-bottom: 60px;">
+        <table class="table table-bordered"  style="margin-bottom: 30px;">
           <tbody>
             {% for index in range((memberlist|length + 1)//2) %}
                 <tr>
