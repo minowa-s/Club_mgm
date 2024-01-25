@@ -104,6 +104,17 @@ def select_department():
     connection.close()
     return department_list
 
+def select_departmentname(id):
+    sql = "SELECT * FROM department"
+    connection = get_connection()
+    cursor = connection.cursor()
+    cursor.execute(sql, (id,))
+    department_list = []
+    for row in cursor.fetchall():
+        department_list.append((row[0], row[1]))
+    connection.close()
+    return department_list
+
 #入学年度選択
 def select_year():
     current_year = datetime.datetime.now().year
@@ -302,12 +313,16 @@ def get_id(mail):
 #メールアドレスから学生id取得
 def get_sc(id):
     sql = "SELECT * FROM student_club WHERE student_id = %s"
-    connection = get_connection()
-    cursor = connection.cursor()
-    cursor.execute(sql, (id,))
-    id = cursor.fetchone()
-    cursor.close()
-    connection.close()
+    try :
+        connection = get_connection()
+        cursor = connection.cursor()
+        cursor.execute(sql, (id,))
+        id = cursor.fetchone()
+    except psycopg2.DatabaseError:
+        id = False
+    finally:
+        cursor.close()
+        connection.close()
     return id
 
 #リーダーidからサークルid取得
