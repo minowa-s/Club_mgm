@@ -93,6 +93,17 @@
     margin-left: 7rem;
 }
 
+.divlaunchtc{
+    position: fixed;
+    border: 6px solid #EED243;
+    background-color: #ffffff;
+    border-radius: 30px;
+    width: 280px;
+    height: 170px;
+    margin-top: -4rem;
+    margin-left: 7rem;
+}
+
 .p1{
     margin-top: 20px;
     text-align: center;

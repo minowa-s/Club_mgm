@@ -1,0 +1,75 @@
+@charset "utf-8";
+
+/* 本文とか */
+.mailp{
+    text-align: center;
+    font-size: 30px;
+}
+
+.form{
+    text-align: center;
+}
+
+.inputken{
+    width: 550px;
+}
+
+.inputhon{
+  resize: none;
+  width:550px;
+  height:250px;
+}
+
+.mailbtn{
+    font-size: 25px;
+    color: #0693E3;
+    width: 170px;
+    height: 60px;
+    border-radius:30px;
+    border: solid 5px;
+    background-color: #FFFFFF;
+    border-color: #0693E3;
+}
+
+/* 送信後 */
+
+.reqdiv1{
+    text-align: center;
+  }
+
+
+  .reqp1{
+    font-size: 30px;
+    margin-top: 6em;
+  }
+
+.backbtn{
+    font-size: 25px;
+    color: #0693E3;
+    width: 200px;
+    height: 60px;
+    border-radius:30px;
+    border: solid 5px;
+    background-color: #FFFFFF;
+    border-color: #0693E3;
+}
+
+.backbtn:hover{
+    color: #FFFFFF;
+    background-color: #0693E3;
+}
+
+
+#bkbtn {
+    float: left;
+    margin-top: -60px;
+}
+
+#back {
+    text-decoration: none;
+    font-size: 25px;
+    color: black;
+    border: none;
+    outline: none;
+    background: none;
+}

@@ -40,26 +40,27 @@ def get_list():
 
 # -------------------------------------------------------
 #サークル参加申請承認
-@club_bp2.route("/join_req")
+@club_bp2.route("/join_req", methods=['POST'])
 def join_req():
     approve = request.form.get("approve")
+    print(approve)
     student_id = request.form.get("student_id")
-    if approve == 1 :
-        join_req_ok(student_id)
-    elif approve == 0 :
-        join_req_no(student_id)
+    if approve == "1" :
+        return join_req_ok(student_id)
+    else :
+        return join_req_no(student_id)
     
 #申請承認機能
 #一覧からidを取得して次の画面に遷移させる処理
 def join_req_ok(student_id):
-    return render_template("join_req_okexe.html" ,student_id = student_id)
+    return render_template("join_reqest/join_req_okexe.html" ,student_id = student_id)
 
 #下に書いてあるsqlを実行し完了画面に遷移させる処理
 @club_bp2.route("/join_req_okexe", methods=["POST"] )
 def join_req_okexe():
     student_id = request.form.get("student_id")
     join_ok_sql(student_id)
-    return render_template("join_req_okres.html")
+    return render_template("join_reqest/join_req_okres.html")
 
 #student_idを元にallowを変更するUPDATE文
 def join_ok_sql(student_id):
@@ -75,13 +76,13 @@ def join_ok_sql(student_id):
 #申請否認機能
 def join_req_no(student_id):
     session["student_id"] = student_id
-    return render_template("join_req_noexe.html", student_id = student_id)
+    return render_template("join_reqest/join_req_noexe.html", student_id = student_id)
 
 #否認理由の取得
 @club_bp2.route('/join_req_noexe')
 def join_req_noexe():
     reason  = request.args.get("reason")
-    return render_template("join_req_noconf.html", reason = reason)
+    return render_template("join_reqest/join_req_noconf.html", reason = reason)
 
 #セッションからstudent_idを持ってきてそれを引数にUPDATEを実行
 @club_bp2.route('/join_req_noconf')
@@ -89,7 +90,7 @@ def join_req_noconf():
     reason = request.form.get("reason")
     student_id = session.get("student_id")
     join_no_sql(student_id)
-    return render_template("join_req_nores.html")
+    return render_template("join_reqest/join_req_nores.html")
 
 #student_idを元にallowを変更するUPDATE文
 def join_no_sql(student_id):
@@ -117,11 +118,11 @@ def get_name(id):
 #サークル削除申請
 @club_bp2.route("/club_delete_request")
 def club_delete_request():
-    return render_template('club_delete_request.html')
+    return render_template('join_reqest/club_delete_request.html')
 
 @club_bp2.route('/club_delete_request_exe')
 def club_delete_request_exe():
     #sessionかrequestか知らないけどclub_idとってくる
     club_id = 1
     db.delete_club(club_id)
-    return render_template("club_delete_request_exe.html")
+    return render_template("join_reqest/club_delete_request_exe.html")

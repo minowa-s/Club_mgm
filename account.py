@@ -1,5 +1,5 @@
 from flask import Blueprint, redirect, render_template, request, session, url_for
-import hashlib, string, random, psycopg2, db, os, bcrypt, datetime, smtplib, club
+import hashlib, string, random, psycopg2, db, os, bcrypt, datetime, smtplib, club, app_data
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
@@ -30,12 +30,14 @@ def regist_conf():
     entrance_year = request.form.get('entrance_year') #入学年度
     session['entrance_year'] = entrance_year
     department_id = request.form.get('department') #学科
+    department = app_data.get_department(department_id)
+    department_name = department[1]
     session['department_id'] = department_id
     password = request.form.get('password') #パスワード
     session['password'] = request.form.get('password')
     password2 = request.form.get("password2") #再確認パスワード
     if password  == password2 :       
-        return render_template('regist_conf.html', name=name, mail=mail, entrance_year=entrance_year, department_id=department_id)
+        return render_template('regist_conf.html', name=name, mail=mail, entrance_year=entrance_year, department_name=department_name)
     else :
         department = db.select_department()
         year = db.select_year()
@@ -120,10 +122,13 @@ def student_login_exe():
                 student = db.get_student(id)
                 club_list = club.club_list()
                 leader = db.get_sc(id)
+                print(leader)
+                print("aaa")
                 gakuseikai = db.get_student(id)
-                if leader is not None and leader[3] == True:
-                    if gakuseikai[6] == True :
-                        return render_template('top/top_council.html', club_list=club_list, student=student)    
+
+                #リーダー判定
+                if leader is not None and leader[3] == True and leader[4] == 1:    
+
                     return render_template('top/top_leader.html', club_list=club_list, student=student)
                 else:
                     if gakuseikai[6] == True :

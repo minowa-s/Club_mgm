@@ -1,13 +1,25 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form action="{{url_for('club2.join_req_okexe')}}" method="post">
-        <input type="text" name="student_id" value="{{student_id}}" readonly>
-        <button type = "submit">参加申請承認</button>
-</body>
-</html>
+{% extends "layout_leader.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='/css/join_req.css')}}">
+<link rel="icon" href="{{url_for('static', filename='/favicon/favicon.ico')}}">
+{% endblock %}
+
+
+{% block content %}
+    <div class="ok">
+        <h3>以下の学生をサークルに参加させます。よろしいですか。</h3>
+        <br>
+
+        <div id="okbkbtn">
+          <button id="back" onclick="history.back()">←戻る</button>
+        </div>
+
+        <form class="okform" action="{{url_for('club2.join_req_okexe')}}" method="post">
+            <input class="okinput" type="hidden" name="student_id" value="{{student_id}}" readonly>
+            <br>
+            <button class="okbtn" type="submit">参加申請承認</button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,33 +1,48 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h2>否認理由入力画面</h2>
+{% extends "layout_leader.html" %}
 
-  <table border="1">
-    <thead>
-      <tr>
-        <th>タイトル</th>
-        <th><input type="text" value="サークルの参加申請について" readonly></th>
-      
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>否認理由</td>
-        <td><form action="{{ url_for('club2.join_req_noexe') }}">
-            <input type="text" name="reason" required = "否認理由を入力してください">
-            <button type="submit">確認</button>
-        </form>
-        </td>
-        
-      </tr>
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='/css/join_req.css')}}">
+<link rel="icon" href="{{url_for('static', filename='/favicon/favicon.ico')}}">
+{% endblock %}
+
+
+{% block content %}
+  <div class="no">
+    <h2>否認理由入力画面</h2>
+    <br>
+    <div id="bkbtn">
+      <button id="back" onclick="history.back()">←戻る</button>
+    </div>
+  <div class="#">
+      <table class="notable">
+        <thead>
+          <tr>
+            <th><span> 件名 </span></th>
+            <td><input class="noinput" type="text" value="サークルの参加申請について" required></td>
+          </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="noku">
+            <br>
+          </td>
+        </tr>
+        <tr>
+          <th class="noth"><span>否認理由</span></th>
+          <td>
+            <form action="{{ url_for('club2.join_req_noexe') }}">
+              <textarea class="notxtara" type="text" name="reason" placeholder= "否認理由を入力してください" required ></textarea>
+              <br>
+              <br>
+              <button class="nobtn" type="submit">確認</button>
+            </form>
+          </td>
+        </tr>
       </tbody>
-      </table>
-      
-</body>
-</html>
+    </table>
+  </div>
+
+</div>
+
+
+{% endblock %}

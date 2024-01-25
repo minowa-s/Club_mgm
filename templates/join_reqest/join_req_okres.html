@@ -1,11 +1,16 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <p>承認完了</p>
-</body>
-</html>
+{% extends "layout_leader.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='/css/join_req.css')}}">
+<link rel="icon" href="{{url_for('static', filename='/favicon/favicon.ico')}}">
+{% endblock %}
+
+
+{% block content %}
+<div class="res">
+    <p class="resp">参加承認をしました。</p>
+    <button class="resbtn" onclick="location.href='{{url_for('club2.join_req_list')}}'">申請一覧に戻る</button>
+</div>
+
+{% endblock %}
+   
