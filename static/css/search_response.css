@@ -1,0 +1,90 @@
+@charset "utf-8";
+
+#bkbtn {
+    margin-top: -80px;
+}
+
+#back {
+    text-decoration: none;
+    font-size: 25px;
+    color: black;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+/* 検索 */
+#search{
+    padding-left: 23em;
+    
+}
+
+.h4{
+    margin-left: 12px;
+}
+
+.search-form-001 {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    width: 400px;
+    border: 3px solid #64b894;
+    border-radius: 20px;
+}
+
+.search-form-001 input {
+    width: 345px;
+    height: 45px;
+    padding: 5px 10px;
+    border: none;
+    box-sizing: border-box;
+    font-size: 1em;
+    outline: none;
+}
+
+.search-form-001 input::placeholder{
+    color: #767d83;
+}
+
+.search-form-001 button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 45px;
+    border: none;
+    background-color: #64b894;
+    cursor: pointer;
+}
+
+.search-form-001 button::after {
+    width: 20px;
+    height: 20px;
+    background-image: url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%20%3Cpath%20d%3D%22M23.7%2020.8%2019%2016.1c-.2-.2-.5-.3-.8-.3h-.8c1.3-1.7%202-3.7%202-6C19.5%204.4%2015.1%200%209.7%200S0%204.4%200%209.7s4.4%209.7%209.7%209.7c2.3%200%204.3-.8%206-2v.8c0%20.3.1.6.3.8l4.7%204.7c.4.4%201.2.4%201.6%200l1.3-1.3c.5-.5.5-1.2.1-1.6zm-14-5.1c-3.3%200-6-2.7-6-6s2.7-6%206-6%206%202.7%206%206-2.6%206-6%206z%22%20fill%3D%22%23fff%22%3E%3C%2Fpath%3E%20%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    content: '';
+}
+
+.resdiv{
+    padding-top: 5em;
+}
+
+/* 削除ボタン */
+.btntd{
+    text-align: center;
+    width: 170px;
+}
+
+.fbtn{
+    font-size: 16px;
+    color: #e30627;
+    border-radius:30px;
+    border: solid 1px;
+    background-color: #FFFFFF;
+    border-color: #e30627;
+}
+
+.fbtn:hover{
+    color: #ffffff;
+    background-color: #e30627;
+}
