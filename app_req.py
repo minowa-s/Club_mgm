@@ -20,10 +20,11 @@ def request_conf():
     member_list.append(leader_mail)
     if db.student_seach_from_mail(menber_adress1):
         member_list.append(menber_adress1)
-    else : print("メールアドレスが登録されてないです")
+    else : print("メールアドレスが登録されていません")
     if db.student_seach_from_mail(menber_adress2):
         member_list.append(menber_adress2)
-    else : print('メールアドレスが登録されてないです')
+    else : print('メールアドレスが登録されていません')
+    print(member_list)
     if menber_adresses != None: 
         menber_adresses = menber_adresses.splitlines()
         for row in menber_adresses:
