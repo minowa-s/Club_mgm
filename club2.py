@@ -16,7 +16,7 @@ def get_connection():
 @club_bp2.route("/join_req_list")
 def join_req_list():
     list = get_list()
-    return render_template("join_req_list.html" ,list = list)
+    return render_template("leader/request_list.html" ,list = list)
  
 def get_list():
     sql = "SELECT * FROM student_club WHERE allow = 0"
