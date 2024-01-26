@@ -1,38 +1,34 @@
-<!DOCTYPE html>
-<html lang="ja">
+{% extends "layout_leader.html" %}
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='/css/club_create.css')}}">
+<link rel="icon" href="{{url_for('static', filename='/favicon/favicon.ico')}}">
+{% endblock %}
 
-<body>
-  <h2>否認理由入力内容確認</h2>
+{% block content %}
+  <div class="notcreateconf">
+    <h2>否認理由入力内容確認</h2>
 
-  <table border="1">
-    <thead>
-      <tr>
-        <th>タイトル</th>
-        <th><input type="text" value="サークルの参加申請について" readonly></th>
+    <table class="notcreateconftable">
+      <thead>
+        <tr>
+          <th>タイトル</th>
+          <th><input type="text" value="サークルの参加申請について" readonly></th>
 
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>否認理由</td>
-        <td>
-          <form action="{{ url_for('app_data.club_not_create_exe') }}">
-            <input type="text" name="reason" value="{{reason}}" readonly>
-            <button type="submit">送信</button>
-        </td>
-
-
-      </tr>
-    </tbody>
-  </table>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>否認理由</td>
+          <td>
+            <form action="{{ url_for('app_data.club_not_create_exe') }}">
+              <input type="text" name="reason" value="{{reason}}" readonly>
+              <button type="submit">送信</button>
+          </td>
 
 
-</body>
-
-</html>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

@@ -53,6 +53,7 @@ def request_exe():
     member_list = session.get("member_list")
     print(member_list)
     leader_id = db.get_id(member_list[0])
+    print(club_name, leader_id, objective, activities, introduction, note)
     db.request_club(club_name, leader_id, objective, activities, introduction, note)
     club_id = db.get_club_id(leader_id)
     count = 0 

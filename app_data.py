@@ -106,10 +106,11 @@ def select_allow1_club():
     cursor.execute(sql)
     club_list = []
     for row in cursor.fetchall():
-        leader_name = get_leader(row[2])
+        leader = get_leader(row[2])
+        print(leader)
         year = get_leader(row[2])
-        department = get_department(row[2])
-        club_list.append((row[0], row[1], leader_name[1], department[1], year[4])) #row[0]=club_id, row[1]=club_name
+        department = get_department(leader[5])
+        club_list.append((row[0], row[1], leader[1], department[1], year[4])) #row[0]=club_id, row[1]=club_name
     cursor.close()
     connection.close()
     return club_list
