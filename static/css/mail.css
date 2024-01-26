@@ -13,6 +13,9 @@
 .inputken{
     width: 550px;
 }
+span{
+    vertical-align: top;
+}
 
 .inputhon{
   resize: none;
@@ -31,12 +34,16 @@
     border-color: #0693E3;
 }
 
+.mailbtn:hover{
+    color: #FFFFFF;
+    background-color: #0693E3;
+}
+
 /* 送信後 */
 
 .reqdiv1{
     text-align: center;
   }
-
 
   .reqp1{
     font-size: 30px;
