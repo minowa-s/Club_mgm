@@ -133,7 +133,7 @@ def student_login_exe():
                     if gakuseikai[6] == True :
                         return render_template('top/top_council.html', club_list=club_list, student=student)
                     print(student)
-                    return render_template('top/top_student.html', club_list=club_list, student=student[0])
+                    return render_template('top/top_student.html', club_list=club_list, student=student)
             else:
                 print('Invalid mail or password')
                 return render_template('login/student_login.html')

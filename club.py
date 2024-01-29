@@ -34,7 +34,7 @@ def club_join_req3():
     student_id = session.get("student_id")
     print("club_jpin_req3")
     print(student_id)
-    print(club_id)
+    print(club_id) #できてる
     sql = "INSERT INTO student_club (student_id, club_id, is_leader, allow) VALUES (%s, %s, %s, %s)"
     try :
         connection = get_connection()
@@ -76,6 +76,7 @@ def club_detail():
     for row in schedule:
         formatted_date = row[2].strftime('%Y-%m-%d')
         daylist.append(formatted_date)
+    print(club_detail)
     return render_template('club_detail.html', club_id=club_id, club_detail=club_detail, memberlist=memberlist, schedulelist=schedulelist, daylist=daylist, student=student)
 
 #ログイン前サークル詳細表示

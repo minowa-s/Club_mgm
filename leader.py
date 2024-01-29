@@ -20,7 +20,7 @@ def request_list():
     club_id = db.get_club_id(id)
     print(club_id)
     request_list = get_request(club_id)
-    print("requ==", request_list)
+    print("requ==", club_id)
     if request_list:
         student = db.get_student(request_list[0][1])
         department = app_data.get_department(student[5])
