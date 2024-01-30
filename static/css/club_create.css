@@ -1,3 +1,140 @@
 @charset "utf-8";
 
 /* これはclub_join内の上5個のためのcssです */
+/* 否認理由 */
+.notcreate{
+    text-align: center;
+}
+
+.notcreateteble{
+    margin-left: 11.5em;
+}
+
+span{
+    font-size: 20px;
+    padding-right: 1em;
+}
+
+.noth{
+    vertical-align: top;
+}
+
+.noku{
+    empty-cells: hide;
+}
+
+.notcreateinput{
+    width: 550px;
+}
+
+.notxtara{
+    resize: none;
+    width:550px;
+    height:250px;
+}
+
+.nobtn{
+    font-size: 25px;
+    color: #0693E3;
+    width: 170px;
+    height: 60px;
+    border-radius:30px;
+    border: solid 5px;
+    background-color: #FFFFFF;
+    border-color: #0693E3;
+}
+
+.nobtn:hover{
+    color: #FFFFFF;
+    background-color: #0693E3;
+}
+
+/* 否認理由確認 */
+
+.conf{
+    text-align: center;
+}
+
+.conftable{
+    margin-left: 11.5em;
+}
+
+.confth{
+    vertical-align: top;
+}
+
+.confinput{
+    width: 550px;
+}
+
+.confku{
+    empty-cells: hide;
+}
+
+.conftextarea{
+    resize: none;
+    width:550px;
+    height:250px;
+}
+
+.confbtn{
+    font-size: 25px;
+    color: #0693E3;
+    width: 170px;
+    height: 60px;
+    border-radius:30px;
+    border: solid 5px;
+    background-color: #FFFFFF;
+    border-color: #0693E3;
+}
+
+.confbtn:hover{
+    color: #FFFFFF;
+    background-color: #0693E3;
+}
+
+
+/* 完了 */
+
+.res{
+    margin-top: 6em;
+    text-align: center;
+}
+
+.resp{
+    font-size: 30px;
+}
+
+.resbtn{
+    margin-top: 5em;
+    font-size: 25px;
+    color: #0693E3;
+    width: 200px;
+    height: 60px;
+    border-radius:30px;
+    border: solid 5px;
+    background-color: #FFFFFF;
+    border-color: #0693E3;
+}
+
+.resbtn:hover{
+    color: #FFFFFF;
+    background-color: #0693E3;
+}
+
+/* 戻るボタン */
+
+#bkbtn {
+    float: left;
+    margin-top: -60px;
+}
+
+#back {
+    text-decoration: none;
+    font-size: 25px;
+    color: black;
+    border: none;
+    outline: none;
+    background: none;
+}
+

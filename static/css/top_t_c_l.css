@@ -93,7 +93,9 @@
     margin-left: 7rem;
 }
 
-.divlaunchtcl{
+
+.divlaunchtc{
+
     position: fixed;
     border: 6px solid #EED243;
     background-color: #ffffff;

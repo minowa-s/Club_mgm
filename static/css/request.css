@@ -229,9 +229,12 @@
 .reqdiv1{
   text-align: center;
 }
+
+
 .reqa {
   margin-top: 90px;
 }
+
 .reqp1{
   font-size: 30px;
   margin-top: 4.5em;
@@ -250,4 +253,9 @@
   border: solid 5px;
   background-color: #FFFFFF;
   border-color: #0693E3;
+}
+
+.reqa1:hover{
+  color: #FFFFFF;
+  background-color: #0693E3;
 }

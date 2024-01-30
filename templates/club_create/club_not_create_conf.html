@@ -6,29 +6,42 @@
 {% endblock %}
 
 {% block content %}
-  <div class="notcreateconf">
+  <div class="conf">
     <h2>否認理由入力内容確認</h2>
-
-    <table class="notcreateconftable">
-      <thead>
-        <tr>
-          <th>タイトル</th>
-          <th><input type="text" value="サークルの参加申請について" readonly></th>
-
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>否認理由</td>
-          <td>
-            <form action="{{ url_for('app_data.club_not_create_exe') }}">
-              <input type="text" name="reason" value="{{reason}}" readonly>
-              <button type="submit">送信</button>
-          </td>
-
-
-        </tr>
-      </tbody>
-    </table>
+    <br>
+    <div id="bkbtn">
+      <button id="back" onclick="history.back()">←戻る</button>
+    </div>
+    <div class="conftable">
+      <table>
+        <thead>
+          <tr>
+            <th><span>件名</span></th>
+            <td><input class="confinput" type="text" value="サークルの参加申請について" readonly></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="confku">
+              <br>
+            </td>
+          </tr>
+          <tr>
+            <th class="confth"><span>否認理由</span></th>
+            <td>
+              <form action="{{ url_for('app_data.club_not_create_exe') }}">
+                <textarea class="conftextarea" type="text" name="reason" value="{{reason}}" readonly></textarea>
+                <br>
+                <br>
+                <button class="confbtn" type="submit">送信</button>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
+
+
 {% endblock %}
+
