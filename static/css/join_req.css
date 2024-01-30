@@ -7,7 +7,9 @@
 
 .ok{
     text-align: center;
+
     margin-top: 5em;
+
 }
 
 .okform{
@@ -20,7 +22,9 @@
 }
 
 .okbtn{
+
     margin-top: 4em;
+
     font-size: 25px;
     color: #0693E3;
     width: 200px;
@@ -166,6 +170,7 @@ span{
 
 #okbkbtn {
     float: left;
+
     margin-top: -150px;
 }
 

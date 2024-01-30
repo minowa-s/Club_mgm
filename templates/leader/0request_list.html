@@ -1,0 +1,14 @@
+{% extends "layout_leader.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='/css/top_t_c_l.css')}}">
+<link rel="icon" href="{{url_for('static', filename='/favicon/favicon.ico')}}">
+{% endblock %}
+
+{% block content %}
+    <center>現在参加申請は来ていません</center>
+    <div class="notcreate">
+        <button class="backbtn" onclick="{{url_for('backtop_leader')}}">topに戻る</button>
+    </div>
+</body>
+{% endblock %}

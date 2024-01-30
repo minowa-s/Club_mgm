@@ -1,14 +1,10 @@
 <!DOCTYPE html>
 {% extends "layout_teacher.html" %}
-
 {% block css %}
 <link rel="stylesheet" href="{{url_for('static', filename='/css/request.css')}}">
 <link rel="icon" href="{{url_for('static', filename='/favicon/favicon.ico')}}">
 {% endblock %}
-
-
 {% block content %}
-
     <div class="reqdiv1">
         <p class="reqp1">承認をしました</p>
         <br>
@@ -18,5 +14,4 @@
         <br>
         <a class="reqa1" href="{{url_for('backtop_teacher')}}">トップページへ</a>
     </div>
-
 {% endblock %}
