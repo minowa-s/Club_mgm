@@ -124,8 +124,8 @@ def select_year():
 #メール送信 
 def send_email(to_address, subject, body):
     # 送信元と送信先のメールアドレス
-    from_address = "h.nakamura.sys22@morijyobi.ac.jp"
-    app_password = "lydt vxfw inil lffe"  # Gmailのアプリパスワードなどを使用してください
+    from_address = "morijyobi.club@gmail.com"
+    app_password = "zoig airi utgb nfuy"  # Gmailのアプリパスワードなどを使用してください
 
     # メールの設定
     msg = MIMEMultipart()
@@ -256,8 +256,8 @@ def gakuseikai_regist(mail):
     
 #メール送信
 def mail_send(to_address, subject, body):
-    from_address = "h.nakamura.sys22@morijyobi.ac.jp" # 送信元と送信先のメールアドレス
-    app_password = "lydt vxfw inil lffe"  # Gmailのアプリパスワードなどを使用してください
+    from_address = "morijyobi.club@gmail.com" # 送信元と送信先のメールアドレス
+    app_password = "zoig airi utgb nfuy"  # Gmailのアプリパスワードなどを使用してください
     # subject ="件名"
     # body ="本文"  
 

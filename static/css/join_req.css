@@ -1,7 +1,50 @@
 @charset "utf-8";
 
 /* 申請一覧 */
+h3{
+    text-align: center;
+}
 
+.tbl{
+    text-align: center;
+    margin-top: 2em;
+}
+
+td{
+    vertical-align: middle;
+}
+
+.yesbtn{
+    font-size: 15px;
+    color: #0693E3;
+    width: 100px;
+    height: 35px;
+    border-radius:30px;
+    border: solid 2px;
+    background-color: #FFFFFF;
+    border-color: #0693E3;
+}
+
+.yesbtn:hover{
+    color: #FFFFFF;
+    background-color: #0693E3;
+}
+
+.nobtn0{
+    font-size: 15px;
+    color: #ff0000;
+    width: 100px;
+    height: 35px;
+    border-radius:30px;
+    border: solid 2px;
+    background-color: #FFFFFF;
+    border-color: #ff0000;
+}
+
+.nobtn0:hover{
+    color: #FFFFFF;
+    background-color: #ff0000;
+}
 
 /* 承認 */
 
@@ -176,6 +219,11 @@ span{
     float: left;
 
     margin-top: -150px;
+}
+
+#list_bkbtn{
+    float: left;
+    margin-top: -40px;
 }
 
 #back {

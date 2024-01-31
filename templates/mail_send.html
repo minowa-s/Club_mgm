@@ -10,7 +10,7 @@
   <p class="mailp">リーダー連絡</p>
 
     <div id="bkbtn">
-      <button id="back" onclick="history.back()">←戻る</button>
+      <button id="back" onclick="location.href='{{url_for('backtop_teacher')}}'">←戻る</button>
     </div>
     <div class="form">
         <form action="{{url_for("app_data.mail_send_conf")}}" method="POSt">

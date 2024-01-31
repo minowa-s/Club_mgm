@@ -48,7 +48,7 @@ def get_connection():
 @app.route('/')
 def index():
     club_list = club.club_list()
-    return render_template('top/top_teacher.html', club_list=club_list)
+    return render_template('top/top.html', club_list=club_list)
 
 @app.route('/backtop_s')
 def backtop_student():
