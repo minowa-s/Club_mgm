@@ -1,27 +1,22 @@
 @charset "utf-8";
-  
   h4 {
     text-align: center;
     margin: 50px auto;
   }
-
   #er {
     font-size: 20px;
     margin-top: -20px;
     margin-bottom: 40px;
     text-align: center;
   }
-  
   form {
     text-align: center;
     width: fit-content;
     margin: auto;
   }
-
   #frm {
     margin-bottom: 50px;
   }
-   
   #frm th{
     text-align: left;
     padding-left: 1em;
@@ -30,205 +25,170 @@
     border:1px solid #DCDCDC;
     background: #B3D8EB;
   }
-   
   #frm td{
     width: 600px;
     border:1px solid #DCDCDC;
     background:#ffffff;
   }
-
   th p {
     font-size: 13px;
   }
-
   input {
     padding: 0.5em;
     width: 550px;
     border: 0px;
     background-color: #F3F3F3;
   }
-
   textarea {
     padding: 0.5em;
     width: 550px;
     border: 0px;
     background-color: #F3F3F3;
   }
-
   .th1 #required1 {
     margin-right: 20px;
     float: right;
     text-align: center;
-    color: #ffffff;
+    color: #FFFFFF;
     background: #FF4D4D;
     font-size: 15px;
     height: 25px;
     width: 55px;
   }
-
   .th2 #required2 {
     margin-right: 20px;
     float: right;
     text-align: center;
     content: "必須";
-    color: #ffffff;
+    color: #FFFFFF;
     background: #FF4D4D;
     font-size: 15px;
     height: 25px;
     width: 55px;
   }
-
   .th3 {
     padding: 20px;
     vertical-align: top;
   }
-
   .th3 #required3 {
     margin-right: 20px;
     float: right;
     text-align: center;
     content: "必須";
-    color: #ffffff;
+    color: #FFFFFF;
     background: #FF4D4D;
     font-size: 15px;
     height: 25px;
     width: 55px;
   }
-
   .th4 #required4 {
     margin-right: 20px;
     float: right;
     text-align: center;
     content: "必須";
-    color: #ffffff;
+    color: #FFFFFF;
     background: #FF4D4D;
     font-size: 15px;
     height: 25px;
     width: 55px;
   }
-
   .th5 {
     padding: 20px;
     vertical-align: top;
   }
-
   .th5 #required5 {
     float: right;
     text-align: center;
-    color: #ffffff;
+    color: #FFFFFF;
     background: #FF4D4D;
     font-size: 15px;
     height: 25px;
     width: 55px;
   }
-
   .th6 {
     padding: 20px;
     vertical-align: top;
   }
-
   .th6 #required6 {
     float: right;
     text-align: center;
-    color: #ffffff;
+    color: #FFFFFF;
     background: #FF4D4D;
     font-size: 15px;
     height: 25px;
     width: 55px;
   }
-
   .th7 {
     padding: 20px;
     vertical-align: top;
   }
-
   .th7 #required7 {
     float: right;
     text-align: center;
-    color: #ffffff;
+    color: #FFFFFF;
     background: #FF4D4D;
     font-size: 15px;
     height: 25px;
     width: 55px;
   }
-
   .th8 {
     padding: 20px;
     vertical-align: top;
   }
- 
   .td1 {
     height: 70px;
   }
-
   .td2 {
     height: 70px;
   }
-
   .td3 {
     height: 200px;
   }
-
   .td4 {
     height: 70px;
   }
-
   .td5 {
     height: 200px;
   }
-
   .td6 {
     height: 200px;
   }
-
   .td7 {
     height: 200px;
   }
-
   .td8 {
     height: 200px;
   }
-
   .td9 {
     height: 200px;
   }
-
   #inp1 {
     height: 45px;
   }
-
   #inp2 {
     height: 45px;
   }
-
   #inp3 {
     height: 160px;
   }
-
   #inp4 {
     height: 45px;
   }
-
   #inp5 {
     height: 160px;
   }
-
   #inp6 {
     height: 160px;
   }
-
   #inp7 {
     height: 160px;
   }
-
   #inp8 {
     height: 160px;
   }
-
   #inp9 {
     height: 160px;
   }
-
   .b1 {
     font-size: 25px;
     color: #0693E3;
@@ -239,12 +199,10 @@
     background-color: #FFFFFF;
     border-color: #0693E3;
   }
-
   .b1:hover{
     color: #FFFFFF;
     background-color: #0693E3;
   }
-
   .b2 {
     font-size: 25px;
     color: #0693E3;
@@ -255,27 +213,23 @@
     background-color: #FFFFFF;
     border-color: #0693E3;
   }
-
   .b2:hover{
     color: #FFFFFF;
     background-color: #0693E3;
   }
-
   #frmBtn {
     width: 950px;
   }
-
   #btn1 {
     float: left;
   }
-
   #btn2 {
     float: right;
   }
-
 .reqdiv1{
   text-align: center;
 }
+
 
 .reqa {
   margin-top: 90px;
@@ -285,7 +239,6 @@
   font-size: 30px;
   margin-top: 4.5em;
 }
-
 .reqa1{
   text-decoration: none;
   font-size: 25px;
@@ -300,4 +253,9 @@
   border: solid 5px;
   background-color: #FFFFFF;
   border-color: #0693E3;
+}
+
+.reqa1:hover{
+  color: #FFFFFF;
+  background-color: #0693E3;
 }

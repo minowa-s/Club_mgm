@@ -9,7 +9,7 @@
 {% block content %}
 <div id="search">
   <h4 class="h4">あなたにピッタリのサークルが見つかる！</h4>
-  <form action="{{url_for('club_search.club_search_nologres')}}"  class="search-form-001" method="post">
+  <form action="{{url_for('club_search.club_search_reslea')}}"  class="search-form-001" method="post">
     <label>
         <input type="text" placeholder="例 ）バスケ" name="name">
     </label>
@@ -32,7 +32,7 @@
             {% for row in club_list%}
             <tr>
               <td>
-                <a class="title" href="{{ url_for('club.club_detail', club_id=row[0][0], student=student) }}" style="color: #000000;" name="club_id" values="{{ row[0][0] }}">{{ row[0][1] }}</a><br>
+                <a class="title" href="{{ url_for('club.club_detail_leader', club_id=row[0][0], student=student) }}" style="color: #000000;" name="club_id" values="{{ row[0][0] }}">{{ row[0][1] }}</a><br>
                 <span style="font-size: 13px;" >{{row[0][2]}}</span>
               </td>
               <td  align="center" valign="middle">{{row[1][0][0]}}</td>
@@ -43,9 +43,11 @@
       </div>
     </div>
     <div class="ta">
-      <div class="divlaunchtcl">
+
+      <div class="divlaunch">
+
         <p class="p1">申請はこちらから確認できます</p>
-          <a class="launch" href="{{url_for('club2.join_req_list')}}">申請確認</a>
+          <a class="launch" href="{{url_for('leader.request_list')}}">申請確認</a>
       </div>
     </div>
   </div>

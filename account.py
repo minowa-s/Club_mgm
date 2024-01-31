@@ -127,13 +127,12 @@ def student_login_exe():
                 gakuseikai = db.get_student(id)
 
                 #リーダー判定
-                if leader is not None and leader[3] == True and leader[4] == 1:
-                    print('you are leader')
-                    return render_template('top/top_leader.html', club_list=club_list, student=student)
+                if leader is not None and leader[3] == True and leader[4] == 1:    
+                    return render_template('top/top_leader.html', club_list=club_list, student=student[0])
                 else:
                     if gakuseikai[6] == True :
                         return render_template('top/top_council.html', club_list=club_list, student=student)
-                    print('you are student')
+                    print(student)
                     return render_template('top/top_student.html', club_list=club_list, student=student)
             else:
                 print('Invalid mail or password')

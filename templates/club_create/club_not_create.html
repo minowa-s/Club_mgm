@@ -10,19 +10,32 @@
     <div class="notcreate">
       <h2>否認理由入力画面</h2>
 
-      <table border="1">
+      <div id="bkbtn">
+        <a id="back" href="{{url_for('app_data.club_not_create_conf')}}">←戻る</a>
+      </div>
+      <br>
+      <table class="notcreateteble">
         <thead>
           <tr>
-            <th>タイトル</th>
-            <th><input type="text" value="サークルの参加申請について" readonly></th>  
+            <th><span>件名</span></th>
+            <td><input class="notcreateinput" type="text" value="サークルの参加申請について" readonly></td>  
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>否認理由</td>
-            <td><form action="{{ url_for('app_data.club_not_create_conf') }}" method="post">
-                  <input type="text" name="reason" required = "否認理由を入力してください">
-                  <button type="submit">確認</button>
+
+            <td class="noku">
+              <br>
+            </td>
+          </tr>
+          <tr>
+            <th class="noth"><span>否認理由</span></th>
+            <td>
+              <form action="{{ url_for('app_data.club_not_create_conf') }}" method="post">
+                <textarea class="notxtara" type="text" name="reason" placeholder = "否認理由を入力してください"></textarea>
+                <br>
+                <br>
+                <button class="nobtn" type="submit">確認</button>
               </form>
             </td>
           </tr>
@@ -30,4 +43,3 @@
       </table>
     </div>
 {% endblock %}
-
