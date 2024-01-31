@@ -51,7 +51,7 @@ def otp_send():
     otp = db.generate_otp()
     session["otp"] = otp
     subject =  "サークルアプリワンタイムパスワード"
-    body = otp
+    body = "ワンタイムパスワード：" , otp
     db.send_email(to_address, subject, body)
     return render_template('otp_send.html', otp=otp)
     
