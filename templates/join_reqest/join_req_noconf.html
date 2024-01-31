@@ -30,9 +30,8 @@
         <tr>
           <th class="confth"><span>否認理由</span></th>
           <td>
-            <form action="{{ url_for('club2.join_req_noconf') }}">
-              <textarea class="conftextarea" type="text" name="reason" value="{{reason}}" readonly></textarea>
-              <br>
+            <form action="{{ url_for('club2.join_req_noconf') }}" method='POST'>
+              <textarea class="conftextarea" type="text" name="reason" value="{{reason}}" ></textarea>
               <br>
               <button class="confbtn" type="submit">送信</button>
           </td>

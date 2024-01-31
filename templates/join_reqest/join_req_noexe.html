@@ -30,7 +30,7 @@
         <tr>
           <th class="noth"><span>否認理由</span></th>
           <td>
-            <form action="{{ url_for('club2.join_req_noexe') }}">
+            <form action="{{ url_for('club2.join_req_noexe') }}" method="POST">
               <textarea class="notxtara" type="text" name="reason" placeholder= "否認理由を入力してください" required ></textarea>
               <br>
               <br>

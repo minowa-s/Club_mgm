@@ -98,7 +98,7 @@ def regist_execute():
 
     return render_template('regist.html')        
 #-----------------------------------------------
-#ログイン 
+#ログイン
 @account_bp.route('/login')
 def login():
     return render_template('login/student_login.html')
