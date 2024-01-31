@@ -1,14 +1,22 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h3>削除・編集したい生徒の名前を入力してください</h3>
-    <form action="{{url_for('account_search.student_search_res')}}" method="post">
-    名前:<input type="text" name="name" value="{{name}}" /><br />
-    <button type="submit">検索</button>
-</body>
-</html>
+{% extends "layout_teacher.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='/css/stu_search.css')}}">
+<link rel="icon" href="{{url_for('static', filename='/favicon/favicon.ico')}}">
+{% endblock %}
+
+
+{% block content %}
+    <h4>削除・編集したい学生の名前を入力してください</h4>
+    <div id="bkbtn">
+        <button id="back" onclick="location.href='{{url_for('admin.account_mgm_top')}}'">←戻る</button>
+    </div>
+    <div id="search">
+        <form action="{{url_for('account_search.student_search_res')}}"  class="search-form-001" method="post">
+            <label>
+                <input type="text" placeholder="学生の名前を入力してください" name="name" value="{{name}}">
+            </label> 
+            <button type="submit" aria-label="検索"></button>
+        </form>
+    </div>
+{% endblock %}
