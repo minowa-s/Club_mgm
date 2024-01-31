@@ -71,8 +71,8 @@ def login(mail, password):
 
 #登録したい教員アカウントにメールを送信する
 def tea_account_regist_mail(to_address, subject, body):
-    from_address = "h.nakamura.sys22@morijyobi.ac.jp" # 送信元と送信先のメールアドレス
-    app_password = "lydt vxfw inil lffe"  # Gmailのアプリパスワードなどを使用してください
+    from_address = "morijyobi.club@gmail.com" # 送信元と送信先のメールアドレス
+    app_password = "zoig airi utgb nfuy"  # Gmailのアプリパスワードなどを使用してください
     # subject ="件名"
     # body ="本文"  URLを送る
 

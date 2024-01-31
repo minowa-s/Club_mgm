@@ -51,7 +51,7 @@ def otp_send():
     otp = db.generate_otp()
     session["otp"] = otp
     subject =  "サークルアプリワンタイムパスワード"
-    body = otp
+    body = "ワンタイムパスワード：" , otp
     db.send_email(to_address, subject, body)
     return render_template('otp_send.html', otp=otp)
     
@@ -179,3 +179,113 @@ def get_account_salt(mail):
         cursor.close()
         connection.close()
     return str_salt
+
+#-----------------------------
+#パスワード変更
+@account_bp.route('/password_reset')
+def password_reset():
+    return render_template('password_reset/password_reset1.html')
+
+@account_bp.route('/password_reset2', methods=['POST'])
+def password_reset2():
+    mail = request.form.get('mail')
+    student = mail_confirm(mail)
+    session['student'] = student
+    if student != False :
+        otp = db.generate_otp()
+        print(student)
+        insert_otp(student[0], otp)
+        db.send_email(mail, "パスワード再設定用ワンタイムパスワード", otp)
+        return render_template('password_reset/password_reset2.html')
+    else :
+        return render_template('password_reset/password_reset1.html' , flg=False)
+    
+@account_bp.route('/password_reset3', methods=['POST'])
+def password_reset3():
+    otp = int(request.form.get("otp"))
+    student = session.get('student')
+    selected_otp = select_otp(student[0])
+    selected_otp = int("".join(map(str, selected_otp)))
+    if otp == selected_otp :
+        session["otp"] = otp
+        session["student"] = student[0]
+        delete_otp(student[0])
+        return render_template("password_reset/password_reset3.html")
+    return render_template('password_reset/password_reset2.html', error=1)
+
+@account_bp.route('/password_reset4', methods=['POST'])
+def password_reset4():
+    pass1 = request.form.get("pass1")
+    pass2 = request.form.get('pass2')
+    student_id = session.get("student")
+    if pass1 != pass2 :
+        return render_template("password_reset/password_reset3.html", error=1)
+    print(student_id)
+    hashed_pass = hashlib.sha256(pass1.encode()).hexdigest()
+    print(hashed_pass)
+    update_pass(student_id, hashed_pass)
+    return render_template('password_reset/password_reset_exe.html')
+    
+def mail_confirm(mail):
+    sql = "SELECT * FROM student WHERE mail = %s"
+    try :
+        connection = get_connection()
+        cursor = connection.cursor()
+        cursor.execute(sql, (mail,))
+        student = cursor.fetchone()
+    except psycopg2.DatabaseError:
+        student = False
+    finally:
+        cursor.close()
+        connection.close()
+    return student
+
+def insert_otp(student_id, otp):
+    sql = "INSERT INTO stu_pass_reset VALUES(%s, %s, now())"
+    try :
+        connection = get_connection()
+        cursor = connection.cursor()
+        cursor.execute(sql, (student_id, otp))
+        connection.commit()
+    except psycopg2.DatabaseError:
+        student = False
+    finally:
+        cursor.close()
+        connection.close()
+        
+def select_otp(student_id):
+    sql = "select onetimepassword from stu_pass_reset where student_id = %s"
+    try :
+        connection = get_connection()
+        cursor = connection.cursor()
+        cursor.execute(sql, (student_id,))
+        otp = cursor.fetchone()
+    except psycopg2.DatabaseError:
+        otp = False
+    finally:
+        cursor.close()
+        connection.close()
+    return otp
+
+def delete_otp(student_id):
+    sql = "delete * from stu_pass_reset where student_id = %s"
+    try :
+        connection = get_connection()
+        cursor = connection.cursor()
+        cursor.execute(sql, (student_id,))
+        otp = cursor.fetchone()
+    except psycopg2.DatabaseError:
+        otp = False
+    finally:
+        cursor.close()
+        connection.close()
+    return otp
+
+def update_pass(student_id, password):
+    sql = "UPDATE student SET password = %s WHERE student_id = %s"
+    connection = get_connection()
+    cursor = connection.cursor()
+    cursor.execute(sql, (password, student_id))
+    connection.commit()
+    cursor.close()
+    connection.close()
