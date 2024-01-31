@@ -143,12 +143,12 @@ def send_email(to_address, subject, body):
         server.sendmail(from_address, to_address, msg.as_string())
 
 #サークル立ち上げ申請
-def request_club(club_name, leader_mail, objective, activities, introduction, note):
-    sql = 'INSERT INTO club VALUES (default, %s, %s, %s, %s, %s, %s, 0)'
+def request_club(club_name, leader_id, objective, activities, introduction, note):
+    sql = 'INSERT INTO club VALUES (default, %s, %s, %s, %s, %s, %s, 1)'
     try : # 例外処理
         connection = get_connection()
         cursor = connection.cursor()
-        cursor.execute(sql, (club_name, leader_mail, objective, activities, introduction, note))
+        cursor.execute(sql, (club_name, leader_id, objective, activities, introduction, note))
         count = cursor.rowcount # 更新件数を取得
         connection.commit()
     except psycopg2.DatabaseError: # Java でいうcatch 失敗した時の処理をここに書く
@@ -156,6 +156,7 @@ def request_club(club_name, leader_mail, objective, activities, introduction, no
     finally: # 成功しようが、失敗しようが、close する。
         cursor.close()
         connection.close()
+        print(count)
     return count
 
 def get_request_club():

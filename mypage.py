@@ -144,7 +144,7 @@ def get_student_id(mail):
 
 # クラブidを取得するメソッド    
 def get_club_id(student_id):
-    sql = "SELECT club_id FROM student_club WHERE student_id = %s"
+    sql = "SELECT club_id FROM student_club WHERE student_id = %s and allow = 1"
     connection = get_connection()
     cursor = connection.cursor()
     cursor.execute(sql,(student_id,))

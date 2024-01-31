@@ -1,4 +1,4 @@
-{% extends "layout_student.html" %}
+{% extends "layout_teacher.html" %}
 
 {% block css %}
 <link rel="stylesheet" href="{{url_for('static', filename='/css/search_response.css')}}">
@@ -8,49 +8,43 @@
 
 {% block content %}
 
-<div id="search">
-    <div class="h4">
-    <h4>あなたにピッタリのサークルが見つかる！</h4>
+    <div id="search">
+        <div class="h4">
+        <h4>あなたにピッタリのサークルが見つかる！</h4>
+        </div>
+        <form action="{{url_for('club_search.club_search_restea')}}" class="search-form-001"  method="post">
+            <label>
+                <input type="text" placeholder="例 ）バスケ" name="name">
+            </label>
+            <button type="submit" aria-label="検索"></button>
+        </form>
     </div>
-    <form action="{{url_for('club_search.club_search_nologres')}}" class="search-form-001"  method="post">
-        <label>
-            <input type="text" placeholder="例 ）バスケ" name="name">
-        </label>
-        <button type="submit" aria-label="検索"></button>
-    </form>
-</div>
 
-<div id="bkbtn">
-    <button id="back" onclick="history.back()">←戻る</button>
-</div>
+    <div id="bkbtn">
+        <button id="back" onclick="history.back()">←戻る</button>
+    </div>
 
-<div class="resdiv">
-    <div class="position-relative">
-        <div position-absolute top-100px start-20px>
-            <table class="table table-bordered border-success"  style="margin-bottom: 60px;">
-                <thead>
-                    <tr>
-                        <th>サークル名</th>
-                        <th>サークル説明</th>
-                        <th></th>  
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for clubs in club %}
-                    <tr>
-                        <td>{{ clubs[1] }}</td>
-                        <td>{{ clubs[5] }}</td>
-                        <td class="btntd">
-                            <form action="{{ url_for('club_delete_tea.club_delete_tea', name = clubs[1] ) }}" method="post" >
-                                <button class="fbtn" type="submit">サークル削除</button>
-                            </form>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+    <div class="resdiv">
+        <div class="position-relative">
+            <div position-absolute top-100px start-20px>
+                <table class="table table-bordered border-success"  style="margin-bottom: 60px;">
+                    <thead>
+                        <tr>
+                            <th>サークル名</th>
+                            <th>サークル説明</th>    
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for clubs in club %}
+                        <tr>
+                            <td>{{ clubs[1] }}</td>
+                            <td>{{ clubs[5] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
-
+    
 {% endblock %}

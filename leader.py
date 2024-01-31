@@ -15,14 +15,21 @@ def get_connection():
 @leader_bp.route("/requst_list")
 def request_list():
     mail = session.get('mail')
+    #student_id取得
     id = db.get_id(mail)
     club_id = db.get_club_id(id)
+    print(club_id)
     request_list = get_request(club_id)
-    print(request_list)
-    student = db.get_student(request_list[0][1])
-    department = app_data.get_department(student[5])
-    department = department[1]
-    
+    print("requ==", club_id)
+    if request_list:
+        student = db.get_student(request_list[0][1])
+        department = app_data.get_department(student[5])
+        department = department[1]
+    else:
+        # request_list が空の場合の処理
+        student = None
+        department = None
+        return render_template('leader/0request_list.html')
     return render_template('leader/request_list.html', student=student, department=department)
 
 def get_request(club_id):
