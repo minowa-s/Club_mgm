@@ -1,9 +1,5 @@
 @charset "utf-8";
 
-body {
-    text-align: center;
-  }
-  
   h4 {
     text-align: center;
     margin: 50px auto;
@@ -101,7 +97,7 @@ body {
     height: 200px;
   }
 
-  button {
+  .button1 {
     font-size: 25px;
     color: #0693E3;
     width: 170px;
@@ -110,6 +106,22 @@ body {
     border: solid 5px;
     background-color: #FFFFFF;
     border-color: #0693E3;
+  }
+
+  .button2 {
+    font-size: 25px;
+    color: #ff0000;
+    width: 170px;
+    height: 60px;
+    border-radius:30px;
+    border: solid 5px;
+    background-color: #FFFFFF;
+    border-color: #ff0000;
+  }
+
+  .button2:hover{
+    color: #FFFFFF;
+    background-color: #ff0000;
   }
 
   .btn {
@@ -123,7 +135,7 @@ body {
     border-color: #FF0000;
   }
 
-  button:hover{
+  .button1:hover{
     color: #FFFFFF;
     background-color: #0693E3;
   }
@@ -149,4 +161,18 @@ body {
 
   #btn3 {
     float: right;
+  }
+
+  .btn1{
+    margin-left: 100px;
+  }
+
+  .btn2{
+    margin-top: -60px;
+    margin-left: 670px;
+  }
+
+  .btn3{
+    margin-left: 845px;
+    margin-top: -60px;
   }

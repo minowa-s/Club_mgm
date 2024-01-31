@@ -2,6 +2,7 @@
 
 {% block css %}
 <link rel="stylesheet" href="{{url_for('static', filename='/css/approve.css')}}">
+<link rel="icon" href="{{url_for('static', filename='/favicon/favicon.ico')}}">
 {% endblock %}
 
 {% block content %}
@@ -38,6 +39,6 @@
                 <td class="td5">立ち上げ</td>
             </tr>
             {% endfor%}
-            </table>   
-</body>
+            </table>
+        </form>
 {% endblock %}
