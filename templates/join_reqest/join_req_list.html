@@ -1,27 +1,39 @@
 {% extends "layout_leader.html" %}
 
 {% block css %}
-<link rel="stylesheet" href="{{url_for('static', filename='/css/top_t_c_l.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='/css/join_req_list.css')}}">
 <link rel="icon" href="{{url_for('static', filename='/favicon/favicon.ico')}}">
 {% endblock %}
 
 
 {% block content %}
 <body>
-    {% for list in list %}
+    <div class="div1">
+        {% for list in list %}
         <option value="{{ list }}">{{ list }}</option>
-            student_club_id:{{list [0]}}<br>
-            student_id:{{list [1]}}<br>
+        student_club_id:{{list [0]}}<br>
+        student_id:{{list [1]}}<br>
         <form action="{{ url_for('club2.join_req') }}">
-            student_id:<input type="hidden" name="student_id" value="{{list[1]}}" readonly>
-            <button type="submit" name="approve" value="1">承認</button>
-            <button type="submit" name="approve" value="0">否認</button>
+            <table class="t1">
+                <tr>
+                    <td>
+                        student_id:<input type="hidden" name="student_id" value="{{list[1]}}" readonly>{{list[1]}}</input>
+                    </td>
+                    <td>
+                        <button type="submit" name="approve" value="1">承認</button>
+                        <button type="submit" name="approve" value="0">否認</button>
+                    </td>
+                </tr>
+            </table>
         </form>
-        <form action="{{ url_for('club2.join_req_no') }}">
-            student_id:<input type="text" name="student_id" value="{{list[1]}}" readonly>
-            <button type="submit">否認</button>
-        </form>
-    {% endfor %}
+        <form action="{{ url_for('club2.join_req_noexe') }}">
+            <table class="t2">
+                student_id:<input type="text" name="student_id" value="{{list[1]}}" readonly></input>
+                <button type="submit">否認</button>
+            </table>
+        </form> 
+        {% endfor %}
+    </div>
 
 </body>
 {% endblock %}

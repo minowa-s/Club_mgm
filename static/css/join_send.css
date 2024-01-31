@@ -44,15 +44,6 @@ h3{
     color: #ffffff;
 }
 
-/* 完了画面 */
-.div1{
-    text-align: center;
-}
-.p{
-    font-size: 30px;
-    margin-top: 7em;
-}
-
 #bkbtn {
     float: left;
     padding-left: 20px;
@@ -66,3 +57,29 @@ h3{
     outline: none;
     background: none;
 }
+
+/* 完了画面 */
+.div1{
+    text-align: center;
+}
+.p{
+    font-size: 30px;
+    margin-top: 4.5em;
+}
+
+.btn {
+    margin-top: 60px;
+    font-size: 25px;
+    color: #0693E3;
+    width: 170px;
+    height: 60px;
+    border-radius:30px;
+    border: solid 5px;
+    background-color: #FFFFFF;
+    border-color: #0693E3;
+  }
+
+  .btn:hover{
+    color: #FFFFFF;
+    background-color: #0693E3;
+  }
