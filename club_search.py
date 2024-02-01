@@ -27,7 +27,7 @@ def club_search_nologres():
     return render_template("club_search/club_search_nologres.html", club=club_list)
 
 #学生サークル検索
-@club_search_bp.route("/club_search_stu")
+@club_search_bp.route("/club_search_stu", methods=['POST'])
 def club_search_stu():
     return render_template("club_search/club_search_stu.html")
 
