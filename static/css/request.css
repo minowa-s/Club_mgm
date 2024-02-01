@@ -40,6 +40,7 @@
     background-color: #F3F3F3;
   }
   textarea {
+    resize: none;
     padding: 0.5em;
     width: 550px;
     border: 0px;
@@ -258,4 +259,31 @@
 .reqa1:hover{
   color: #FFFFFF;
   background-color: #0693E3;
+}
+
+#inputlength{
+  margin-left: 500px;
+}
+
+.tharea7{
+  padding: 20px;
+  vertical-align: top;
+}
+
+#requiredarea7{
+  float: right;
+  text-align: center;
+  color: #FFFFFF;
+  background: #FF4D4D;
+  font-size: 15px;
+  height: 25px;
+  width: 55px;
+}
+
+#tdarea8{
+  height: 70px;
+}
+
+#textarea8{
+  resize: none;
 }
