@@ -1,0 +1,128 @@
+@charset "utf-8";
+/* 2以外のpassword_resetのcssです */
+
+h3{
+    text-align: center;
+}
+
+.passform{
+    text-align: center;
+}
+
+.passp{
+    font-size: 20px;
+}
+
+.input1{
+    margin-top: 7em;
+    width: 450px;
+    height: 40px;
+}
+
+.inputbtn{
+    margin-top: 7em;
+    font-size: 20px;
+    color: #0693e3;
+    width: 150px;
+    height: 50px;
+    border-radius:30px;
+    border: solid 5px;
+    background-color: #ffffff;
+    border-color: #0693e3;
+}
+
+.inputbtn:hover{
+    color: #ffffff;
+    background-color: #0693e3;
+}
+
+
+.reform{
+    text-align: center;
+}
+
+.span1{
+    margin-left: -60px;
+}
+
+.span2{
+    margin-left: -10px;
+}
+
+.input2{
+    margin-top: 7em;
+    margin-left: 10px;
+    width: 450px;
+    height: 40px;
+}
+
+.input3{
+    margin-top: 2em;
+    margin-left: 10px;
+    width: 450px;
+    height: 40px;
+}
+
+.rebtn{
+    margin-top: 4em;
+    font-size: 20px;
+    color: #0693e3;
+    width: 150px;
+    height: 50px;
+    border-radius:30px;
+    border: solid 5px;
+    background-color: #ffffff;
+    border-color: #0693e3;
+}
+
+.rebtn:hover{
+    color: #ffffff;
+    background-color: #0693e3;
+}
+
+.rediv1{
+    text-align: center;
+}
+
+.rep1{
+    font-size: 25px;
+    margin-top: 5em;
+}
+
+.rea{
+    margin-top: 7em;
+}
+
+.rea1{
+    display: block;
+    font-size: 20px;
+    width: 150px;
+    height: 50px;
+    padding-top: 7px;
+    margin: auto;
+    color: #0693e3;
+    background-color: #ffffff;
+    text-decoration: none;
+    border-radius:30px;
+    border: #0693e3 solid 5px;
+}
+
+.rea1:hover{
+    color: #ffffff;
+    background-color: #0693e3;
+}
+
+/* 戻る */
+#bkbtn {
+    float: left;
+    margin-top: -50px;
+}
+
+#back {
+    text-decoration: none;
+    font-size: 25px;
+    color: black;
+    border: none;
+    outline: none;
+    background: none;
+}
