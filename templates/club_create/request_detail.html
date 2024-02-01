@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block content %}
+<body>
     <h4>立ち上げ申請確認</h4>
     <table id="frm">
         {% for club_name, leader_mail, objective, activities, introduction,note in request_detail %}
@@ -60,4 +61,5 @@
             </td>
         </tr>
     </table>
+</body>
 {% endblock %}

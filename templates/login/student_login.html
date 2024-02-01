@@ -32,9 +32,9 @@
                 <div class="inp2">パスワード　<input type="password" name="password"></div><br>
                 <button class="btn1" type="submit">ログイン</button><br>
             </form>
+            <a id="res" href="{{url_for('account.password_reset')}}">パスワードを忘れた場合はこちら</a>
             <div class="btn2"><a href="{{url_for('admin.login')}}" class="b2">管理者はこちら</a></div>
             <div class="btn3"><a href="{{url_for('account.regist')}}" class="b3">新規登録</a></div>
-            <a href="{{url_for('account.password_reset')}}">パスワードを忘れた場合はこちら</a>
         </div>
     </div>
 

@@ -20,8 +20,8 @@
 
 .join{
     position: relative;
-    top: 70px;
-    left: 1065px;
+    top: 40px;
+    left: 1040px;
 }
 
 .joinbtn{
@@ -43,13 +43,13 @@
 
 .pagetop{
     position: relative;
-    top: 150px;
+    top: 100px;
     left: 1100px;
 }
 
 .pagetop0{
     position: relative;
-    top: 130px;
+    top: 100px;
     left: 1100px;
 }
 
