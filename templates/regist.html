@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-<body>
+
     <h3>学生アカウント登録</h3>
     {% if error == 1 %}
         <form action="{{url_for('account.regist_conf')}}" method="post">
@@ -96,5 +96,5 @@
                 </tr>
               </table>
         </form>
-</body>
+        
 {% endblock %}
