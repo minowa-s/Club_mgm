@@ -13,7 +13,7 @@
         <br>
 
         <div id="okbkbtn">
-          <button id="back" onclick="history.back()">←戻る</button>
+          <button id="back" onclick="location.href='{{url_for('club2.join_req_list')}}'">←戻る</button>
         </div>
 
         <form class="okform" action="{{url_for('club2.join_req_okexe')}}" method="post">

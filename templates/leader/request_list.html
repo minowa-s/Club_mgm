@@ -1,21 +1,46 @@
 {% extends "layout_leader.html" %}
 
 {% block css %}
-<link rel="stylesheet" href="{{url_for('static', filename='/css/top_t_c_l.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='/css/join_req.css')}}">
 <link rel="icon" href="{{url_for('static', filename='/favicon/favicon.ico')}}">
 {% endblock %}
 
 
 {% block content %}
-<body>
-    {{student[1]}}
-    {{student[2]}}
-    {{student[4]}}
-    {{department}}
-    <form action="{{ url_for('club2.join_req') }}" method='post'>
-        <input type="hidden" name="student_id" value="{{student[0]}}" readonly>
-        <button type="submit" name="approve" value="1">承認</button>
-        <button type="submit" name="approve" value="0">否認</button>
-    </form>
-</body>
+    <h3>参加申請一覧</h3>
+    <div id="list_bkbtn">
+        <button id="back" onclick="location.href='{{url_for('backtop_leader')}}'">←戻る</button>
+    </div>
+    <div class="tbl">
+        <div class="position-relative">
+            <div position-absolute top-100px start-20px>
+                <table class="table table-bordered border-success"  style="margin-bottom: 60px;">
+                    <thead>
+                        <tr>
+                          <th scope="col" style="width: 200px">名前</th>
+                          <th scope="col" style="width: 400px">メールアドレス</th>
+                          <th scope="col" style="width: 100px">入学年度</th>
+                          <th scope="col" style="width: 250px">学科</th>
+                          <th scope="col" style="width: 350px"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{student[1]}}</td>
+                            <td>{{student[2]}}</td>
+                            <td>{{student[4]}}</td>
+                            <td>{{department}}</td>
+                            <td>
+                                <form action="{{ url_for('club2.join_req') }}" method='post'>
+                                    <input type="hidden" name="student_id" value="{{student[0]}}" readonly>
+                                    <button class="yesbtn" type="submit" name="approve" value="1">承認</button>
+                                    <button class="nobtn0" type="submit" name="approve" value="0">否認</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 {% endblock %}
