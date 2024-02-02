@@ -54,7 +54,6 @@ def login(mail, password):
         cursor=connection.cursor()
         cursor.execute(sql, (mail,))
         user=cursor.fetchone()
-        print('rgw')
         if user!=None:
             hashed_password = hashlib.sha256(password.encode()).hexdigest()
             print(hashed_password)
