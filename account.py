@@ -51,7 +51,7 @@ def otp_send():
     otp = db.generate_otp()
     session["otp"] = otp
     subject =  "サークルアプリワンタイムパスワード"
-    body = "ワンタイムパスワード：" , otp
+    body = otp
     db.send_email(to_address, subject, body)
     return render_template('otp_send.html', otp=otp)
     
@@ -98,7 +98,7 @@ def regist_execute():
 
     return render_template('regist.html')        
 #-----------------------------------------------
-#ログイン 
+#ログイン
 @account_bp.route('/login')
 def login():
     return render_template('login/student_login.html')

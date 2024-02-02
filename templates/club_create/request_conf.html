@@ -14,35 +14,35 @@
     <p style="color:blue">{{ msg }}</p>
   {% endif %}
   <form action="{{ url_for('req.request_exe') }}" method="post">
-    <input type="hidden" name="member_list" value="{{ member_list }}">
+    <input type="hidden" name="member_list" value="{{member_list}}">
     <table id="frm">
       <tr>
         <th class="th1">
           サークル名
           <p id="required1">必須</p>
         </th>
-        <td class="td1"><input id="inp1" type="text" name="club_name" value="{{ club_name }}" required></td>
+        <td class="td1"><input id="inp1" type="text" name="club_name" value="{{ club_name }}" style="background-color:#FFFFFF" required readonly></td>
       </tr>
       <tr>
         <th class="th2">
           代表者　メールアドレス
           <p id="required2">必須</p>
         </th>
-        <td class="td2"><input id="inp2" type="email" name="leader_mail" value="{{ member_list[0] }}" required></td>
+        <td class="td2"><input id="inp2" type="email" name="leader_mail" value="{{member_list[0]}}" style="background-color:#FFFFFF" required readonly></td>
       </tr>
       <tr>
         <th class="th2">
           サークルメンバー　メールアドレス
           <p id="required2">必須</p>
         </th> 
-        <td class="td2"><input id="inp2" type="email" name="member_adress1" value="{{ member_list[1] }}" required></td>
+        <td class="td2"><input id="inp2" type="email" name="member_adress1" value="{{member_list[1]}}" style="background-color:#FFFFFF" required readonly></td>
       </tr>
       <tr>
         <th class="th2">
           サークルメンバー　メールアドレス
           <p id="required2">必須</p>
         </th> 
-        <td class="td2"><input id="inp2" type="email" name="member_adress2" value="{{ member_list[2] }}" required></td>
+        <td class="td2"><input id="inp2" type="email" name="member_adress2" value="{{member_list[2]}}" style="background-color:#FFFFFF" required readonly></td>
       </tr>
       <tr>
         <th class="th2">
@@ -51,7 +51,7 @@
             メールアドレスを入力してください。
             また、1名ごとに空白で改行してください。</p>
         </th> 
-        <td class="td3"><input id="inp3" type="email" name="member_adresses"{% for row in range(3, member_list|length) %} value="{{ member_list[row] }}" {% endfor %}></td>
+        <td class="td3"><input id="inp3" type="email" name="member_adresses"{% for row in range(3, member_list|length) %} value="{{member_list[row]}}" {% endfor %}  style="background-color:#FFFFFF" readonly></td>
 
       </tr>
       <tr>
@@ -60,7 +60,7 @@
           <p id="required5">必須</p>
           <p>簡単でいいので活動目標を教えてください。</p>
         </th>
-        <td class="td6"><textarea id="inp6" name="objective" required>{{ objective }}</textarea></td>
+        <td class="td6"><textarea id="inp6" name="objective" style="background-color:#FFFFFF" required readonly>{{ objective }}</textarea></td>
       </tr>
       <tr>
         <th class="th6">
@@ -68,26 +68,28 @@
           <p id="required6">必須</p>
           <p>簡単でいいので活動内容を教えてください。</p>
         </th>
-        <td class="td7"><textarea id="inp7" name="activities" required>{{ activities }}</textarea></td>
+        <td class="td7"><textarea id="inp7" name="activities" style="background-color:#FFFFFF" required readonly>{{ activities }}</textarea></td>
       </tr>
       <tr>
-        <th class="th7">
+        <th class="tharea7">
           サークル説明
-          <p id="required7">必須</p>
+          <p id="requiredarea7">必須</p>
           <p>サークルの説明を30文字以内で記入してください。</p>
         </th>
-        <td class="td8"><textarea id="inp8" name="introduction" required>{{ introduction }}</textarea></td>
+        <td class="tdarea8">
+          <textarea id="textarea8" rows="1" name="introduction" style="background-color:#FFFFFF" required readonly>{{ introduction }}</textarea>
+        </td>
       </tr>
       <tr>
         <th class="th8">備考</th>
-        <td class="td8"><textarea id="inp9" name="note">{{ note }}</textarea></td>
+        <td class="td8"><textarea id="inp9" name="note" style="background-color:#FFFFFF" readonly>{{ note }}</textarea></td>
       </tr>
     </table>
     <table id="frmBtn">
       <tr>
         <td>
           <div id="btn1">
-            <button type="button" onclick="history.back()" class="b1">戻る</button>
+            <button type="button" onclick="location.href='{{url_for('req.request_form')}}'" class="b1">戻る</button>
           </div>
         </td>
         <td>

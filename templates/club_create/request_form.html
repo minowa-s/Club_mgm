@@ -48,7 +48,7 @@
           サークルメンバー　メールアドレス
           <p> サークルメンバーが4名以上いる場合は、
             メールアドレスを入力してください。
-            また、1名ごとに空白で改行してください。</p>
+            また、1名ごとに空白で改行してください</p>
         </th> 
         <td class="td3"><textarea id="inp3" rows="10" cols="3" name="member_adresses" value="{{ member_adresses }}" ></textarea></td>
       </tr>
@@ -56,7 +56,7 @@
         <th class="th5">
           活動目標
           <p id="required5">必須</p>
-          <p>簡単でいいので活動目標を教えてください。</p>
+          <p>簡単でいいので活動目標を教えてください</p>
         </th>
         <td class="td6"><textarea id="inp6" name="objective" required>{{ objective }}</textarea></td>
       </tr>
@@ -64,17 +64,20 @@
         <th class="th6">
           活動内容
           <p id="required6">必須</p>
-          <p>簡単でいいので活動内容を教えてください。</p>
+          <p>簡単でいいので活動内容を教えてください</p>
         </th>
         <td class="td7"><textarea id="inp7" name="activities" required>{{ activities }}</textarea></td>
       </tr>
       <tr>
-        <th class="th7">
+        <th class="tharea7">
           サークル説明
-          <p id="required7">必須</p>
-          <p>サークルの説明を30文字以内で記入してください。</p>
+          <p id="requiredarea7">必須</p>
+          <p>サークルの説明を30文字以内で記入してください</p>
         </th>
-        <td class="td8"><textarea id="inp8" name="introduction" required>{{ introduction }}</textarea></td>
+        <td class="tdarea8">
+          <textarea id="textarea8" rows="1" maxlength="30" onkeyup="ShowLength(value);" name="introduction" required>{{ introduction }}</textarea>
+          <span id="inputlength">0文字</span>
+        </td>
       </tr>
       <tr>
         <th class="th8">備考</th>
@@ -96,4 +99,11 @@
       </tr>
     </table>
   </form>
+
+<script>
+
+  function ShowLength( str ) {
+    document.getElementById("inputlength").innerHTML = str.length + "文字";
+ }
+</script>
 {% endblock %}

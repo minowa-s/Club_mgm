@@ -79,13 +79,14 @@ def join_req_no(student_id):
     return render_template("join_reqest/join_req_noexe.html", student_id = student_id)
 
 #否認理由の取得
-@club_bp2.route('/join_req_noexe')
+@club_bp2.route('/join_req_noexe',methods=['POST'])
 def join_req_noexe():
-    reason  = request.args.get("reason")
-    return render_template("join_reqest/join_req_noconf.html", reason = reason)
+    reason  = request.form.get("reason")
+    print(reason)
+    return render_template("join_reqest/join_req_noconf.html", reason=reason)
 
 #セッションからstudent_idを持ってきてそれを引数にUPDATEを実行
-@club_bp2.route('/join_req_noconf')
+@club_bp2.route('/join_req_noconf', methods=['POST'])
 def join_req_noconf():
     reason = request.form.get("reason")
     student_id = session.get("student_id")
