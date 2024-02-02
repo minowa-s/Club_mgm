@@ -259,3 +259,14 @@
   color: #FFFFFF;
   background-color: #0693E3;
 }
+
+#back {
+  padding-bottom: 60px;
+  margin-right: 1000px;
+  text-decoration: none;
+  font-size: 25px;
+  color: black;
+  border: none;
+  outline: none;
+  background: none;
+}
