@@ -32,7 +32,7 @@
                             <td>{{student[1]}}</td>
                             <td>{{student[2]}}</td>
                             <td>{{student[4]}}</td>
-                            <td>{{department}}</td>
+                            <td>{{department[1]}}</td>
                             <td>
                                 <form action="{{ url_for('club2.join_req') }}" method='post'>
                                     <input type="hidden" name="student_id" value="{{student[0]}}" readonly>

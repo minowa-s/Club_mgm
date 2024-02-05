@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, session
-import hashlib, string, random, psycopg2, os, bcrypt, datetime, smtplib, db
+import hashlib, string, random, psycopg2, os, bcrypt, datetime, smtplib, db, app_data
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
@@ -19,7 +19,8 @@ def join_req_list():
     id = request.args.get("student")
     print(id)
     student = db.get_student(id)
-    return render_template("leader/request_list.html" ,list = list, student=student)
+    department = app_data.get_department(student[5])
+    return render_template("leader/request_list.html" ,list = list, student=student, department=department)
  
 def get_list():
     sql = "SELECT * FROM student_club WHERE allow = 0"
