@@ -64,7 +64,7 @@ def join_req_ok(student_id):
 def join_req_okexe():
     student_id = request.form.get("student_id")
     join_ok_sql(student_id)
-    return render_template("join_reqest/join_req_okres.html")
+    return render_template("join_reqest/join_req_okres.html", student=student_id)
 
 #student_idを元にallowを変更するUPDATE文
 def join_ok_sql(student_id):
@@ -86,8 +86,9 @@ def join_req_no(student_id):
 @club_bp2.route('/join_req_noexe',methods=['POST'])
 def join_req_noexe():
     reason  = request.form.get("reason")
+    student_id = request.form.get("student_id")
     print(reason)
-    return render_template("join_reqest/join_req_noconf.html", reason=reason)
+    return render_template("join_reqest/join_req_noconf.html", reason=reason, student=student_id)
 
 #セッションからstudent_idを持ってきてそれを引数にUPDATEを実行
 @club_bp2.route('/join_req_noconf', methods=['POST'])
@@ -95,7 +96,7 @@ def join_req_noconf():
     reason = request.form.get("reason")
     student_id = session.get("student_id")
     join_no_sql(student_id)
-    return render_template("join_reqest/join_req_nores.html")
+    return render_template("join_reqest/join_req_nores.html", student=student_id)
 
 #student_idを元にallowを変更するUPDATE文
 def join_no_sql(student_id):
