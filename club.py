@@ -122,6 +122,7 @@ def club_detail_teacher():
 #リーダーサークル詳細表示
 @club_bp.route("/club_detail_leader", methods=['GET'])
 def club_detail_leader():
+    student = request.args.get('student')
     club_id = request.args.get('club_id')
     club_detail = db.get_club_detail(club_id)
     member = db.get_joinedmember(club_id)
@@ -137,4 +138,4 @@ def club_detail_leader():
     for row in schedule:
         formatted_date = row[2].strftime('%Y-%m-%d')
         daylist.append(formatted_date)
-    return render_template('club_detail_leader.html', club_id=club_id, club_detail=club_detail, memberlist=memberlist, schedulelist=schedulelist, daylist=daylist)
+    return render_template('club_detail_leader.html', club_id=club_id, club_detail=club_detail, memberlist=memberlist, schedulelist=schedulelist, daylist=daylist, student=student)
