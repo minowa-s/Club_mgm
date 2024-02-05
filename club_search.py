@@ -49,9 +49,12 @@ def club_search_lea():
 @club_search_bp.route("/club_search_reslea", methods=["POST"])
 def club_search_reslea():
         name = request.form.get("name")
+        id = request.args.get("student")
+        print(id)
+        student = db.get_student(id)
         introduction = name
         club_list = club_search(name,introduction)
-        return render_template("club_search/club_search_reslea.html", club=club_list)
+        return render_template("club_search/club_search_reslea.html", club=club_list, student=student)
 
 #学生会サークル検索
 @club_search_bp.route("/club_search_cou")
