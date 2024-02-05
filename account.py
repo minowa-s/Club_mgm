@@ -123,7 +123,6 @@ def student_login_exe():
                 club_list = club.club_list()
                 leader = db.get_sc(id)
                 print(leader)
-                print("aaa")
                 gakuseikai = db.get_student(id)
 
                 #リーダー判定

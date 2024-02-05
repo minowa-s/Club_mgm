@@ -9,7 +9,7 @@
 {% block content %}
 <div id="search">
   <h4 class="h4">あなたにピッタリのサークルが見つかる！</h4>
-  <form action="{{url_for('club_search.club_search_stu')}}"  class="search-form-001" method="post">
+  <form action="{{url_for('club_search.club_search_resstu', student=student[0])}}"  class="search-form-001" method="post">
     <label>
         <input type="text" placeholder="例 ）バスケ" name="name">
     </label>
@@ -45,7 +45,7 @@
     <div class="ta">
       <div class="divlaunch">
         <p class="p1">サークル立ち上げ申請はこちら</p>
-        <a class="launch" href="{{url_for('req.request_form')}}">立ち上げる</a>
+        <a class="launch" href="{{url_for('req.request_form', student=student[0])}}">立ち上げる</a>
         <p class="p2">サークルの立ち上げは3人以上の<br>メンバーが必要です!</p>
       </div>
     </div>
