@@ -29,7 +29,9 @@ def regist_conf():
     if is_valid_gmail(mail):
         print("true") 
     else :
-        return render_template("regist.html")
+        department = db.select_department()
+        year = db.select_year()
+        return render_template("regist.html", department=department, year=year)
     session['mail'] = mail
     entrance_year = request.form.get('entrance_year') #入学年度
     session['entrance_year'] = entrance_year
