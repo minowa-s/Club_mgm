@@ -46,7 +46,7 @@ def club_join_req3():
     finally :
             cursor.close()
             connection.close()     
-    return render_template('club_join_reqres.html')
+    return render_template('club_join_reqres.html', student=student_id)
 
 #おすすめサークル表示
 def club_list():
