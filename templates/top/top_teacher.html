@@ -34,7 +34,7 @@
               {% for row in club_list%}
               <tr>
                 <td>
-                  <a class="title" href="{{ url_for('club.club_detail_teacher', club_id=row[0][0], student=student) }}" style="color: #000000;" name="club_id" values="{{ row[0][0] }}">{{ row[0][1] }}</a><br>
+                  <a class="title" href="{{ url_for('club.club_detail_teacher', club_id=row[0][0], student=student) }}" name="club_id" values="{{ row[0][0] }}">{{ row[0][1] }}</a><br>
                   <span style="font-size: 13px;" >{{row[0][2]}}</span>
                 </td>
                 <td  align="center" valign="middle">{{row[1][0][0]}}</td>
