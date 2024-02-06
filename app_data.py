@@ -32,7 +32,7 @@ def get_request_conf():
         student_mail = db.get_student(student_ids[count])
         student_mail_list.append(student_mail[2])
         count+= 1
-    return render_template('club_create/request.detail.html', request_detail=request_detail, leader_mail=leader_mail, student_mail_list=student_mail_list, club_id=club_id)
+    return render_template('club_create/request_detail_te.html', request_detail=request_detail, leader_mail=leader_mail, student_mail_list=student_mail_list, club_id=club_id)
 
 #サークル立ち上げ承認
 @app_data_bp.route('/request_exe', methods=['POST'])
