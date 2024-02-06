@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, session
-import hashlib, string, random, psycopg2, os, bcrypt, datetime, smtplib, db
+import hashlib, string, random, psycopg2, os, bcrypt, datetime, smtplib, db, app_data
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
@@ -16,7 +16,11 @@ def get_connection():
 @club_bp2.route("/join_req_list")
 def join_req_list():
     list = get_list()
-    return render_template("join_reqest/join_req_list.html" ,list = list)
+    id = request.args.get("student")
+    print(id)
+    student = db.get_student(id)
+    department = app_data.get_department(student[5])
+    return render_template("leader/request_list.html" ,list = list, student=student, department=department)
  
 def get_list():
     sql = "SELECT * FROM student_club WHERE allow = 0"
@@ -44,23 +48,23 @@ def get_list():
 def join_req():
     approve = request.form.get("approve")
     print(approve)
-    student_id = request.form.get("student_id")
+    student = request.form.get("student_id")
     if approve == "1" :
-        return join_req_ok(student_id)
+        return join_req_ok(student)
     else :
-        return join_req_no(student_id)
+        return join_req_no(student)
     
 #申請承認機能
 #一覧からidを取得して次の画面に遷移させる処理
 def join_req_ok(student_id):
-    return render_template("join_reqest/join_req_okexe.html" ,student_id = student_id)
+    return render_template("join_reqest/join_req_okexe.html" ,student = student_id)
 
 #下に書いてあるsqlを実行し完了画面に遷移させる処理
 @club_bp2.route("/join_req_okexe", methods=["POST"] )
 def join_req_okexe():
     student_id = request.form.get("student_id")
     join_ok_sql(student_id)
-    return render_template("join_reqest/join_req_okres.html")
+    return render_template("join_reqest/join_req_okres.html", student=student_id)
 
 #student_idを元にallowを変更するUPDATE文
 def join_ok_sql(student_id):
@@ -76,14 +80,15 @@ def join_ok_sql(student_id):
 #申請否認機能
 def join_req_no(student_id):
     session["student_id"] = student_id
-    return render_template("join_reqest/join_req_noexe.html", student_id = student_id)
+    return render_template("join_reqest/join_req_noexe.html", student = student_id)
 
 #否認理由の取得
 @club_bp2.route('/join_req_noexe',methods=['POST'])
 def join_req_noexe():
     reason  = request.form.get("reason")
+    student_id = request.form.get("student_id")
     print(reason)
-    return render_template("join_reqest/join_req_noconf.html", reason=reason)
+    return render_template("join_reqest/join_req_noconf.html", reason=reason, student=student_id)
 
 #セッションからstudent_idを持ってきてそれを引数にUPDATEを実行
 @club_bp2.route('/join_req_noconf', methods=['POST'])
@@ -91,7 +96,7 @@ def join_req_noconf():
     reason = request.form.get("reason")
     student_id = session.get("student_id")
     join_no_sql(student_id)
-    return render_template("join_reqest/join_req_nores.html")
+    return render_template("join_reqest/join_req_nores.html", student=student_id)
 
 #student_idを元にallowを変更するUPDATE文
 def join_no_sql(student_id):

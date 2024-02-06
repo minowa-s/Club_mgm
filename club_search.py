@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, session
-import hashlib, string, random, psycopg2, os, bcrypt, datetime, smtplib
+import hashlib, string, random, psycopg2, os, bcrypt, datetime, smtplib, db
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
@@ -34,9 +34,12 @@ def club_search_stu():
 @club_search_bp.route("/club_search_resstu", methods=["POST"])
 def club_search_resstu():
         name = request.form.get("name")
+        id = request.args.get("student")
+        print(id)
+        student = db.get_student(id)
         introduction = name
         club_list = club_search(name,introduction)
-        return render_template("club_search/club_search_resstu.html", club=club_list)
+        return render_template("club_search/club_search_resstu.html", club=club_list, student=student)
 
 #サークルリーダーサークル検索
 @club_search_bp.route("/club_search_lea")
@@ -46,9 +49,12 @@ def club_search_lea():
 @club_search_bp.route("/club_search_reslea", methods=["POST"])
 def club_search_reslea():
         name = request.form.get("name")
+        id = request.args.get("student")
+        print(id)
+        student = db.get_student(id)
         introduction = name
         club_list = club_search(name,introduction)
-        return render_template("club_search/club_search_reslea.html", club=club_list)
+        return render_template("club_search/club_search_reslea.html", club=club_list, student=student)
 
 #学生会サークル検索
 @club_search_bp.route("/club_search_cou")

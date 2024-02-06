@@ -1,5 +1,5 @@
 from flask import Blueprint, redirect, render_template, request, session, url_for
-import hashlib, string, random, psycopg2, db, os, bcrypt, datetime, smtplib, club, app_data
+import hashlib, string, random, psycopg2, db, os, re, bcrypt, datetime, smtplib, club, app_data
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
@@ -26,6 +26,12 @@ def regist_conf():
     name = request.form.get('name') #氏名
     session['name'] = name
     mail = request.form.get('mail') #メールアドレス
+    if is_valid_gmail(mail):
+        print("true") 
+    else :
+        department = db.select_department()
+        year = db.select_year()
+        return render_template("regist.html", department=department, year=year)
     session['mail'] = mail
     entrance_year = request.form.get('entrance_year') #入学年度
     session['entrance_year'] = entrance_year
@@ -96,7 +102,28 @@ def regist_execute():
             cursor.close()
             connection.close()
 
-    return render_template('regist.html')        
+    return render_template('regist.html')     
+
+def is_valid_gmail(mail):
+    # メールアドレスの正規表現
+    email_pattern = r"[a-zA-Z0-9._%+-]+@([a-zA-Z0-9.-]+\.[a-zA-Z]{2,})"
+    
+    # 正規表現に一致するか確認
+    match = re.match(email_pattern, mail)
+
+    if match:
+        # メールアドレスが正しい場合
+        domain = match.group(1)
+        if domain == "morijyobi.ac.jp":
+            # もりじょびのドメインである場合
+            return True
+        else:
+            print("morijyobi.ac.jp以外のドメインは対応していません。")
+    else:
+        # 正しいメールアドレスでない場合
+        print("正しいメールアドレスを入力してください。")
+
+    return False   
 #-----------------------------------------------
 #ログイン
 @account_bp.route('/login')
@@ -123,12 +150,11 @@ def student_login_exe():
                 club_list = club.club_list()
                 leader = db.get_sc(id)
                 print(leader)
-                print("aaa")
                 gakuseikai = db.get_student(id)
 
                 #リーダー判定
                 if leader is not None and leader[3] == True and leader[4] == 1:    
-                    return render_template('top/top_leader.html', club_list=club_list, student=student[0])
+                    return render_template('top/top_leader.html', club_list=club_list, student=student)
                 else:
                     if gakuseikai[6] == True :
                         return render_template('top/top_council.html', club_list=club_list, student=student)

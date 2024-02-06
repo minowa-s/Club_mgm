@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, session
-import hashlib, string, random, psycopg2, os, bcrypt, datetime, smtplib
+import hashlib, string, random, psycopg2, os, bcrypt, datetime, smtplib, db
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
@@ -22,11 +22,12 @@ def mypage():
     department_id = get_department_id(mail)
     department = get_department(department_id)
     student_id = get_student_id(mail)
+    student = db.get_student(student_id)
     club_id_list = get_club_id(student_id)
     club_name_list = []
     for n in club_id_list:
         club_name_list.append(get_club_name(n)) 
-    return render_template('mypage/mypage.html', mail = mail, name = name, entrance_year = entrance_year, department = department, club_name_list = club_name_list)
+    return render_template('mypage/mypage.html', mail = mail, name = name, entrance_year = entrance_year, department = department, club_name_list = club_name_list, student = student)
     
 #サークルリーダー
 #マイページ機能
@@ -41,11 +42,12 @@ def mypage_lea():
     department = get_department(department_id)
     student_id = get_student_id(mail)
     club_id_list = get_club_id(student_id)
+    student = db.get_student(student_id)
     club_name_list = []
     for n in club_id_list:
         club_name_list.append(get_club_name(n)) 
     print(club_name_list)
-    return render_template('mypage/mypage_lea.html', mail = mail, name = name, entrance_year = entrance_year, department = department, club_name_list = club_name_list)
+    return render_template('mypage/mypage_lea.html', mail = mail, name = name, entrance_year = entrance_year, department = department, club_name_list = club_name_list, student = student)
 
 #学生会マイページ機能
 @mypage_bp.route('/mypage_cou')
