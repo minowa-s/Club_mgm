@@ -199,7 +199,6 @@ def mail_send_conf():
         leader = get_leader(row)
         db.mail_send(leader[2], subject, body)
     return render_template('mail_send_conf.html')
-    
-
+   
 if __name__ == '__main__':
     app.run(debug=True)

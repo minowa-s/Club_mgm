@@ -62,10 +62,12 @@ def backtop_teacher():
     club_list = club.club_list()
     return render_template('top/top_teacher.html', club_list=club_list)
 
-@app.route('/backtop_l')
+@app.route('/backtop_l', methods=['post'])
 def backtop_leader():
+    id = request.form.get('student')
     club_list = club.club_list()
-    return render_template('top/top_leader.html', club_list=club_list)
+    student = db.get_student(id)
+    return render_template('top/top_leader.html', club_list=club_list, student=student)
 
 @app.route('/backtop_g')
 def backtop_gakuseikai():

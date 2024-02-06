@@ -21,7 +21,10 @@
     </div>
 
     <div id="bkbtn">
-        <button id="back" onclick="history.back()">←戻る</button>
+        <form action="{{url_for('backtop_leader')}}" method="post">
+            <input type="hidden" name="student" value="{{student[0]}}">
+          <button type="submit" id="back" >←戻る</button>
+        </form>
     </div>
 
     <div class="resdiv">
@@ -37,7 +40,10 @@
                     <tbody>
                         {% for clubs in club %}
                         <tr>
-                            <td>{{ clubs[1] }}</td>
+                            <td>
+                                <a class="title" href="{{ url_for('club.club_detail_leader', club_id=clubs[0], student=student[0]) }}" style="color: #000000;" name="club_id" values="{{ clubs[0] }}">{{ clubs[1] }}</a><br>
+                                <span style="font-size: 13px;" >{{clubs[1]}}</span>
+                              </td>
                             <td>{{ clubs[5] }}</td>
                         </tr>
                         {% endfor %}
