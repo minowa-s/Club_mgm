@@ -58,9 +58,13 @@ def club_not_create_conf():
     return render_template('club_create/club_not_create_conf.html', reason=reason)
 
 #サークル立ち上げ否認確定
-@app_data_bp.route('/club_not_create_exe')
+@app_data_bp.route('/club_not_create_exe', methods=['POST'])
 def club_not_create_exe():
+    reason = request.form.get('reason')
     club_id = session.get('club_id')
+    club = db.get_club_detail(club_id) # leaderid = [1]
+    student = db.get_student(club[1])
+    db.mail_send(student[2], "サークル立ち上げ申請について", reason)
     db.delete_request(club_id)
     return render_template('club_create/club_not_create_exe.html')
 
