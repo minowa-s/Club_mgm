@@ -33,15 +33,15 @@
                 <table class="table table-bordered border-success"  style="margin-bottom: 60px;">
                     <thead>
                         <tr>
-                            <th>サークル名</th>
-                            <th>サークル説明</th>    
+                            <th style="width: 400px">サークル名</th>
+                            <th style="width: 500px">サークル説明</th>    
                         </tr>
                     </thead>
                     <tbody>
                         {% for clubs in club %}
                         <tr>
                             <td>
-                                <a class="title" href="{{ url_for('club.club_detail_leader', club_id=clubs[0], student=student[0]) }}" style="color: #000000;" name="club_id" values="{{ clubs[0] }}">{{ clubs[1] }}</a><br>
+                                <a class="title" href="{{ url_for('club.club_detail_leader', club_id=clubs[0], student=student[0]) }}" name="club_id" values="{{ clubs[0] }}">{{ clubs[1] }}</a><br>
                                 <span style="font-size: 13px;" >{{clubs[1]}}</span>
                               </td>
                             <td>{{ clubs[5] }}</td>

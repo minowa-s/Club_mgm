@@ -69,6 +69,19 @@
     padding-top: 5em;
 }
 
+/* 一覧 */
+th{
+    font-size: 18px;
+}
+
+td{
+    font-size: 18px;
+}
+
+.table{
+    text-decoration: none;
+}
+
 /* 削除ボタン */
 .btntd{
     text-align: center;
