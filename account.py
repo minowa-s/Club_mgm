@@ -137,32 +137,33 @@ def student_login_exe():
     password = request.form.get('password')
     #データベースからソルト取得
     salt = get_account_salt(mail)
+    print(salt)
     if salt is not None:
-            # パスワードとソルトを使ってハッシュを生成
-            hashed_password = hashlib.sha256(password.encode()).hexdigest()
-            # データベースから保存されたハッシュを取得
-            stored_password = get_account_pass(mail)
-            session['mail'] = mail
-            # ハッシュが一致すればログイン成功
-            if hashed_password == stored_password:
-                id = db.get_id(mail)
-                student = db.get_student(id)
-                club_list = club.club_list()
-                leader = db.get_sc(id)
-                print(leader)
-                gakuseikai = db.get_student(id)
+        # パスワードとソルトを使ってハッシュを生成
+        hashed_password = hashlib.sha256(password.encode()).hexdigest()
+        # データベースから保存されたハッシュを取得
+        stored_password = get_account_pass(mail)
+        session['mail'] = mail
+        # ハッシュが一致すればログイン成功
+        if hashed_password == stored_password:
+            id = db.get_id(mail)
+            student = db.get_student(id)
+            club_list = club.club_list()
+            leader = db.get_sc(id)
+            print(leader)
+            gakuseikai = db.get_student(id)
 
-                #リーダー判定
-                if leader is not None and leader[3] == True and leader[4] == 1:    
-                    return render_template('top/top_leader.html', club_list=club_list, student=student)
-                else:
-                    if gakuseikai[6] == True :
-                        return render_template('top/top_council.html', club_list=club_list, student=student)
-                    print(student)
-                    return render_template('top/top_student.html', club_list=club_list, student=student)
+            #リーダー判定
+            if leader is not None and leader[3] == True and leader[4] == 1:    
+                return render_template('top/top_leader.html', club_list=club_list, student=student)
             else:
-                print('Invalid mail or password')
-                return render_template('login/student_login.html')
+                if gakuseikai[6] == True :
+                    return render_template('top/top_council.html', club_list=club_list, student=student)
+                print(student)
+                return render_template('top/top_student.html', club_list=club_list, student=student)
+        else:
+            print('Invalid mail or password')
+            return render_template('login/student_login.html')
     else:
         print('Invalid mail or password')
         return render_template('login/student_login.html')
@@ -198,13 +199,15 @@ def get_account_salt(mail):
         cursor = connection.cursor()
         cursor.execute(sql, (mail,))
         salt = cursor.fetchone()
-        str_salt = str(salt[0])
+        #str_salt = str(salt[0])
     except psycopg2.DatabaseError:
-        flg = False
+       # str_salt = False
+       salt = False
     finally:
         cursor.close()
         connection.close()
-    return str_salt
+    # return str_salt
+    return salt
 
 #-----------------------------
 #パスワード変更
