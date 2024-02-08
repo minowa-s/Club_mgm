@@ -10,7 +10,7 @@
     <h3>参加申請一覧</h3>
     <div id="list_bkbtn">
         <form action="{{url_for('backtop_leader')}}" method="post">
-            <input type="hidden" name="student" value="{{my_id}}">
+            <input type="hidden" name="student" value="{{student[0]}}">
           <button type="submit" id="back" >←戻る</button>
         </form>
     </div>
