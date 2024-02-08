@@ -69,7 +69,7 @@ def request_exe():
             db.first_club_member_add(id, club_id, flg)
         count += 1
     
-    return render_template('club_create/request_exe.html')
+    return render_template('club_create/request_exe.html', student=leader_id)
 
 if __name__ == '__main__':
     app.run(debug=True)

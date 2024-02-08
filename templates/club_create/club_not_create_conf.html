@@ -29,8 +29,8 @@
           <tr>
             <th class="confth"><span>否認理由</span></th>
             <td>
-              <form action="{{ url_for('app_data.club_not_create_exe') }}">
-                <textarea class="conftextarea" type="text" name="reason" value="{{reason}}" readonly></textarea>
+              <form action="{{ url_for('app_data.club_not_create_exe') }}" method='POST'>
+                <textarea class="conftextarea" type="text" name="reason" value="{{reason}}" readonly>{{reason}}</textarea>
                 <br>
                 <br>
                 <button class="confbtn" type="submit">送信</button>

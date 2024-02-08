@@ -15,6 +15,8 @@ def get_connection():
 @leader_bp.route("/requst_list")
 def request_list():
     mail = session.get('mail')
+    my_id = request.args.get('student')
+    print(my_id)
     #student_id取得
     id = db.get_id(mail)
     club_id = db.get_club_id(id)
@@ -23,14 +25,15 @@ def request_list():
     print("requ==", club_id)
     if request_list:
         student = db.get_student(request_list[0][1])
+        print(student)
         department = app_data.get_department(student[5])
         department = department[1]
     else:
         # request_list が空の場合の処理
         student = None
         department = None
-        return render_template('leader/0request_list.html')
-    return render_template('leader/request_list.html', student=student, department=department)
+        return render_template('leader/0request_list.html', student=my_id)
+    return render_template('leader/request_list.html', student=student, department=department, my_id=my_id)
 
 def get_request(club_id):
     sql = "SELECT * FROM student_club WHERE allow = 0 and club_id = %s"
