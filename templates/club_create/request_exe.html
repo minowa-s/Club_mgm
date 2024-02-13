@@ -10,7 +10,10 @@
   <div class="reqdiv1">
         <p class="reqp1">立ち上げ申請をしました</p>
         <div class="reqa">
-          <a class="reqa1" href="{{url_for('backtop_student')}}">トップページへ</a>
+          <form action="{{url_for('backtop_student')}}" method="post">
+            <input type="hidden" name="student" value="{{student[0]}}">
+          <button type="submit" id="back" >TOPへ</button>
+          </form>
         </div>
   </div>
 {% endblock %}

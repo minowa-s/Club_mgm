@@ -29,7 +29,7 @@
             <a id="st">学生</a>
             <form action="{{url_for('account.student_login_exe')}}" method="post">
                 <div class="inp1">メール　<input type="mail" name="mail"></div>
-                <div class="inp2">パスワード　<input type="text" name="password" pattern="^[a-zA-Z0-9]+$"></div><br>
+                <div class="inp2">パスワード　<input type="password" name="password" pattern="^[a-zA-Z0-9]+$"></div><br>
                 <button class="btn1" type="submit">ログイン</button><br>
             </form>
             <a id="res" href="{{url_for('account.password_reset')}}">パスワードを忘れた場合はこちら</a>

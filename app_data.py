@@ -32,7 +32,7 @@ def get_request_conf():
         student_mail = db.get_student(student_ids[count])
         student_mail_list.append(student_mail[2])
         count+= 1
-    return render_template('club_create/request.detail.html', request_detail=request_detail, leader_mail=leader_mail, student_mail_list=student_mail_list, club_id=club_id)
+    return render_template('club_create/request_detail_te.html', request_detail=request_detail, leader_mail=leader_mail, student_mail_list=student_mail_list, club_id=club_id)
 
 #サークル立ち上げ承認
 @app_data_bp.route('/request_exe', methods=['POST'])
@@ -58,9 +58,13 @@ def club_not_create_conf():
     return render_template('club_create/club_not_create_conf.html', reason=reason)
 
 #サークル立ち上げ否認確定
-@app_data_bp.route('/club_not_create_exe')
+@app_data_bp.route('/club_not_create_exe', methods=['POST'])
 def club_not_create_exe():
+    reason = request.form.get('reason')
     club_id = session.get('club_id')
+    club = db.get_club_detail(club_id) # leaderid = [1]
+    student = db.get_student(club[1])
+    db.mail_send(student[2], "サークル立ち上げ申請について", reason)
     db.delete_request(club_id)
     return render_template('club_create/club_not_create_exe.html')
 

@@ -63,6 +63,8 @@ def join_req_ok(student_id):
 @club_bp2.route("/join_req_okexe", methods=["POST"] )
 def join_req_okexe():
     student_id = request.form.get("student_id")
+    student = db.get_student(student_id)
+    db.mail_send(student[2], "参加申請について", "参加申請が承認されました")
     join_ok_sql(student_id)
     return render_template("join_reqest/join_req_okres.html", student=student_id)
 
@@ -95,6 +97,8 @@ def join_req_noexe():
 def join_req_noconf():
     reason = request.form.get("reason")
     student_id = session.get("student_id")
+    student = db.get_student(student_id)
+    db.mail_send(student[2], "参加申請について", reason)
     join_no_sql(student_id)
     return render_template("join_reqest/join_req_nores.html", student=student_id)
 

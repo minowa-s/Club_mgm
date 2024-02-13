@@ -1,4 +1,4 @@
-{% extends "layout_leader.html" %}
+{% extends "layout_teacher.html" %}
 
 {% block css %}
 <link rel="stylesheet" href="{{url_for('static', filename='/css/club_create.css')}}">
@@ -17,7 +17,7 @@
         <thead>
           <tr>
             <th><span>件名</span></th>
-            <td><input class="confinput" type="text" value="サークルの参加申請について" readonly></td>
+            <td><input class="confinput" type="text" value="サークルの立ち上げ申請について" readonly></td>
           </tr>
         </thead>
         <tbody>
@@ -29,8 +29,8 @@
           <tr>
             <th class="confth"><span>否認理由</span></th>
             <td>
-              <form action="{{ url_for('app_data.club_not_create_exe') }}">
-                <textarea class="conftextarea" type="text" name="reason" value="{{reason}}" readonly></textarea>
+              <form action="{{ url_for('app_data.club_not_create_exe') }}" method='POST'>
+                <textarea class="conftextarea" type="text" name="reason" value="{{reason}}" readonly>{{reason}}</textarea>
                 <br>
                 <br>
                 <button class="confbtn" type="submit">送信</button>
