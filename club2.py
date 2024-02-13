@@ -17,8 +17,11 @@ def get_connection():
 def join_req_list():
     id = request.args.get("student") #リーダーのid
     club_id = db.get_club_id(id) #リーダー情報からclub_id取得 
+    print(club_id)
     student = db.get_student(id) #リーダーのstudent情報
     list = get_list(club_id) #club_idを使ってそのサークルに来ている申請を取得
+    print("list::::::::")
+    print(list)
     if not list:  # もしくは if len(my_list) == 0:
         return render_template("leader/0request_list.html", student=student)
     else:

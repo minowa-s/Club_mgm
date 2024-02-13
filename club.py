@@ -35,11 +35,11 @@ def club_join_req3():
     print("club_jpin_req3")
     print(student_id)
     print(club_id) #できてる
-    sql = "INSERT INTO student_club (student_id, club_id, is_leader, allow) VALUES (%s, %s, %s, %s)"
+    sql = "INSERT INTO student_club (student_id, club_id, is_leader, allow) VALUES (%s, %s, %s, 0)"
     try :
         connection = get_connection()
         cursor = connection.cursor()   
-        cursor.execute(sql, (student_id, club_id, False, 0))
+        cursor.execute(sql, (student_id, club_id, False))
         connection.commit()
     except psycopg2.DatabaseError:
             count = 0
