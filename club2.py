@@ -15,29 +15,35 @@ def get_connection():
 #参加申請一覧機能
 @club_bp2.route("/join_req_list")
 def join_req_list():
-    list = get_list()
-    id = request.args.get("student")
-    print(id)
-    student = db.get_student(id)
-    department = app_data.get_department(student[5])
-    return render_template("leader/request_list.html" ,list = list, student=student, department=department)
+    id = request.args.get("student") #リーダーのid
+    club_id = db.get_club_id(id) #リーダー情報からclub_id取得 
+    student = db.get_student(id) #リーダーのstudent情報
+    list = get_list(club_id) #club_idを使ってそのサークルに来ている申請を取得
+    if not list:  # もしくは if len(my_list) == 0:
+        return render_template("leader/0request_list.html", student=student)
+    else:
+        return render_template("leader/request_list.html" ,list = list, student=student)
  
-def get_list():
-    sql = "SELECT * FROM student_club WHERE allow = 0"
+def get_list(club_id):
+    sql = "SELECT * FROM student_club WHERE allow = 0 and club_id = %s"
     
     try :
         connection = get_connection()
         cursor = connection.cursor()   
-        cursor.execute(sql )
+        cursor.execute(sql, (club_id,))
         connection.commit()
         
     except psycopg2.DatabaseError:
         count = 0
     
-    name = get_name(1)
     result_list = []  # list を変数名と重複しないように変更
     for row in cursor.fetchall():
-        result_list.append((row[0], row[1], name))  # name を追加
+        name = get_name(row[1])
+        student = db.get_student(row[1])
+        entrance_year = student[4]
+        department_name = app_data.get_department(student[5])
+        request_student = db.get_student(row[1])
+        result_list.append((request_student[2], name, entrance_year,  department_name, student[0]))  # name を追加
     cursor.close()
     connection.close()
     return result_list
@@ -64,6 +70,7 @@ def join_req_ok(student_id):
 def join_req_okexe():
     student_id = request.form.get("student_id")
     student = db.get_student(student_id)
+    print(student)
     db.mail_send(student[2], "参加申請について", "参加申請が承認されました")
     join_ok_sql(student_id)
     return render_template("join_reqest/join_req_okres.html", student=student_id)

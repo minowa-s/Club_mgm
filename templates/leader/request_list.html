@@ -29,13 +29,13 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>{{student[1]}}</td>
-                            <td>{{student[2]}}</td>
-                            <td>{{student[4]}}</td>
-                            <td>{{department[1]}}</td>
+                            <td>{{list[0][1][0]}}</td>
+                            <td>{{list[0][0]}}</td>
+                            <td>{{list[0][2]}}</td>
+                            <td>{{list[0][3][1]}}</td>
                             <td>
                                 <form action="{{ url_for('club2.join_req') }}" method='post'>
-                                    <input type="hidden" name="student_id" value="{{student[0]}}" readonly>
+                                    <input type="hidden" name="student_id" value="{{list[0][4]}}" readonly>
                                     <button class="yesbtn" type="submit" name="approve" value="1">承認</button>
                                     <button class="nobtn0" type="submit" name="approve" value="0">否認</button>
                                 </form>
